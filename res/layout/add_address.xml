@@ -1,0 +1,53 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddAddress" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/txtAddName"
+            style="@style/textEdit"
+            android:hint="@string/name" />
+
+        <RelativeLayout
+            android:id="@+id/rlAddAddress"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtAddName"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/txtAddAddress"
+                style="@style/textEdit"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/btnSearchAddress"
+                android:hint="@string/address" />
+
+            <RelativeLayout
+                android:id="@+id/btnSearchAddress"
+                style="@style/btnBackgroundThemeA"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dip"
+                android:layout_marginTop="5dip" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_magnifier_white" />
+            </RelativeLayout>
+        </RelativeLayout>
+        <fragment
+            android:layout_below="@id/rlAddAddress"
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            class="com.google.android.gms.maps.SupportMapFragment" />
+    </RelativeLayout>
+
+</ScrollView>

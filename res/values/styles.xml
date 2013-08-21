@@ -1,0 +1,77 @@
+<resources>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="windowTitleStyle" parent="Theme.BuzzzleeperTheme">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@color/backgroundThemeA</item>
+        <item name="android:windowTitleBackgroundStyle">@color/backgroundThemeA</item>
+        <item name="android:windowTitleSize">45dip</item>
+        <item name="android:layout_height">45dip</item>
+        <item name="android:layout_margin">0dip</item>
+        <item name="android:padding">0dip</item>
+        <item name="android:height">45dip</item>
+
+    </style>
+
+    <style name="scrollViewStyle" parent="Theme.BuzzzleeperTheme">
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">@color/backgroundThemeA</item>
+    </style>
+
+    <style name="input" parent="Theme.BuzzzleeperTheme">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">40dip</item>
+        <item name="android:background">@color/inputBackgroundColor</item>
+        <item name="android:textColorHint">@color/inputTextColor</item>
+        <item name="android:padding">5dip</item>
+        <item name="android:textSize">15dip</item>
+        <item name="android:height">30dip</item>
+
+        <item name="android:layout_marginTop">5dip</item>
+        <item name="android:layout_marginLeft">5dip</item>
+        <item name="android:layout_marginRight">5dip</item>
+    </style>
+
+    <style name="textEdit" parent="input">
+        <item name="android:singleLine">true</item>
+    </style>
+
+
+    <style name="mapViewStyle"></style>
+
+    <style name="btnBackgroundThemeA">
+        <item name="android:layout_width">40dip</item>
+        <item name="android:layout_height">40dip</item>
+        <item name="android:background">@color/backgroundThemeA</item>
+    </style>
+
+
+
+
+    <style name="frameMap">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">250dip</item>
+        <item name="android:layout_marginTop">5dip</item>
+        <item name="android:layout_marginLeft">5dip</item>
+        <item name="android:layout_marginRight">5dip</item>
+    </style>
+
+
+
+</resources>
