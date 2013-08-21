@@ -11,10 +11,10 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
-        public static int backgroundThemeA=0x7f040000;
-        public static int inputBackgroundColor=0x7f040002;
-        public static int inputTextColor=0x7f040003;
-        public static int white=0x7f040001;
+        public static final int backgroundThemeA=0x7f040000;
+        public static final int inputBackgroundColor=0x7f040002;
+        public static final int inputTextColor=0x7f040003;
+        public static final int white=0x7f040001;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -23,45 +23,45 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static int activity_horizontal_margin=0x7f050000;
-        public static int activity_vertical_margin=0x7f050001;
+        public static final int activity_horizontal_margin=0x7f050000;
+        public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static int ic_arrow_back=0x7f020000;
-        public static int ic_launcher=0x7f020001;
-        public static int ic_magnifier_white=0x7f020002;
+        public static final int ic_arrow_back=0x7f020000;
+        public static final int ic_launcher=0x7f020001;
+        public static final int ic_magnifier_white=0x7f020002;
     }
     public static final class id {
-        public static int action_settings=0x7f090008;
-        public static int arrowBack=0x7f090005;
-        public static int btnSearchAddress=0x7f090003;
-        public static int logo=0x7f090006;
-        public static int map=0x7f090004;
-        public static int rlAddAddress=0x7f090001;
-        public static int txtAddAddress=0x7f090002;
-        public static int txtAddName=0x7f090000;
-        public static int txtTitle=0x7f090007;
+        public static final int action_settings=0x7f090008;
+        public static final int arrowBack=0x7f090005;
+        public static final int btnSearchAddress=0x7f090003;
+        public static final int googleMap=0x7f090004;
+        public static final int logo=0x7f090006;
+        public static final int rlAddAddress=0x7f090001;
+        public static final int txtAddAddress=0x7f090002;
+        public static final int txtAddName=0x7f090000;
+        public static final int txtTitle=0x7f090007;
     }
     public static final class layout {
-        public static int activity_main=0x7f030000;
-        public static int add_address=0x7f030001;
-        public static int title=0x7f030002;
+        public static final int activity_main=0x7f030000;
+        public static final int add_address=0x7f030001;
+        public static final int title=0x7f030002;
     }
     public static final class menu {
-        public static int main=0x7f080000;
+        public static final int main=0x7f080000;
     }
     public static final class string {
-        public static int action_settings=0x7f060001;
+        public static final int action_settings=0x7f060001;
         /**  ADD ADDRESS
          */
-        public static int add=0x7f060003;
-        public static int address=0x7f060005;
-        public static int alarm=0x7f060006;
-        public static int app_name=0x7f060000;
-        public static int cancel=0x7f060008;
-        public static int hello_world=0x7f060002;
-        public static int name=0x7f060004;
-        public static int save=0x7f060007;
+        public static final int add=0x7f060003;
+        public static final int address=0x7f060005;
+        public static final int alarm=0x7f060006;
+        public static final int app_name=0x7f060000;
+        public static final int cancel=0x7f060008;
+        public static final int hello_world=0x7f060002;
+        public static final int name=0x7f060004;
+        public static final int save=0x7f060007;
     }
     public static final class style {
         /** 
@@ -85,18 +85,18 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static int AppTheme=0x7f070001;
-        public static int Theme_BuzzzleeperTheme=0x7f070009;
-        public static int btnBackgroundThemeA=0x7f070007;
-        public static int frameMap=0x7f070008;
-        public static int input=0x7f070004;
-        public static int mapViewStyle=0x7f070006;
-        public static int scrollViewStyle=0x7f070003;
-        public static int textEdit=0x7f070005;
-        public static int windowTitleStyle=0x7f070002;
+        public static final int AppTheme=0x7f070001;
+        public static final int Theme_BuzzzleeperTheme=0x7f070009;
+        public static final int btnBackgroundThemeA=0x7f070007;
+        public static final int frameMap=0x7f070008;
+        public static final int input=0x7f070004;
+        public static final int mapViewStyle=0x7f070006;
+        public static final int scrollViewStyle=0x7f070003;
+        public static final int textEdit=0x7f070005;
+        public static final int windowTitleStyle=0x7f070002;
     }
 }

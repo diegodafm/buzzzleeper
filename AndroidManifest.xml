@@ -8,8 +8,15 @@
         android:minSdkVersion="7"
         android:targetSdkVersion="17" />
 
-    <permission android:name="your.package.name.permission.MAPS_RECEIVE" android:protectionLevel="signature" />
-    <uses-permission android:name="your.package.name.permission.MAPS_RECEIVE"/>
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <permission
+        android:name="net.learn2develop.googlemaps.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="your.package.name.permission.MAPS_RECEIVE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -20,8 +27,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-    <uses-feature android:glEsVersion="0x00020000" android:required="true"/>
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -29,16 +34,18 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="br.com.dafm.android.buzzzleeper.AddAddress"
-            android:label="@string/app_name" android:theme="@style/Theme.BuzzzleeperTheme">
+            android:label="@string/app_name"
+            android:theme="@style/Theme.BuzzzleeperTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
-                android:name="com.google.android.maps.v2.API_KEY"
-                android:value="AIzaSyBnIegE9BjycswQ7f7M5KbH_nJTvCRxll0" />
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyDm_o25PX5CJ3mYAmmj1kNDRgAIi40zTxo" />
     </application>
 
 </manifest>

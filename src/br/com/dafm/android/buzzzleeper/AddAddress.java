@@ -1,15 +1,19 @@
 package br.com.dafm.android.buzzzleeper;
 
-import com.google.android.gms.maps.GoogleMap;
 
-import android.app.Activity;
+
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
+import android.widget.Toast;
+
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
 
 /**
  * Created by Diego Alisson on 8/16/13.
  */
-public class AddAddress extends Activity {
+public class AddAddress extends FragmentActivity  {
 	
 	private GoogleMap googleMap;
 
@@ -19,6 +23,14 @@ public class AddAddress extends Activity {
 		// getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
 		// R.layout.title);
 		setContentView(R.layout.add_address);
+		
+		googleMap = ((SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.googleMap)).getMap();
+        if (googleMap == null) {
+            Toast.makeText(this, "Google Maps not available", 
+                Toast.LENGTH_LONG).show();
+        }
+		
 	}
 
 	

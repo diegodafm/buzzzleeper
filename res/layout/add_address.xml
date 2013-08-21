@@ -42,9 +42,9 @@
                     android:src="@drawable/ic_magnifier_white" />
             </RelativeLayout>
         </RelativeLayout>
+
         <fragment
-            android:layout_below="@id/rlAddAddress"
-            android:id="@+id/map"
+            android:id="@+id/googleMap"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             class="com.google.android.gms.maps.SupportMapFragment" />
