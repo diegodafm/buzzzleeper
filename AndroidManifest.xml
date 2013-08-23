@@ -31,6 +31,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="br.com.dafm.android.buzzzleeper.AddAddress"
+            android:configChanges="keyboard|keyboardHidden|orientation"
             android:label="@string/app_name"
             android:theme="@style/Theme.BuzzzleeperTheme" >
             <intent-filter>

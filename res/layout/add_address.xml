@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/addAddressScrollView"
     tools:context=".AddAddress" >
 
     <RelativeLayout
@@ -11,6 +12,7 @@
         <EditText
             android:id="@+id/txtAddName"
             style="@style/textEdit"
+            android:layout_width="fill_parent"
             android:hint="@string/name" />
 
         <RelativeLayout
@@ -23,6 +25,7 @@
             <EditText
                 android:id="@+id/txtAddAddress"
                 style="@style/textEdit"
+                android:layout_width="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_toLeftOf="@+id/btnSearchAddress"
                 android:hint="@string/address" />
@@ -56,15 +59,21 @@
                 android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="fill_parent"
                 android:layout_height="250dip" />
+
+            <ImageView
+                android:id="@+id/transparent_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@android:color/transparent" />
         </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/llBufferCoordinates"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/rlGoogleMap"
             android:orientation="horizontal"
-            android:weightSum="1" >
+            android:weightSum="2" >
 
             <Spinner
                 android:id="@+id/spnBuffer"
@@ -79,8 +88,8 @@
                 android:id="@+id/txtCoordinate"
                 style="@style/textEdit"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginTop="5dip"
+                android:layout_weight="1"
                 android:hint="@string/coordinate" >
             </EditText>
         </LinearLayout>
@@ -92,7 +101,65 @@
             android:layout_below="@id/llBufferCoordinates"
             android:layout_marginTop="5dip"
             android:prompt="@string/alarmSong" />
-        
+
+        <RelativeLayout
+            android:id="@+id/btnAddCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/spnRingtone"
+            android:layout_marginTop="5dip" >
+
+            <RelativeLayout
+                android:id="@+id/icBtnCancel"
+                style="@style/btnBackgroundThemeErrorA"
+                android:layout_marginLeft="5dip" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_cross_white"
+                    tools:ignore="ContentDescription" />
+            </RelativeLayout>
+
+            <TextView
+                style="@style/btnContentCancel"
+                android:layout_toRightOf="@id/icBtnCancel"
+                android:background="@color/backgroundThemeErrorB"
+                android:text="@string/cancel" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/btnAddConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/spnRingtone"
+            android:layout_marginRight="0dip"
+            android:layout_marginTop="5dip" >
+
+            <RelativeLayout
+                android:id="@+id/icBtnConfirm"
+                style="@style/btnBackgroundThemeA"
+                android:layout_marginLeft="5dip" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_send_white"
+                    tools:ignore="ContentDescription" />
+            </RelativeLayout>
+
+            <TextView
+                style="@style/btnContentConfirm"
+                android:layout_marginRight="5dip"
+                android:layout_toRightOf="@id/icBtnConfirm"
+                android:background="@color/backgroundThemeB"
+                android:text="@string/confirm" />
+        </RelativeLayout>
     </RelativeLayout>
 
 </ScrollView>

@@ -133,6 +133,9 @@ containing a value of this type.
     }
     public static final class color {
         public static final int backgroundThemeA=0x7f04000a;
+        public static final int backgroundThemeB=0x7f04000b;
+        public static final int backgroundThemeErrorA=0x7f04000c;
+        public static final int backgroundThemeErrorB=0x7f04000d;
         public static final int common_action_bar_splitter=0x7f040009;
         /**  Sign-in Button Colors 
          */
@@ -145,11 +148,11 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f040006;
         public static final int common_signin_btn_light_text_focused=0x7f040007;
         public static final int common_signin_btn_light_text_pressed=0x7f040005;
-        public static final int common_signin_btn_text_dark=0x7f04000e;
-        public static final int common_signin_btn_text_light=0x7f04000f;
-        public static final int inputBackgroundColor=0x7f04000c;
-        public static final int inputTextColor=0x7f04000d;
-        public static final int white=0x7f04000b;
+        public static final int common_signin_btn_text_dark=0x7f040011;
+        public static final int common_signin_btn_text_light=0x7f040012;
+        public static final int inputBackgroundColor=0x7f04000f;
+        public static final int inputTextColor=0x7f040010;
+        public static final int white=0x7f04000e;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -187,39 +190,47 @@ containing a value of this type.
         public static final int common_signin_btn_text_pressed_dark=0x7f020016;
         public static final int common_signin_btn_text_pressed_light=0x7f020017;
         public static final int ic_arrow_back=0x7f020018;
-        public static final int ic_launcher=0x7f020019;
-        public static final int ic_magnifier_white=0x7f02001a;
-        public static final int list_activated_holo=0x7f02001b;
-        public static final int list_focused_holo=0x7f02001c;
-        public static final int list_longpressed_holo=0x7f02001d;
-        public static final int list_pressed_holo_light=0x7f02001e;
-        public static final int list_selector_disabled_holo_light=0x7f02001f;
-        public static final int list_selector_holo_light=0x7f020020;
-        public static final int spinner_background_holo_light=0x7f020021;
-        public static final int spinner_default_holo_light=0x7f020022;
-        public static final int spinner_disabled_holo_light=0x7f020023;
-        public static final int spinner_focused_holo_light=0x7f020024;
-        public static final int spinner_pressed_holo_light=0x7f020025;
+        public static final int ic_cross_white=0x7f020019;
+        public static final int ic_launcher=0x7f02001a;
+        public static final int ic_magnifier_white=0x7f02001b;
+        public static final int ic_send_white=0x7f02001c;
+        public static final int list_activated_holo=0x7f02001d;
+        public static final int list_focused_holo=0x7f02001e;
+        public static final int list_longpressed_holo=0x7f02001f;
+        public static final int list_pressed_holo_light=0x7f020020;
+        public static final int list_selector_disabled_holo_light=0x7f020021;
+        public static final int list_selector_holo_light=0x7f020022;
+        public static final int spinner_background_holo_light=0x7f020023;
+        public static final int spinner_default_holo_light=0x7f020024;
+        public static final int spinner_disabled_holo_light=0x7f020025;
+        public static final int spinner_focused_holo_light=0x7f020026;
+        public static final int spinner_pressed_holo_light=0x7f020027;
     }
     public static final class id {
-        public static final int arrowBack=0x7f05000f;
-        public static final int btnSearchAddress=0x7f050008;
-        public static final int googleMap=0x7f05000a;
+        public static final int addAddressScrollView=0x7f050005;
+        public static final int arrowBack=0x7f050015;
+        public static final int btnAddCancel=0x7f050011;
+        public static final int btnAddConfirm=0x7f050013;
+        public static final int btnSearchAddress=0x7f050009;
+        public static final int googleMap=0x7f05000b;
         public static final int hybrid=0x7f050004;
-        public static final int llBufferCoordinates=0x7f05000b;
-        public static final int logo=0x7f050010;
+        public static final int icBtnCancel=0x7f050012;
+        public static final int icBtnConfirm=0x7f050014;
+        public static final int llBufferCoordinates=0x7f05000d;
+        public static final int logo=0x7f050016;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
-        public static final int rlAddAddress=0x7f050006;
-        public static final int rlGoogleMap=0x7f050009;
+        public static final int rlAddAddress=0x7f050007;
+        public static final int rlGoogleMap=0x7f05000a;
         public static final int satellite=0x7f050002;
-        public static final int spnBuffer=0x7f05000c;
-        public static final int spnRingtone=0x7f05000e;
+        public static final int spnBuffer=0x7f05000e;
+        public static final int spnRingtone=0x7f050010;
         public static final int terrain=0x7f050003;
-        public static final int txtAddAddress=0x7f050007;
-        public static final int txtAddName=0x7f050005;
-        public static final int txtCoordinate=0x7f05000d;
-        public static final int txtTitle=0x7f050011;
+        public static final int transparent_image=0x7f05000c;
+        public static final int txtAddAddress=0x7f050008;
+        public static final int txtAddName=0x7f050006;
+        public static final int txtCoordinate=0x7f05000f;
+        public static final int txtTitle=0x7f050017;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -318,6 +329,7 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f06000e;
+        public static final int confirm=0x7f060021;
         public static final int coordinate=0x7f06001f;
         public static final int hello_world=0x7f060017;
         public static final int name=0x7f060019;
@@ -345,14 +357,21 @@ containing a value of this type.
         public static final int AppTheme=0x7f090001;
         /**  SPINNER 
          */
-        public static final int SpinnerAppTheme=0x7f090008;
-        public static final int SpinnerDropDownItemAppTheme=0x7f09000a;
-        public static final int SpinnerItem=0x7f090009;
-        public static final int Theme_BuzzzleeperTheme=0x7f09000b;
+        public static final int SpinnerAppTheme=0x7f09000c;
+        public static final int SpinnerDropDownItemAppTheme=0x7f09000e;
+        public static final int SpinnerItem=0x7f09000d;
+        public static final int Theme_BuzzzleeperTheme=0x7f09000f;
         /**  /INPUT 
+ BTN 
          */
         public static final int btnBackgroundThemeA=0x7f090006;
-        public static final int frameMap=0x7f090007;
+        public static final int btnBackgroundThemeErrorA=0x7f090007;
+        public static final int btnContent=0x7f090008;
+        public static final int btnContentCancel=0x7f09000a;
+        public static final int btnContentConfirm=0x7f090009;
+        /**  /BTN 
+         */
+        public static final int frameMap=0x7f09000b;
         /**  INPUT 
          */
         public static final int input=0x7f090004;

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="backgroundThemeA">#289ca6</color>
+    <color name="backgroundThemeB">#54bfc8</color>
+    <color name="backgroundThemeErrorA">#f5593f</color>
+    <color name="backgroundThemeErrorB">#ff8d7a</color>
     <color name="white">#FFFFFF</color>
     <color name="inputBackgroundColor">#ecf0f5</color>
     <color name="inputTextColor">#696969</color>

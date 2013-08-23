@@ -40,9 +40,8 @@
         <item name="android:layout_height">40dip</item>
         <item name="android:background">@color/inputBackgroundColor</item>
         <item name="android:textColorHint">@color/inputTextColor</item>
-        <item name="android:padding">5dip</item>
         <item name="android:textSize">15dip</item>
-        <item name="android:height">30dip</item>
+        <item name="android:height">40dip</item>
         <item name="android:layout_marginTop">5dip</item>
         <item name="android:layout_marginLeft">5dip</item>
         <item name="android:layout_marginRight">5dip</item>
@@ -50,22 +49,52 @@
 
     <style name="textEdit" parent="input">
         <item name="android:singleLine">true</item>
+        <item name="android:paddingLeft">5dip</item>
     </style>
 
     <!-- /INPUT -->
 
+	<!-- BTN -->
     <style name="btnBackgroundThemeA">
         <item name="android:layout_width">40dip</item>
         <item name="android:layout_height">40dip</item>
         <item name="android:background">@color/backgroundThemeA</item>
     </style>
+    
+    <style name="btnBackgroundThemeErrorA">
+        <item name="android:layout_width">40dip</item>
+        <item name="android:layout_height">40dip</item>
+        <item name="android:background">@color/backgroundThemeErrorA</item>
+    </style>
+    
+    <style name="btnContent">
+        <item name="android:layout_height">40dip</item>
+        <item name="android:layout_width">100dip</item>
+        <item name="android:paddingLeft">15dip</item>
+        <item name="android:paddingTop">10dip</item>
+        <item name="android:textSize">15dip</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_marginRight">10dip</item>
+        
+    </style>
+    
+    
+    <style name="btnContentConfirm" parent="@style/btnContent">
+        <item name="android:background">@color/backgroundThemeB</item>
+    </style>
+    <style name="btnContentCancel" parent="@style/btnContent">
+        <item name="android:background">@color/backgroundThemeErrorB</item>
+    </style>
+    
+    <!-- /BTN -->
+    
 
     <style name="frameMap">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">250dip</item>
         <item name="android:layout_marginTop">5dip</item>
         <item name="android:layout_marginLeft">5dip</item>
-        <item name="android:layout_marginRight">5dip</item>
+        
     </style>
 
     <!-- SPINNER -->
