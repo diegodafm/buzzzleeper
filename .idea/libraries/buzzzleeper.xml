@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="buzzzleeper">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/bin/buzzzleeper.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

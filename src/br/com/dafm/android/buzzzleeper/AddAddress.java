@@ -1,31 +1,42 @@
 package br.com.dafm.android.buzzzleeper;
 
-import com.google.android.gms.maps.GoogleMap;
-
-import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
+import android.support.v4.app.FragmentActivity;
+
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
 
 /**
  * Created by Diego Alisson on 8/16/13.
  */
-public class AddAddress extends Activity {
-	
+public class AddAddress extends FragmentActivity {
+
+	private double latLng;
+
 	private GoogleMap googleMap;
 
-	protected void onCreate(Bundle savedInstanceState) {
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
-		// getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
-		// R.layout.title);
 		setContentView(R.layout.add_address);
+//		setUpMap();
+
 	}
 
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
+	private void setUpMap() {
+		googleMap = ((SupportMapFragment) getSupportFragmentManager()
+				.findFragmentById(R.id.googleMap)).getMap();
+
+		CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(
+				40.76793169992044, -73.98180484771729));
+		CameraUpdate zoom = CameraUpdateFactory.zoomTo(20);
+
+		googleMap.moveCamera(center);
+		googleMap.animateCamera(zoom);
+
 	}
+
 }

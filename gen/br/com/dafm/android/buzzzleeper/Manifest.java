@@ -9,6 +9,6 @@ package br.com.dafm.android.buzzzleeper;
 
 public final class Manifest {
     public static final class permission {
-        public static final String MAPS_RECEIVE="your.package.name.permission.MAPS_RECEIVE";
+        public static final String MAPS_RECEIVE="br.com.dafm.android.buzzzleeper.permission.MAPS_RECEIVE";
     }
 }

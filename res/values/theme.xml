@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.BuzzzleeperTheme" parent="android:style/Theme.Holo.Light">
+
+    <style name="Theme.BuzzzleeperTheme" parent="@android:style/Theme.Light">
         <item name="android:windowTitleStyle">@style/windowTitleStyle</item>
         <item name="android:scrollViewStyle">@style/scrollViewStyle</item>
-        <item name="android:mapViewStyle">@style/mapViewStyle</item>
+        
+        <item name="android:spinnerItemStyle">@style/SpinnerItem</item>
+        <item name="android:spinnerStyle">@style/SpinnerAppTheme</item>
+        <item name="android:spinnerDropDownItemStyle">@style/SpinnerDropDownItemAppTheme</item>
     </style>
+
 </resources>

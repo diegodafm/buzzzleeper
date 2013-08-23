@@ -39,15 +39,60 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_magnifier_white" />
+                    android:src="@drawable/ic_magnifier_white"
+                    tools:ignore="ContentDescription" />
             </RelativeLayout>
         </RelativeLayout>
-        <fragment
-            android:layout_below="@id/rlAddAddress"
-            android:id="@+id/map"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            class="com.google.android.gms.maps.SupportMapFragment" />
+
+        <RelativeLayout
+            android:id="@+id/rlGoogleMap"
+            style="@style/frameMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rlAddAddress" >
+
+            <fragment
+                android:id="@+id/googleMap"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="fill_parent"
+                android:layout_height="250dip" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/llBufferCoordinates"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rlGoogleMap"
+            android:orientation="horizontal"
+            android:weightSum="1" >
+
+            <Spinner
+                android:id="@+id/spnBuffer"
+                android:layout_width="wrap_content"
+                android:layout_height="42dip"
+                android:layout_marginTop="5dip"
+                android:layout_weight="1"
+                android:entries="@array/buffer_arrays"
+                android:prompt="@string/buffer" />
+
+            <EditText
+                android:id="@+id/txtCoordinate"
+                style="@style/textEdit"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="5dip"
+                android:hint="@string/coordinate" >
+            </EditText>
+        </LinearLayout>
+
+        <Spinner
+            android:id="@+id/spnRingtone"
+            android:layout_width="fill_parent"
+            android:layout_height="42dip"
+            android:layout_below="@id/llBufferCoordinates"
+            android:layout_marginTop="5dip"
+            android:prompt="@string/alarmSong" />
+        
     </RelativeLayout>
 
 </ScrollView>

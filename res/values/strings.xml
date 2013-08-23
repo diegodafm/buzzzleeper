@@ -12,6 +12,9 @@
     <string name="alarm">Alarm</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
+    <string name="buffer">Buffer</string>
+    <string name="coordinate">Coordinate</string>
+    <string name="alarmSong">Alarm Song</string>
 
 
 
