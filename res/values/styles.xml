@@ -20,12 +20,7 @@
     <style name="windowTitleStyle" parent="Theme.BuzzzleeperTheme">
         <item name="android:textColor">@color/white</item>
         <item name="android:background">@color/backgroundThemeA</item>
-        <item name="android:windowTitleBackgroundStyle">@color/backgroundThemeA</item>
-        <item name="android:windowTitleSize">45dip</item>
-        <item name="android:layout_height">45dip</item>
-        <item name="android:layout_margin">0dip</item>
-        <item name="android:padding">0dip</item>
-        <item name="android:height">45dip</item>
+         <item name="android:windowTitleSize">40dp</item>
     </style>
 
     <style name="scrollViewStyle" parent="Theme.BuzzzleeperTheme">

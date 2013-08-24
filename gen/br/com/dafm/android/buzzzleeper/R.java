@@ -227,9 +227,9 @@ containing a value of this type.
         public static final int spnRingtone=0x7f050010;
         public static final int terrain=0x7f050003;
         public static final int transparent_image=0x7f05000c;
-        public static final int txtAddAddress=0x7f050008;
         public static final int txtAddName=0x7f050006;
         public static final int txtCoordinate=0x7f05000f;
+        public static final int txtSearchAddress=0x7f050008;
         public static final int txtTitle=0x7f050017;
     }
     public static final class layout {
