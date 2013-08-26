@@ -16,6 +16,9 @@
     <string name="coordinate">Coordinate</string>
     <string name="alarmSong">Alarm Song</string>
     <string name="confirm">Confirm</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    
 
 
 
