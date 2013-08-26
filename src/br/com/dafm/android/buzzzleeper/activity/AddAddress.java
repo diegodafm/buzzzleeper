@@ -228,7 +228,7 @@ public class AddAddress extends FragmentActivity {
 		if (validate()) {
 			BlrAddress address = new BlrAddress();
 			address.setName(name.getText().toString());
-			address.setName(searchAddress.getText().toString());
+			address.setAddress(searchAddress.getText().toString());
 			address.setLat(latLng.latitude);
 			address.setLng(latLng.longitude);
 			address.setBuffer(Integer.parseInt(buffer.getSelectedItem().toString()));
