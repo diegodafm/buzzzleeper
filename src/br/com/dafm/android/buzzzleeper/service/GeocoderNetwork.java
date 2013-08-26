@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -20,23 +19,29 @@ import android.graphics.RectF;
 import android.location.Address;
 import android.location.Geocoder;
 
-import com.google.code.geocoder.GeocoderRequestBuilder;
-import com.google.code.geocoder.model.GeocodeResponse;
-import com.google.code.geocoder.model.GeocoderRequest;
-import com.google.code.geocoder.model.GeocoderResult;
-import com.google.code.geocoder.model.LatLng;
-
 public class GeocoderNetwork {
-	/*
-	 * public String getAddress(String lat, String lon0) { Geocoder geocoder =
-	 * new Geocoder(); LatLng coord = new LatLng(lat, lon); GeocoderRequest
-	 * geocoderRequest = new GeocoderRequestBuilder()
-	 * .setLocation(coord).setLanguage("pt").getGeocoderRequest();
-	 * GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
-	 * List<GeocoderResult> list = geocoderResponse.getResults(); if (list !=
-	 * null && list.size() > 0) { list.get(0).getAddressComponents(); return
-	 * list.get(0).getFormattedAddress(); } return ""; }
-	 */
+	public String getAddress(Double lat, Double lng, Integer maxResults,
+			Context context) {
+		Geocoder geocoder = new Geocoder(context);
+		List<Address> addresses = null;
+		try {
+			addresses = geocoder.getFromLocation(lat, lng, maxResults);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		Address result = null;
+		StringBuilder stringAddress = new StringBuilder();
+		if (addresses != null && addresses.size() > 0) {
+			result = addresses.get(0);
+
+			for (int i = 0; i < result.getMaxAddressLineIndex(); i++) {
+				stringAddress.append(result.getAddressLine(i)).append(", ");
+			}
+		}
+		return stringAddress.toString();
+	}
+
 	public Bitmap getImage(String lat, String lon, String zoom, String size) {
 		try {
 			StringBuilder url = new StringBuilder(300);
