@@ -14,8 +14,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" >
 
-            <include
-                layout="@layout/title" />
+            <include layout="@layout/title" />
         </FrameLayout>
 
         <EditText
@@ -94,104 +93,78 @@
                 android:text="lat: -45.545464, lng: -45.545464" />
         </RelativeLayout>
 
-        <LinearLayout
-            android:id="@+id/llBufferRingtone"
+        <RelativeLayout
+            android:id="@+id/btnBuffer"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/rlInfoMap"
             android:layout_marginLeft="5dip"
             android:layout_marginRight="5dip"
             android:layout_marginTop="5dip"
-            android:weightSum="2" >
+            android:gravity="center" >
 
-            <LinearLayout
-                android:id="@+id/btnBuffer"
-                style="@style/btnSpinner"
-                android:layout_marginRight="5dip" >
+            <TextView
+                android:id="@+id/txtBuffer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true" />
 
-                <RelativeLayout
+            <SeekBar
+                android:id="@+id/seekBuffer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/txtBuffer"
+                android:layout_marginTop="3dp"
+                android:max="2000"
+                android:progress="100"
+                android:progressDrawable="@drawable/scrubber_progress"
+                android:thumb="@drawable/scrubber_control" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/btnRingtone"
+            style="@style/btnSpinner"
+            android:layout_below="@id/btnBuffer"
+            android:layout_marginTop="5dip"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="5dip" >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_weight="1" >
+
+                <TextView
+                    android:id="@+id/txtRingtone"
                     android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1" >
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/setRingtone" />
+            </RelativeLayout>
 
-                    <TextView
-                        android:id="@+id/txtBuffer"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:text="Pump It" />
-                </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/icBtnRingtone"
+                style="@style/btnBackgroundThemeA" >
 
-                <RelativeLayout
-                    android:id="@+id/icBtnBuffer"
-                    style="@style/btnBackgroundThemeA"
-                    android:layout_gravity="right"
-                    android:layout_toRightOf="@id/txtBuffer" >
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/ic_buffer"
-                        tools:ignore="ContentDescription" />
-                </RelativeLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/btnRingtone"
-                style="@style/btnSpinner" >
-
-                <RelativeLayout
+                <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1" >
-
-                    <TextView
-                        android:id="@+id/txtRingtone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:text="Pump It" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/icBtnRingtone"
-                    style="@style/btnBackgroundThemeA" >
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/ic_ringtone"
-                        tools:ignore="ContentDescription" />
-                </RelativeLayout>
-            </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_ringtone"
+                    tools:ignore="ContentDescription" />
+            </RelativeLayout>
         </LinearLayout>
 
-        <Spinner
-            android:id="@+id/spnBuffer"
-            android:layout_width="wrap_content"
-            android:layout_height="42dip"
-            android:layout_below="@id/llBufferRingtone"
-            android:layout_marginLeft="0dip"
-            android:layout_marginRight="10dip"
-            android:layout_marginTop="5dip"
-            android:entries="@array/buffer_arrays"
-            android:prompt="@string/buffer"
-            android:visibility="gone" />
 
         <Spinner
             android:id="@+id/spnRingtone"
             android:layout_width="fill_parent"
             android:layout_height="42dip"
-            android:layout_below="@id/spnBuffer"
+            android:layout_below="@id/btnRingtone"
             android:layout_marginTop="5dip"
-            android:prompt="@string/alarmSong"
-            android:visibility="gone" />
+            android:prompt="@string/setRingtone"/>
 
         <RelativeLayout
             android:id="@+id/btnAddCancel"
@@ -251,8 +224,8 @@
                 style="@style/btnContentConfirm"
                 android:layout_marginRight="5dip"
                 android:layout_toRightOf="@id/icBtnConfirm"
-                android:gravity="center"
                 android:background="@color/backgroundThemeB"
+                android:gravity="center"
                 android:text="@string/confirm" />
         </RelativeLayout>
     </RelativeLayout>

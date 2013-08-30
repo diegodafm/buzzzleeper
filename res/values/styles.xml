@@ -2,13 +2,13 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
     </style>
 
@@ -77,6 +77,7 @@ d</style>
         <item name="android:layout_marginRight">5dip</item>
         <item name="android:paddingBottom">5dip</item>
         <item name="android:orientation">horizontal</item>
+        <item name="android:visibility">gone</item>
     </style>
 
     <style name="icPinMap">
@@ -137,15 +138,16 @@ d</style>
     </style>
 
     <style name="btnSpinner">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">1</item>
         <item name="android:background">@color/inputBackgroundColor</item>
         <item name="android:gravity">right</item>
     </style>
     <!-- /BTN -->
 
+
     <!-- SPINNER -->
+
     <style name="SpinnerAppTheme" parent="android:Widget.Spinner">
         <item name="android:background">@drawable/spinner_background_holo_light</item>
         <item name="android:dropDownSelector">@drawable/list_selector_holo_light</item>
@@ -160,6 +162,14 @@ d</style>
     <style name="SpinnerDropDownItemAppTheme" parent="android:Widget.DropDownItem.Spinner">
         <item name="android:layout_height">40dip</item>
         <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="ListViewAppTheme" parent="android:Widget.ListView">
+        <item name="android:listSelector">@drawable/list_selector_holo_light</item>
+    </style>
+
+    <style name="ListViewAppTheme.White" parent="android:Widget.ListView.White">
+        <item name="android:listSelector">@drawable/list_selector_holo_light</item>
     </style>
 
     <!-- /SPINNER -->
