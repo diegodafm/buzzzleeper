@@ -190,50 +190,59 @@ containing a value of this type.
         public static final int common_signin_btn_text_pressed_dark=0x7f020016;
         public static final int common_signin_btn_text_pressed_light=0x7f020017;
         public static final int ic_arrow_back=0x7f020018;
-        public static final int ic_coord_x=0x7f020019;
-        public static final int ic_coord_y=0x7f02001a;
-        public static final int ic_cross_white=0x7f02001b;
-        public static final int ic_launcher=0x7f02001c;
-        public static final int ic_magnifier_white=0x7f02001d;
-        public static final int ic_send_white=0x7f02001e;
-        public static final int list_activated_holo=0x7f02001f;
-        public static final int list_focused_holo=0x7f020020;
-        public static final int list_longpressed_holo=0x7f020021;
-        public static final int list_pressed_holo_light=0x7f020022;
-        public static final int list_selector_disabled_holo_light=0x7f020023;
-        public static final int list_selector_holo_light=0x7f020024;
-        public static final int spinner_background_holo_light=0x7f020025;
-        public static final int spinner_default_holo_light=0x7f020026;
-        public static final int spinner_disabled_holo_light=0x7f020027;
-        public static final int spinner_focused_holo_light=0x7f020028;
-        public static final int spinner_pressed_holo_light=0x7f020029;
+        public static final int ic_buffer=0x7f020019;
+        public static final int ic_cross_white=0x7f02001a;
+        public static final int ic_launcher=0x7f02001b;
+        public static final int ic_magnifier_white=0x7f02001c;
+        public static final int ic_pin_map=0x7f02001d;
+        public static final int ic_ringtone=0x7f02001e;
+        public static final int ic_send_white=0x7f02001f;
+        public static final int list_activated_holo=0x7f020020;
+        public static final int list_focused_holo=0x7f020021;
+        public static final int list_longpressed_holo=0x7f020022;
+        public static final int list_pressed_holo_light=0x7f020023;
+        public static final int list_selector_disabled_holo_light=0x7f020024;
+        public static final int list_selector_holo_light=0x7f020025;
+        public static final int spinner_background_holo_light=0x7f020026;
+        public static final int spinner_default_holo_light=0x7f020027;
+        public static final int spinner_disabled_holo_light=0x7f020028;
+        public static final int spinner_focused_holo_light=0x7f020029;
+        public static final int spinner_pressed_holo_light=0x7f02002a;
     }
     public static final class id {
         public static final int addAddressScrollView=0x7f050005;
-        public static final int arrowBack=0x7f050016;
-        public static final int btnAddCancel=0x7f050012;
-        public static final int btnAddConfirm=0x7f050014;
-        public static final int btnSearchAddress=0x7f050009;
-        public static final int googleMap=0x7f05000b;
+        public static final int arrowBack=0x7f05001e;
+        public static final int btnAddCancel=0x7f05001a;
+        public static final int btnAddConfirm=0x7f05001c;
+        public static final int btnBuffer=0x7f050012;
+        public static final int btnRingtone=0x7f050015;
+        public static final int btnSearchAddress=0x7f05000a;
+        public static final int googleMap=0x7f05000c;
+        public static final int header=0x7f050006;
         public static final int hybrid=0x7f050004;
-        public static final int icBtnCancel=0x7f050013;
-        public static final int icBtnConfirm=0x7f050015;
-        public static final int llBufferCoordinates=0x7f05000d;
-        public static final int logo=0x7f050017;
+        public static final int icBtnBuffer=0x7f050014;
+        public static final int icBtnCancel=0x7f05001b;
+        public static final int icBtnConfirm=0x7f05001d;
+        public static final int icBtnRingtone=0x7f050017;
+        public static final int icPinMap=0x7f05000e;
+        public static final int llBufferRingtone=0x7f050011;
+        public static final int logo=0x7f05001f;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
-        public static final int rlAddAddress=0x7f050007;
-        public static final int rlGoogleMap=0x7f05000a;
+        public static final int rlAddAddress=0x7f050008;
+        public static final int rlGoogleMap=0x7f05000b;
+        public static final int rlInfoMap=0x7f05000d;
         public static final int satellite=0x7f050002;
-        public static final int spnBuffer=0x7f050010;
-        public static final int spnRingtone=0x7f050011;
+        public static final int spnBuffer=0x7f050018;
+        public static final int spnRingtone=0x7f050019;
         public static final int terrain=0x7f050003;
-        public static final int transparent_image=0x7f05000c;
-        public static final int txtAddName=0x7f050006;
-        public static final int txtCoordinateLat=0x7f05000e;
-        public static final int txtCoordinateLng=0x7f05000f;
-        public static final int txtSearchAddress=0x7f050008;
-        public static final int txtTitle=0x7f050018;
+        public static final int txtAddName=0x7f050007;
+        public static final int txtAddressLocation=0x7f05000f;
+        public static final int txtBuffer=0x7f050013;
+        public static final int txtCoordinates=0x7f050010;
+        public static final int txtRingtone=0x7f050016;
+        public static final int txtSearchAddress=0x7f050009;
+        public static final int txtTitle=0x7f050020;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -346,11 +355,19 @@ containing a value of this type.
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
 
 
+
+
+
+
     
 
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
+
+
+
+
 
 
         
@@ -360,29 +377,42 @@ containing a value of this type.
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f090001;
-        /**  SPINNER 
+        /**  /BTN 
+ SPINNER 
          */
-        public static final int SpinnerAppTheme=0x7f09000c;
-        public static final int SpinnerDropDownItemAppTheme=0x7f09000e;
-        public static final int SpinnerItem=0x7f09000d;
-        public static final int Theme_BuzzzleeperTheme=0x7f09000f;
-        /**  /INPUT 
+        public static final int SpinnerAppTheme=0x7f090013;
+        public static final int SpinnerDropDownItemAppTheme=0x7f090015;
+        public static final int SpinnerItem=0x7f090014;
+        public static final int Theme_BuzzzleeperTheme=0x7f090016;
+        /**  /MAP 
  BTN 
          */
-        public static final int btnBackgroundThemeA=0x7f090006;
-        public static final int btnBackgroundThemeErrorA=0x7f090007;
-        public static final int btnContent=0x7f090008;
-        public static final int btnContentCancel=0x7f09000a;
-        public static final int btnContentConfirm=0x7f090009;
-        /**  /BTN 
+        public static final int btnBackgroundThemeA=0x7f09000d;
+        public static final int btnBackgroundThemeErrorA=0x7f09000e;
+        public static final int btnContent=0x7f09000f;
+        public static final int btnContentCancel=0x7f090011;
+        public static final int btnContentConfirm=0x7f090010;
+        public static final int btnSpinner=0x7f090012;
+        /**  /INPUT 
+ MAP 
          */
-        public static final int frameMap=0x7f09000b;
+        public static final int frameMap=0x7f090007;
+        /**  HEADER 
+         */
+        public static final int header=0x7f090002;
+        public static final int icPinMap=0x7f090009;
+        public static final int infoMap=0x7f090008;
         /**  INPUT 
          */
-        public static final int input=0x7f090004;
-        public static final int scrollViewStyle=0x7f090003;
-        public static final int textEdit=0x7f090005;
-        public static final int windowTitleStyle=0x7f090002;
+        public static final int input=0x7f090005;
+        /**  /HEADER 
+         */
+        public static final int scrollViewStyle=0x7f090004;
+        public static final int textAddress=0x7f09000b;
+        public static final int textCoordinate=0x7f09000c;
+        public static final int textEdit=0x7f090006;
+        public static final int textHeader=0x7f090003;
+        public static final int textInfo=0x7f09000a;
     }
     public static final class styleable {
         /** Attributes that can be used with a MapAttrs.

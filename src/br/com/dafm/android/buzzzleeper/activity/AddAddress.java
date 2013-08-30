@@ -14,12 +14,12 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import br.com.dafm.android.buzzzleeper.R;
 import br.com.dafm.android.buzzzleeper.dao.AddressDAO;
@@ -61,16 +61,12 @@ public class AddAddress extends FragmentActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.add_address);
-		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);
-
+		
 		searchAddress = (EditText) this.findViewById(R.id.txtSearchAddress);
 		name = (EditText) this.findViewById(R.id.txtAddName);
 		
-		
-		setUpMap();
+		setupMap();
 		setupBtnSearchAddress();
 		setupSpinnerRingtones();
 		setupSpinnerBuffer();
@@ -123,7 +119,7 @@ public class AddAddress extends FragmentActivity {
 		}
 	}
 
-	private void setUpMap() {
+	private void setupMap() {
 		googleMap = ((SupportMapFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.googleMap)).getMap();
 
@@ -131,23 +127,12 @@ public class AddAddress extends FragmentActivity {
 			@Override
 			public void onMapLongClick(LatLng point) {
 				addMarker(point);
-				updateAddress(point.latitude,point.longitude,1,getApplicationContext());
+				CameraUpdate center = CameraUpdateFactory.newLatLng(point);
+				googleMap.moveCamera(center);
 			}
 		});
 	}
 	
-	private void updateAddress(Double latitude, Double longitude, Integer maxResults, Context context){
-		String address = geocoderNetwork.getAddress(latitude, longitude,maxResults, context);
-		if(address != null){
-			searchAddress.setText(address);
-		}else{
-			Toast toast = Toast.makeText(this,"ADDRESS NOT FOUND! ",Toast.LENGTH_LONG);
-			toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER,0, 0);
-			toast.show();
-			Log.v(getLocalClassName(), "ADDRESS NOT FOUND!");
-		}
-	}
-
 	private void addMarker(LatLng point) {
 		if (point != null) {
 			Integer radius = Integer.parseInt(buffer.getSelectedItem().toString());
@@ -158,6 +143,15 @@ public class AddAddress extends FragmentActivity {
 					.strokeColor(Color.BLUE).strokeWidth(5);
 			googleMap.addCircle(circleOptions);
 			googleMap.addMarker(new MarkerOptions().position(point));
+			
+			TextView coordinates = (TextView) this.findViewById(R.id.txtCoordinates);
+			coordinates.setText("Latitude: "+ String.format( "%.7f", point.latitude )+", Longitude: "+String.format( "%.7f", point.longitude ));
+
+			searchAddress.setText(geocoderNetwork.getAddress(point.latitude, point.longitude, 1, getApplicationContext()));
+			TextView addressLocation = (TextView) this.findViewById(R.id.txtAddressLocation);
+			addressLocation.setText(searchAddress.getText());
+			
+			latLng = point;
 		}
 	}
 

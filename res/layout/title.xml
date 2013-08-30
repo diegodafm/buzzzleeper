@@ -1,32 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/windowTitleStyle"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    style="@style/header" >
 
     <ImageView
         android:id="@+id/arrowBack"
-        android:src="@drawable/ic_arrow_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"/>
+        android:layout_marginLeft="5dip"
+        android:src="@drawable/ic_arrow_back" />
 
     <ImageView
         android:id="@+id/logo"
-        android:src="@drawable/ic_launcher"
-        android:layout_centerVertical="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/arrowBack"/>
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dip"
+        android:layout_toRightOf="@id/arrowBack"
+        android:src="@drawable/ic_launcher" />
 
     <TextView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/txtTitle"
-        android:text="@string/add"
-        android:layout_centerVertical="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/logo"/>
+        style="@style/textHeader"
+        android:layout_toRightOf="@id/logo"
+        android:text="@string/add" />
 
 </RelativeLayout>

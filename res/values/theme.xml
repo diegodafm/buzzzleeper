@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="Theme.BuzzzleeperTheme" parent="@android:style/Theme.Light">
-        <item name="android:windowTitleSize">40dp</item>
-        <item name="android:windowTitleBackgroundStyle">@color/backgroundThemeA</item>
-        
-        <item name="android:windowTitleStyle">@style/windowTitleStyle</item>
+    <style name="Theme.BuzzzleeperTheme" parent="@android:style/Theme.Light.NoTitleBar">
         <item name="android:scrollViewStyle">@style/scrollViewStyle</item>
         <item name="android:spinnerItemStyle">@style/SpinnerItem</item>
         <item name="android:spinnerStyle">@style/SpinnerAppTheme</item>
