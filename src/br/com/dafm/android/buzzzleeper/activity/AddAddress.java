@@ -6,6 +6,7 @@ import java.util.List;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.location.Address;
@@ -16,7 +17,9 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
@@ -66,6 +69,7 @@ public class AddAddress extends FragmentActivity {
 		searchAddress = (EditText) this.findViewById(R.id.txtSearchAddress);
 
 		blrAddress = new BlrAddress();
+		setupBtnBackHome();
 		setupMap();
 		setupBtnSearchAddress();
 		setupBtnSearchByGPS();
@@ -84,6 +88,17 @@ public class AddAddress extends FragmentActivity {
 			@Override
 			public void onClick(View v) {
 				findAddress();
+			}
+		});
+	}
+	
+	private void setupBtnBackHome() {
+		ImageView btnAddAddress = (ImageView) findViewById(R.id.btnArrowBack);
+		btnAddAddress.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				Intent k = new Intent(getApplicationContext(), MainActivity.class);
+				startActivity(k);
 			}
 		});
 	}

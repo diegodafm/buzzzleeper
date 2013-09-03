@@ -41,18 +41,18 @@ public class AddressDAO {
 		values.put("buffer", address.getBuffer());
 		values.put("ringtone", address.getRingtone());
 		values.put("status", address.getStatus());
-		
-		
+
 		BlrAddress newAddress = null;
 		try {
 			this.open();
 			long insertId = database.insert("address", null, values);
-			Cursor cursor = database.query("address", allColumns, "id = " + insertId, null, null, null, null);
+			Cursor cursor = database.query("address", allColumns, "id = "
+					+ insertId, null, null, null, null);
 			cursor.moveToFirst();
 			newAddress = cursorToAddress(cursor);
 			cursor.close();
 			this.close();
-			
+
 		} catch (Exception e) {
 			new RuntimeException();
 			e.getMessage();
@@ -69,17 +69,22 @@ public class AddressDAO {
 	public List<BlrAddress> getAllAddress() {
 		List<BlrAddress> addresses = new ArrayList<BlrAddress>();
 
-		Cursor cursor = database.query("address", allColumns, null, null, null,
-				null, null);
-		cursor.moveToFirst();
+		try {
+			this.open();
 
-		while (!cursor.isAfterLast()) {
-			BlrAddress address = cursorToAddress(cursor);
-			addresses.add(address);
-			cursor.moveToNext();
+			Cursor cursor = database.query("address", allColumns, null, null,null, null, null);
+			cursor.moveToFirst();
+			while (!cursor.isAfterLast()) {
+				BlrAddress address = cursorToAddress(cursor);
+				addresses.add(address);
+				cursor.moveToNext();
+			}
+			// Make sure to close the cursor
+			cursor.close();
+		} catch (Exception e) {
+			new RuntimeException();
+			e.getMessage();
 		}
-		// Make sure to close the cursor
-		cursor.close();
 		return addresses;
 	}
 
