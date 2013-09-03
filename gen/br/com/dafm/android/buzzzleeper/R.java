@@ -202,72 +202,76 @@ containing a value of this type.
         public static final int ic_arrow_back=0x7f020022;
         public static final int ic_buffer=0x7f020023;
         public static final int ic_cross_white=0x7f020024;
-        public static final int ic_launcher=0x7f020025;
-        public static final int ic_magnifier_white=0x7f020026;
-        public static final int ic_pin_map=0x7f020027;
-        public static final int ic_ringtone=0x7f020028;
-        public static final int ic_send_white=0x7f020029;
-        public static final int list_activated_holo=0x7f02002a;
-        public static final int list_focused_holo=0x7f02002b;
-        public static final int list_longpressed_holo=0x7f02002c;
-        public static final int list_pressed_holo_light=0x7f02002d;
-        public static final int list_selector_background_transition_holo_light=0x7f02002e;
-        public static final int list_selector_disabled_holo_light=0x7f02002f;
-        public static final int list_selector_holo_light=0x7f020030;
-        public static final int progress=0x7f020031;
-        public static final int progress_thumb=0x7f020032;
-        public static final int scrubber_control=0x7f020033;
-        public static final int scrubber_control_disabled_holo=0x7f020034;
-        public static final int scrubber_control_focused_holo=0x7f020035;
-        public static final int scrubber_control_normal_holo=0x7f020036;
-        public static final int scrubber_control_pressed_holo=0x7f020037;
-        public static final int scrubber_primary_holo=0x7f020038;
-        public static final int scrubber_progress=0x7f020039;
-        public static final int scrubber_secondary_holo=0x7f02003a;
-        public static final int scrubber_track_holo_light=0x7f02003b;
-        public static final int spinner_background_holo_light=0x7f02003c;
-        public static final int spinner_default_holo_light=0x7f02003d;
-        public static final int spinner_disabled_holo_light=0x7f02003e;
-        public static final int spinner_focused_holo_light=0x7f02003f;
-        public static final int spinner_pressed_holo_light=0x7f020040;
+        public static final int ic_gps_white=0x7f020025;
+        public static final int ic_launcher=0x7f020026;
+        public static final int ic_magnifier_white=0x7f020027;
+        public static final int ic_pin_map=0x7f020028;
+        public static final int ic_ringtone=0x7f020029;
+        public static final int ic_send_white=0x7f02002a;
+        public static final int list_activated_holo=0x7f02002b;
+        public static final int list_focused_holo=0x7f02002c;
+        public static final int list_longpressed_holo=0x7f02002d;
+        public static final int list_pressed_holo_light=0x7f02002e;
+        public static final int list_selector_background_transition_holo_light=0x7f02002f;
+        public static final int list_selector_disabled_holo_light=0x7f020030;
+        public static final int list_selector_holo_light=0x7f020031;
+        public static final int progress=0x7f020032;
+        public static final int progress_thumb=0x7f020033;
+        public static final int scrubber_control=0x7f020034;
+        public static final int scrubber_control_disabled_holo=0x7f020035;
+        public static final int scrubber_control_focused_holo=0x7f020036;
+        public static final int scrubber_control_normal_holo=0x7f020037;
+        public static final int scrubber_control_pressed_holo=0x7f020038;
+        public static final int scrubber_primary_holo=0x7f020039;
+        public static final int scrubber_progress=0x7f02003a;
+        public static final int scrubber_secondary_holo=0x7f02003b;
+        public static final int scrubber_track_holo_light=0x7f02003c;
+        public static final int spinner_background_holo_light=0x7f02003d;
+        public static final int spinner_default_holo_light=0x7f02003e;
+        public static final int spinner_disabled_holo_light=0x7f02003f;
+        public static final int spinner_focused_holo_light=0x7f020040;
+        public static final int spinner_pressed_holo_light=0x7f020041;
     }
     public static final class id {
         public static final int addAddressScrollView=0x7f050005;
-        public static final int arrowBack=0x7f05001c;
-        public static final int btnAddCancel=0x7f050018;
-        public static final int btnAddConfirm=0x7f05001a;
-        public static final int btnBuffer=0x7f050011;
-        public static final int btnRingtone=0x7f050014;
+        public static final int arrowBack=0x7f05001e;
+        public static final int btnAddCancel=0x7f050019;
+        public static final int btnAddConfirm=0x7f05001b;
+        public static final int btnBuffer=0x7f050012;
+        public static final int btnControllers=0x7f050018;
+        public static final int btnRingtone=0x7f050015;
         public static final int btnSearchAddress=0x7f05000a;
-        public static final int googleMap=0x7f05000c;
+        public static final int btnSearchGPS=0x7f05000b;
+        public static final int buzzzleepList=0x7f05001d;
+        public static final int googleMap=0x7f05000d;
         public static final int header=0x7f050006;
         public static final int hybrid=0x7f050004;
-        public static final int icBtnCancel=0x7f050019;
-        public static final int icBtnConfirm=0x7f05001b;
-        public static final int icBtnRingtone=0x7f050016;
-        public static final int icPinMap=0x7f05000e;
-        public static final int logo=0x7f05001d;
+        public static final int icBtnCancel=0x7f05001a;
+        public static final int icBtnConfirm=0x7f05001c;
+        public static final int icBtnRingtone=0x7f050017;
+        public static final int icPinMap=0x7f05000f;
+        public static final int logo=0x7f05001f;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
         public static final int rlAddAddress=0x7f050008;
-        public static final int rlGoogleMap=0x7f05000b;
-        public static final int rlInfoMap=0x7f05000d;
+        public static final int rlGoogleMap=0x7f05000c;
+        public static final int rlInfoMap=0x7f05000e;
         public static final int satellite=0x7f050002;
-        public static final int seekBuffer=0x7f050013;
-        public static final int spnRingtone=0x7f050017;
+        public static final int seekBuffer=0x7f050014;
         public static final int terrain=0x7f050003;
         public static final int txtAddName=0x7f050007;
-        public static final int txtAddressLocation=0x7f05000f;
-        public static final int txtBuffer=0x7f050012;
-        public static final int txtCoordinates=0x7f050010;
-        public static final int txtRingtone=0x7f050015;
+        public static final int txtAddressLocation=0x7f050010;
+        public static final int txtBuffer=0x7f050013;
+        public static final int txtCoordinates=0x7f050011;
+        public static final int txtRingtone=0x7f050016;
         public static final int txtSearchAddress=0x7f050009;
-        public static final int txtTitle=0x7f05001e;
+        public static final int txtTitle=0x7f050020;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
         public static final int add_address=0x7f030001;
-        public static final int title=0x7f030002;
+        public static final int main=0x7f030002;
+        public static final int title=0x7f030003;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
@@ -278,6 +282,7 @@ containing a value of this type.
          */
         public static final int add=0x7f060018;
         public static final int address=0x7f06001a;
+        public static final int addressCannotBeIsEmpty=0x7f060027;
         public static final int alarm=0x7f06001b;
         public static final int app_name=0x7f060015;
         /**   Title for notification shown when GooglePlayServices needs to be
@@ -304,7 +309,9 @@ containing a value of this type.
          */
         public static final int auth_client_using_bad_version_title=0x7f06000f;
         public static final int buffer=0x7f06001e;
+        public static final int bufferCannotBeIsEmpty=0x7f060029;
         public static final int bufferDistance=0x7f060024;
+        public static final int busStopAdded=0x7f06002d;
         public static final int cancel=0x7f06001d;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
@@ -368,8 +375,17 @@ containing a value of this type.
         public static final int longitude=0x7f060022;
         public static final int meters=0x7f060023;
         public static final int name=0x7f060019;
+        /**  ADD ADDRESS MGS ERROS
+         */
+        public static final int nameCannotBeIsEmpty=0x7f060026;
+        public static final int pleaseFixItFirst=0x7f06002b;
+        public static final int positionCannotBeIsEmpty=0x7f060028;
+        public static final int ringtoneCannotBeIsEmpty=0x7f06002a;
         public static final int save=0x7f06001c;
         public static final int setRingtone=0x7f060025;
+        /**  ADD ADDRESS MGS SUCCESS
+         */
+        public static final int success=0x7f06002c;
     }
     public static final class style {
         /** 

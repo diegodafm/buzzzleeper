@@ -21,6 +21,19 @@
     <string name="bufferDistance">Buffer Distance</string>
     <string name="setRingtone">Set a Ringtone</string>
     
+    <!-- ADD ADDRESS MGS ERROS-->
+    <string name="nameCannotBeIsEmpty">Name cannot be empty</string>
+    <string name="addressCannotBeIsEmpty">Address cannot be empty</string>
+    <string name="positionCannotBeIsEmpty">Position cannot be empty</string>
+    <string name="bufferCannotBeIsEmpty">Buffer cannot be empty</string>
+    <string name="ringtoneCannotBeIsEmpty">Ringtone cannot be empty</string>
+    <string name="pleaseFixItFirst">Please fix if first</string>
+    
+    <!-- ADD ADDRESS MGS SUCCESS-->
+    <string name="success">Success</string>
+    <string name="busStopAdded">Bus Stop Added</string>
+    
+    
 
 
 

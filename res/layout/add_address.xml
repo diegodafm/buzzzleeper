@@ -1,8 +1,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/addAddressScrollView"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dip"
     tools:context=".AddAddress" >
 
     <RelativeLayout
@@ -39,9 +40,9 @@
                 android:layout_marginRight="0dip"
                 android:layout_toLeftOf="@+id/btnSearchAddress"
                 android:hint="@string/address" />
-
+            
             <RelativeLayout
-                android:id="@+id/btnSearchAddress"
+                android:id="@+id/btnSearchGPS"
                 style="@style/btnBackgroundThemeA"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="5dip"
@@ -52,9 +53,26 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
+                    android:src="@drawable/ic_gps_white"
+                    tools:ignore="ContentDescription" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/btnSearchAddress"
+                style="@style/btnBackgroundThemeA"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="5dip"
+                android:layout_toLeftOf="@+id/btnSearchGPS" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
                     android:src="@drawable/ic_magnifier_white"
                     tools:ignore="ContentDescription" />
             </RelativeLayout>
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -83,14 +101,14 @@
                 android:id="@+id/txtAddressLocation"
                 style="@style/textAddress"
                 android:layout_toRightOf="@id/icPinMap"
-                android:text="Springfield" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/txtCoordinates"
                 style="@style/textCoordinate"
                 android:layout_below="@id/txtAddressLocation"
                 android:layout_toRightOf="@id/icPinMap"
-                android:text="lat: -45.545464, lng: -45.545464" />
+                android:text="" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -111,8 +129,8 @@
 
             <SeekBar
                 android:id="@+id/seekBuffer"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:layout_below="@id/txtBuffer"
                 android:layout_marginTop="3dp"
                 android:max="2000"
@@ -125,9 +143,9 @@
             android:id="@+id/btnRingtone"
             style="@style/btnSpinner"
             android:layout_below="@id/btnBuffer"
-            android:layout_marginTop="5dip"
             android:layout_marginLeft="5dip"
-            android:layout_marginRight="5dip" >
+            android:layout_marginRight="5dip"
+            android:layout_marginTop="5dip" >
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -157,77 +175,84 @@
             </RelativeLayout>
         </LinearLayout>
 
-
-        <Spinner
-            android:id="@+id/spnRingtone"
+        <LinearLayout
+            android:id="@+id/btnControllers"
             android:layout_width="fill_parent"
-            android:layout_height="42dip"
+            android:layout_height="wrap_content"
             android:layout_below="@id/btnRingtone"
-            android:layout_marginTop="5dip"
-            android:prompt="@string/setRingtone"/>
+            android:layout_margin="5dip"
+            android:baselineAligned="false"
+            android:weightSum="2" >
 
-        <RelativeLayout
-            android:id="@+id/btnAddCancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/spnRingtone"
-            android:layout_marginBottom="5dip"
-            android:layout_marginTop="5dip" >
+            <LinearLayout
+                android:id="@+id/btnAddCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" >
 
-            <RelativeLayout
-                android:id="@+id/icBtnCancel"
-                style="@style/btnBackgroundThemeErrorA"
-                android:layout_marginLeft="5dip" >
+                <RelativeLayout
+                    android:id="@+id/icBtnCancel"
+                    style="@style/btnBackgroundThemeErrorA" >
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_cross_white"
-                    tools:ignore="ContentDescription" />
-            </RelativeLayout>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_cross_white"
+                        tools:ignore="ContentDescription" />
+                </RelativeLayout>
 
-            <TextView
-                style="@style/btnContentCancel"
-                android:layout_toRightOf="@id/icBtnCancel"
-                android:background="@color/backgroundThemeErrorB"
-                android:gravity="center"
-                android:text="@string/cancel" />
-        </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@color/backgroundThemeErrorB" >
 
-        <RelativeLayout
-            android:id="@+id/btnAddConfirm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/spnRingtone"
-            android:layout_marginBottom="5dip"
-            android:layout_marginRight="0dip"
-            android:layout_marginTop="5dip" >
+                    <TextView
+                        style="@style/btnContentCancel"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:text="@string/cancel" />
+                </RelativeLayout>
+            </LinearLayout>
 
-            <RelativeLayout
-                android:id="@+id/icBtnConfirm"
-                style="@style/btnBackgroundThemeA"
-                android:layout_marginLeft="5dip" >
+            <LinearLayout
+                android:id="@+id/btnAddConfirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" >
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_send_white"
-                    tools:ignore="ContentDescription" />
-            </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/icBtnConfirm"
+                    style="@style/btnBackgroundThemeA"
+                    android:layout_marginLeft="5dip" >
 
-            <TextView
-                style="@style/btnContentConfirm"
-                android:layout_marginRight="5dip"
-                android:layout_toRightOf="@id/icBtnConfirm"
-                android:background="@color/backgroundThemeB"
-                android:gravity="center"
-                android:text="@string/confirm" />
-        </RelativeLayout>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_send_white"
+                        tools:ignore="ContentDescription" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@color/backgroundThemeB" >
+
+                    <TextView
+                        style="@style/btnContentConfirm"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:text="@string/confirm" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
     </RelativeLayout>
 
 </ScrollView>

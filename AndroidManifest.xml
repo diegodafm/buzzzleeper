@@ -45,14 +45,14 @@
         </activity>
         
         <!-- ac-dmendonca -->
-        <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyCJz-BSavoNuQHr8KDsXw7huV1YyJf4oww" 
-            />
+<!--         <meta-data -->
+<!--             android:name="com.google.android.maps.v2.API_KEY" -->
+<!--             android:value="AIzaSyCJz-BSavoNuQHr8KDsXw7huV1YyJf4oww"  -->
+<!--             /> -->
 		<!-- note-dafm -->
-<!-- 		        <meta-data -->
-<!-- 		            android:name="com.google.android.maps.v2.API_KEY" -->
-<!-- 		            android:value="AIzaSyCnuqHRRdCvhcT9xsZDzRBbDL7T8BHiIeU" /> -->
+		        <meta-data
+		            android:name="com.google.android.maps.v2.API_KEY"
+		            android:value="AIzaSyCnuqHRRdCvhcT9xsZDzRBbDL7T8BHiIeU" />
         
     </application>
 

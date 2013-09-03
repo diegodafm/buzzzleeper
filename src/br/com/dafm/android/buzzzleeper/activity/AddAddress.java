@@ -3,7 +3,9 @@ package br.com.dafm.android.buzzzleeper.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.location.Address;
@@ -14,17 +16,17 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import br.com.dafm.android.buzzzleeper.R;
 import br.com.dafm.android.buzzzleeper.dao.AddressDAO;
 import br.com.dafm.android.buzzzleeper.entity.BlrAddress;
+import br.com.dafm.android.buzzzleeper.service.GPSTracker;
 import br.com.dafm.android.buzzzleeper.service.GeocoderNetwork;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -44,11 +46,7 @@ public class AddAddress extends FragmentActivity {
 
 	private GoogleMap googleMap;
 
-	private EditText name;
-
 	private EditText searchAddress;
-
-	private Spinner ringtone;
 
 	private SeekBar buffer;
 
@@ -58,21 +56,25 @@ public class AddAddress extends FragmentActivity {
 
 	private ArrayList<String> listErros;
 
+	private BlrAddress blrAddress;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_address);
 
 		searchAddress = (EditText) this.findViewById(R.id.txtSearchAddress);
-		name = (EditText) this.findViewById(R.id.txtAddName);
 
+		blrAddress = new BlrAddress();
 		setupMap();
 		setupBtnSearchAddress();
+		setupBtnSearchByGPS();
 		setupSpinnerRingtones();
 		setupSeekBarBuffer();
 		setupBtnSave();
 
 	}
+
 
 	private void setupBtnSearchAddress() {
 		geocoderNetwork = new GeocoderNetwork();
@@ -85,18 +87,33 @@ public class AddAddress extends FragmentActivity {
 			}
 		});
 	}
-
-	private void setupBtnSave() {
-		geocoderNetwork = new GeocoderNetwork();
-
-		RelativeLayout btnConfirm = (RelativeLayout) findViewById(R.id.btnAddConfirm);
-		btnConfirm.setOnClickListener(new View.OnClickListener() {
+	
+	private void setupBtnSearchByGPS() {
+		RelativeLayout btnSearchByGPS = (RelativeLayout) findViewById(R.id.btnSearchGPS);
+		btnSearchByGPS.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				save();
+				GPSTracker gps = new GPSTracker(getApplicationContext());
+
+				// check if GPS enabled
+				if (gps.canGetLocation()) {
+					
+					LatLng point = new LatLng( gps.getLatitude(), gps.getLongitude());
+					CameraUpdate center = CameraUpdateFactory.newLatLng(point);
+					CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
+					googleMap.moveCamera(center);
+					googleMap.animateCamera(zoom);
+					addMarker(point);
+
+				} else {
+					gps.showSettingsAlert();
+				}
 			}
 		});
+
 	}
+
+	
 
 	private void findAddress() {
 
@@ -169,24 +186,35 @@ public class AddAddress extends FragmentActivity {
 	}
 
 	private void setupSpinnerRingtones() {
-
-		List<String> ringtones = this.getListRingtones(this);
-
-		final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_spinner_item, ringtones);
-		dataAdapter
-				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
+		final List<String> ringtones = this.getListRingtones(this);
 		RelativeLayout icBtnRingtone = (RelativeLayout) this
 				.findViewById(R.id.icBtnRingtone);
 		icBtnRingtone.setOnClickListener(new View.OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
-
+				try {
+					showListRingtones(ringtones);
+				} catch (Exception e) {
+					new RuntimeException();
+					Log.v("ERROR", e.getMessage());
+				}
 			}
-
 		});
+	}
+
+	private void showListRingtones(final List<String> ringtones) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		final TextView txtRingtone = (TextView) this.findViewById(R.id.txtRingtone);
+		builder.setTitle(R.string.setRingtone).setItems(
+				ringtones.toArray(new CharSequence[ringtones.size()]),
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						blrAddress.setRingtone(ringtones.get(which));
+						txtRingtone.setText(blrAddress.getRingtone());
+					}
+				});
+		builder.create();
+		builder.show();
 	}
 
 	private List<String> getListRingtones(Context context) {
@@ -196,7 +224,6 @@ public class AddAddress extends FragmentActivity {
 		ringtoneManager.setType(RingtoneManager.TYPE_RINGTONE);
 		Cursor cursor = ringtoneManager.getCursor();
 
-		list.add(getString(R.string.setRingtone));
 		while (!cursor.isAfterLast() && cursor.moveToNext()) {
 			Ringtone ringtone = ringtoneManager.getRingtone(cursor
 					.getPosition());
@@ -238,53 +265,105 @@ public class AddAddress extends FragmentActivity {
 			}
 		});
 	}
+	
+	private void setupBtnSave() {
+		geocoderNetwork = new GeocoderNetwork();
+
+		LinearLayout btnConfirm = (LinearLayout) findViewById(R.id.btnAddConfirm);
+		btnConfirm.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				save();
+			}
+		});
+	}
 
 	private Boolean validate() {
-		Integer errors = 0;
-
 		listErros = new ArrayList<String>();
 
-		if (name.getText().toString() == "") {
-			listErros.add("");
-			errors++;
-		} else if (searchAddress.getText().toString() == "") {
-			errors++;
-		} else if (latLng == null) {
-			errors++;
-		} else if (buffer.getProgress() < 0) {
-			errors++;
-		} else if (ringtone.getSelectedItem().toString() == "") {
-			errors++;
+		if (blrAddress.getName().equals("")) {
+			listErros.add(getString(R.string.nameCannotBeIsEmpty));
 		}
+		
+		if (blrAddress.getAddress().equals("")) {
+			listErros.add(getString(R.string.addressCannotBeIsEmpty));
+		}
+		
+		if (blrAddress.getLat() == null || blrAddress.getLng() == null ) {
+			listErros.add(getString(R.string.positionCannotBeIsEmpty));
+		}
+		
+		if (blrAddress.getBuffer() <= 0) {
+			listErros.add(getString(R.string.bufferCannotBeIsEmpty));
+		}
+		
+		if (blrAddress.getRingtone().equals("") || blrAddress.getRingtone().equals(getString(R.string.setRingtone))) {
+			listErros.add(getString(R.string.ringtoneCannotBeIsEmpty));
+		}
+		return (listErros.isEmpty() ? true : false);
+	}
+	
+	private void updateValues(){
+		
+		EditText name = (EditText) this.findViewById(R.id.txtAddName);
+		blrAddress.setName(name.getText().toString());
+		
+		TextView address = (TextView) this.findViewById(R.id.txtAddressLocation);
+		blrAddress.setAddress(address.getText().toString());
 
-		return (errors == 0 ? true : false);
+		if(latLng != null){
+			blrAddress.setLat(latLng.latitude);
+			blrAddress.setLng(latLng.longitude);
+		}
+		
+		SeekBar buffer = (SeekBar) this.findViewById(R.id.seekBuffer);
+		blrAddress.setBuffer(buffer.getProgress());
+		
+		TextView ringtone = (TextView) this.findViewById(R.id.txtRingtone);
+		blrAddress.setRingtone(ringtone.getText().toString());
+		
+		blrAddress.setStatus(true);
 	}
 
 	private void save() {
+		updateValues();
+		
 		if (validate()) {
-			BlrAddress address = new BlrAddress();
-			address.setName(name.getText().toString());
-			address.setAddress(searchAddress.getText().toString());
-			address.setLat(latLng.latitude);
-			address.setLng(latLng.longitude);
-			address.setBuffer(buffer.getProgress());
-			address.setRingtone(ringtone.getSelectedItem().toString());
-			address.setStatus(true);
 
 			addressDAO = new AddressDAO(getApplicationContext());
-			BlrAddress savedAddress = addressDAO.save(address);
+			BlrAddress savedAddress = addressDAO.save(blrAddress);
 			if (savedAddress != null && savedAddress.getId() != null) {
-				Toast toast = Toast.makeText(this, "ADDRESS ADDED!",
-						Toast.LENGTH_LONG);
-				toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER, 0, 0);
-				toast.show();
-				Log.v(getLocalClassName(), "ADDRESS ADDED!");
-			} else {
-				Toast toast = Toast.makeText(this, "ERROR ON ADDING ADDRESS!",
-						Toast.LENGTH_LONG);
-				toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER, 0, 0);
-				toast.show();
+				
+				AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+				alertDialog.setTitle(getString(R.string.success));
+				
+				alertDialog.setMessage(getString(R.string.busStopAdded));
+				alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+				   public void onClick(DialogInterface dialog, int which) {
+					   // TODO Add your code for the button here.
+				   }
+				});
+				alertDialog.setIcon(R.drawable.ic_launcher);
+				alertDialog.show();
 			}
+		}else{
+			
+			AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+			alertDialog.setTitle(getString(R.string.pleaseFixItFirst));
+			
+			StringBuilder erros = new StringBuilder();
+			for (String error : listErros) {
+				erros.append(error).append("\n");
+			}
+			alertDialog.setMessage(erros.toString());
+			alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+			   public void onClick(DialogInterface dialog, int which) {
+			      // TODO Add your code for the button here.
+			   }
+			});
+			// Set the Icon for the Dialog
+			alertDialog.setIcon(R.drawable.ic_launcher);
+			alertDialog.show();
 		}
 	}
 }

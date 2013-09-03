@@ -1,13 +1,11 @@
 package br.com.dafm.android.buzzzleeper.activity;
 
 
-import br.com.dafm.android.buzzzleeper.R;
-import br.com.dafm.android.buzzzleeper.R.layout;
-import br.com.dafm.android.buzzzleeper.R.menu;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.Window;
+import br.com.dafm.android.buzzzleeper.R;
 
 public class MainActivity extends Activity {
 
@@ -16,7 +14,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main);
     }
 
 
