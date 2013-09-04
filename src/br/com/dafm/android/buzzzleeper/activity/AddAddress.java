@@ -1,5 +1,6 @@
 package br.com.dafm.android.buzzzleeper.activity;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,7 @@ import br.com.dafm.android.buzzzleeper.dao.AddressDAO;
 import br.com.dafm.android.buzzzleeper.entity.BlrAddress;
 import br.com.dafm.android.buzzzleeper.service.GPSTracker;
 import br.com.dafm.android.buzzzleeper.service.GeocoderNetwork;
+import br.com.dafm.android.buzzzleeper.service.ImageService;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -45,6 +47,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
  */
 public class AddAddress extends FragmentActivity {
 
+	private GeocoderNetwork geocoderNetwork;
+
 	private LatLng latLng;
 
 	private GoogleMap googleMap;
@@ -52,8 +56,6 @@ public class AddAddress extends FragmentActivity {
 	private EditText searchAddress;
 
 	private SeekBar buffer;
-
-	private GeocoderNetwork geocoderNetwork;
 
 	private AddressDAO addressDAO;
 
@@ -76,9 +78,9 @@ public class AddAddress extends FragmentActivity {
 		setupSpinnerRingtones();
 		setupSeekBarBuffer();
 		setupBtnSave();
+		setupBtnCancel();
 
 	}
-
 
 	private void setupBtnSearchAddress() {
 		geocoderNetwork = new GeocoderNetwork();
@@ -91,18 +93,19 @@ public class AddAddress extends FragmentActivity {
 			}
 		});
 	}
-	
+
 	private void setupBtnBackHome() {
 		ImageView btnAddAddress = (ImageView) findViewById(R.id.btnArrowBack);
 		btnAddAddress.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				Intent k = new Intent(getApplicationContext(), MainActivity.class);
+				Intent k = new Intent(getApplicationContext(),
+						MainActivity.class);
 				startActivity(k);
 			}
 		});
 	}
-	
+
 	private void setupBtnSearchByGPS() {
 		RelativeLayout btnSearchByGPS = (RelativeLayout) findViewById(R.id.btnSearchGPS);
 		btnSearchByGPS.setOnClickListener(new View.OnClickListener() {
@@ -112,8 +115,9 @@ public class AddAddress extends FragmentActivity {
 
 				// check if GPS enabled
 				if (gps.canGetLocation()) {
-					
-					LatLng point = new LatLng( gps.getLatitude(), gps.getLongitude());
+
+					LatLng point = new LatLng(gps.getLatitude(), gps
+							.getLongitude());
 					CameraUpdate center = CameraUpdateFactory.newLatLng(point);
 					CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
 					googleMap.moveCamera(center);
@@ -127,8 +131,6 @@ public class AddAddress extends FragmentActivity {
 		});
 
 	}
-
-	
 
 	private void findAddress() {
 
@@ -219,7 +221,8 @@ public class AddAddress extends FragmentActivity {
 
 	private void showListRingtones(final List<String> ringtones) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		final TextView txtRingtone = (TextView) this.findViewById(R.id.txtRingtone);
+		final TextView txtRingtone = (TextView) this
+				.findViewById(R.id.txtRingtone);
 		builder.setTitle(R.string.setRingtone).setItems(
 				ringtones.toArray(new CharSequence[ringtones.size()]),
 				new DialogInterface.OnClickListener() {
@@ -280,7 +283,7 @@ public class AddAddress extends FragmentActivity {
 			}
 		});
 	}
-	
+
 	private void setupBtnSave() {
 		geocoderNetwork = new GeocoderNetwork();
 
@@ -293,92 +296,126 @@ public class AddAddress extends FragmentActivity {
 		});
 	}
 
+	private void setupBtnCancel() {
+		LinearLayout btnCancel = (LinearLayout) findViewById(R.id.btnAddCancel);
+		btnCancel.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent k = new Intent(getApplicationContext(),
+						MainActivity.class);
+				startActivity(k);
+			}
+		});
+	}
+
 	private Boolean validate() {
 		listErros = new ArrayList<String>();
 
 		if (blrAddress.getName().equals("")) {
 			listErros.add(getString(R.string.nameCannotBeIsEmpty));
 		}
-		
+
 		if (blrAddress.getAddress().equals("")) {
 			listErros.add(getString(R.string.addressCannotBeIsEmpty));
 		}
-		
-		if (blrAddress.getLat() == null || blrAddress.getLng() == null ) {
+
+		if (blrAddress.getLat() == null || blrAddress.getLng() == null) {
 			listErros.add(getString(R.string.positionCannotBeIsEmpty));
 		}
-		
+
 		if (blrAddress.getBuffer() <= 0) {
 			listErros.add(getString(R.string.bufferCannotBeIsEmpty));
 		}
-		
-		if (blrAddress.getRingtone().equals("") || blrAddress.getRingtone().equals(getString(R.string.setRingtone))) {
+
+		if (blrAddress.getRingtone().equals("")
+				|| blrAddress.getRingtone().equals(
+						getString(R.string.setRingtone))) {
 			listErros.add(getString(R.string.ringtoneCannotBeIsEmpty));
 		}
 		return (listErros.isEmpty() ? true : false);
 	}
-	
-	private void updateValues(){
-		
+
+	private void updateValues() {
+
 		EditText name = (EditText) this.findViewById(R.id.txtAddName);
 		blrAddress.setName(name.getText().toString());
-		
-		TextView address = (TextView) this.findViewById(R.id.txtAddressLocation);
+
+		TextView address = (TextView) this
+				.findViewById(R.id.txtAddressLocation);
 		blrAddress.setAddress(address.getText().toString());
 
-		if(latLng != null){
+		if (latLng != null) {
 			blrAddress.setLat(latLng.latitude);
 			blrAddress.setLng(latLng.longitude);
 		}
-		
+
 		SeekBar buffer = (SeekBar) this.findViewById(R.id.seekBuffer);
 		blrAddress.setBuffer(buffer.getProgress());
-		
+
 		TextView ringtone = (TextView) this.findViewById(R.id.txtRingtone);
 		blrAddress.setRingtone(ringtone.getText().toString());
-		
+
 		blrAddress.setStatus(true);
 	}
 
 	private void save() {
 		updateValues();
-		
+
 		if (validate()) {
 
 			addressDAO = new AddressDAO(getApplicationContext());
 			BlrAddress savedAddress = addressDAO.save(blrAddress);
 			if (savedAddress != null && savedAddress.getId() != null) {
-				
-				AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+				AlertDialog alertDialog = new AlertDialog.Builder(this)
+						.create();
 				alertDialog.setTitle(getString(R.string.success));
-				
+
 				alertDialog.setMessage(getString(R.string.busStopAdded));
-				alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
-				   public void onClick(DialogInterface dialog, int which) {
-					   // TODO Add your code for the button here.
-				   }
-				});
+				alertDialog.setButton("OK",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,
+									int which) {
+								Intent k = new Intent(getApplicationContext(),
+										MainActivity.class);
+								startActivity(k);
+							}
+						});
 				alertDialog.setIcon(R.drawable.ic_launcher);
 				alertDialog.show();
 			}
-		}else{
-			
+		} else {
+
 			AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 			alertDialog.setTitle(getString(R.string.pleaseFixItFirst));
-			
+
 			StringBuilder erros = new StringBuilder();
 			for (String error : listErros) {
 				erros.append(error).append("\n");
 			}
 			alertDialog.setMessage(erros.toString());
 			alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
-			   public void onClick(DialogInterface dialog, int which) {
-			      // TODO Add your code for the button here.
-			   }
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Add your code for the button here.
+				}
 			});
 			// Set the Icon for the Dialog
 			alertDialog.setIcon(R.drawable.ic_launcher);
 			alertDialog.show();
+		}
+	}
+
+	private void createImageMap(BlrAddress blrAddress) {
+		geocoderNetwork = new GeocoderNetwork();
+
+		String imgUrl = geocoderNetwork.getImageUrl(blrAddress.getLat()
+				.toString(), blrAddress.getLng().toString(), "13", "80");
+		String imgPath = getFilesDir() + "/" + "blrAddress_"
+				+ blrAddress.getId() + ".png";
+		try {
+			ImageService.downloadFile(imgUrl, imgPath);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }
