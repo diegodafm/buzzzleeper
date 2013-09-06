@@ -35,13 +35,14 @@ public class GeocoderNetwork {
 
 	public String getImageUrl(String lat, String lon, String zoom, String size) {
 		StringBuilder url = new StringBuilder(300);
-		url.append("http://maps.google.com/maps/api/staticmap?");
+		url.append("http://maps.googleapis.com/maps/api/staticmap?");
 		url.append("center=").append(lat).append(",").append(lon);
 		url.append("&zoom=").append(zoom);
 		url.append("&size=").append(size).append("x").append(size);
 		url.append("&markers=size:tiny%7Ccolor:blue%7C").append(lat)
 				.append(",").append(lon);
-		url.append("&sensor=false");
+		url.append("&sensor=true");
+		url.append("&key=AIzaSyB55oMJ_Ku4q_oWXkMxCWBY6yv6jRlTgp8");
 
 		return url.toString();
 	}

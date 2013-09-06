@@ -1,48 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/busStopItem" 
-    android:layout_marginBottom="5dip">
-
-    <ImageView
-        android:id="@+id/blrImgMap"
-        style="@style/imgMap" />
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginLeft="5dip"
-        android:orientation="vertical" >
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/busStopItem">
 
-        <TextView
-            android:id="@+id/blrName"
-            style="@style/blrName" />
+        <ImageView
+            android:id="@+id/blrImgMap"
+            style="@style/imgMap" />
 
-        <TextView
-            android:id="@+id/blrAddress"
-            style="@style/blrAddress" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dip"
+            android:orientation="vertical" >
 
-        <!-- <LinearLayout -->
-        <!-- android:layout_width="fill_parent" -->
-        <!-- android:layout_height="wrap_content" -->
-        <!-- android:layout_marginTop="5dip" -->
-        <!-- android:orientation="horizontal" -->
-        <!-- android:weightSum="2" > -->
+            <TextView
+                android:id="@+id/blrName"
+                style="@style/blrName" />
+
+            <TextView
+                android:id="@+id/blrAddress"
+                style="@style/blrAddress" />
+
+            <!-- <LinearLayout -->
+            <!-- android:layout_width="fill_parent" -->
+            <!-- android:layout_height="wrap_content" -->
+            <!-- android:layout_marginTop="5dip" -->
+            <!-- android:orientation="horizontal" -->
+            <!-- android:weightSum="2" > -->
 
 
-        <!-- <TextView -->
-        <!-- android:id="@+id/blrBuffer" -->
-        <!-- android:layout_width="fill_parent" -->
-        <!-- android:layout_height="wrap_content" -->
-        <!-- android:layout_weight="1" /> -->
+            <!-- <TextView -->
+            <!-- android:id="@+id/blrBuffer" -->
+            <!-- android:layout_width="fill_parent" -->
+            <!-- android:layout_height="wrap_content" -->
+            <!-- android:layout_weight="1" /> -->
 
 
-        <!-- <TextView -->
-        <!-- android:id="@+id/blrRingtone" -->
-        <!-- android:layout_width="fill_parent" -->
-        <!-- android:layout_height="wrap_content" -->
-        <!-- android:layout_marginLeft="5dip" -->
-        <!-- android:layout_weight="1" /> -->
-        <!-- </LinearLayout> -->
+            <!-- <TextView -->
+            <!-- android:id="@+id/blrRingtone" -->
+            <!-- android:layout_width="fill_parent" -->
+            <!-- android:layout_height="wrap_content" -->
+            <!-- android:layout_marginLeft="5dip" -->
+            <!-- android:layout_weight="1" /> -->
+            <!-- </LinearLayout> -->
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

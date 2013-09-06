@@ -185,7 +185,7 @@ d</style>
         <item name="android:shadowDx">1.2</item>
         <item name="android:background">@color/inputBackgroundColor</item>
         <item name="android:orientation">horizontal</item>
-        <item name="android:layout_margin">5dip</item>
+        <item name="android:layout_marginTop">5dip</item>
     </style>
 
     <style name="blrName">

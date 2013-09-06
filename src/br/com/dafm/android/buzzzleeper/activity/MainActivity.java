@@ -15,12 +15,18 @@ import android.widget.TextView;
 import br.com.dafm.android.buzzzleeper.R;
 import br.com.dafm.android.buzzzleeper.dao.AddressDAO;
 import br.com.dafm.android.buzzzleeper.entity.BlrAddress;
+import br.com.dafm.android.buzzzleeper.service.GeocoderNetwork;
+import br.com.dafm.android.buzzzleeper.service.ImageService;
 
 public class MainActivity extends Activity {
 
 	private AddressDAO addressDAO;
 
 	private List<BlrAddress> addresses;
+	
+	GeocoderNetwork geocoderNetwork;
+	
+	ImageService imageService;
 	
 	
 
@@ -54,7 +60,7 @@ public class MainActivity extends Activity {
 		}
 	}
 
-	private View buildViewItems(BlrAddress blrAddress) {
+	private View buildViewItems(final BlrAddress blrAddress) {
 		View view = LayoutInflater.from(getApplicationContext()).inflate(
 				R.layout.bus_stop_item, null);
 		
@@ -65,15 +71,19 @@ public class MainActivity extends Activity {
 		TextView txtAddress = (TextView) view.findViewById(R.id.blrAddress);
 		txtAddress.setText(blrAddress.getAddress());
 
-//		TextView txtBuffer = (TextView) view.findViewById(R.id.blrBuffer);
-//		txtBuffer.setText(blrAddress.getBuffer().toString() + " " + getString(R.string.meters));
-//		
-//		TextView txtRingtone = (TextView) view.findViewById(R.id.blrRingtone);
-//		txtRingtone.setText(blrAddress.getRingtone());
-
 		ImageView imgMap = (ImageView) view.findViewById(R.id.blrImgMap);
 		String imgPath = getFilesDir() + "/" + "blrAddress_"+ blrAddress.getId() + ".png";
-		imgMap.setImageBitmap(BitmapFactory.decodeFile(imgPath));
+		if(BitmapFactory.decodeFile(imgPath)==null){
+			new Thread(new Runnable() {
+				public void run() {
+					imageService = new ImageService();
+					imageService.createImageMap(blrAddress, getApplicationContext());
+				}
+			}).start();
+			
+		}else{			
+			imgMap.setImageBitmap(BitmapFactory.decodeFile(imgPath));
+		}
 		
 		return view;
 	}

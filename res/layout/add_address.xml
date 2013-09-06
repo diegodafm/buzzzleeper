@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/addAddressScrollView"
@@ -40,7 +41,7 @@
                 android:layout_marginRight="0dip"
                 android:layout_toLeftOf="@+id/btnSearchAddress"
                 android:hint="@string/address" />
-            
+
             <RelativeLayout
                 android:id="@+id/btnSearchGPS"
                 style="@style/btnBackgroundThemeA"
@@ -72,7 +73,6 @@
                     android:src="@drawable/ic_magnifier_white"
                     tools:ignore="ContentDescription" />
             </RelativeLayout>
-
         </RelativeLayout>
 
         <RelativeLayout
@@ -81,10 +81,13 @@
             android:layout_below="@id/rlAddAddress" >
 
             <fragment
+                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/googleMap"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:name="br.com.dafm.android.buzzzleeper.AddAddress"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent" />
+                android:layout_height="fill_parent"
+                class="com.google.android.gms.maps.SupportMapFragment" />
+
         </RelativeLayout>
 
         <RelativeLayout

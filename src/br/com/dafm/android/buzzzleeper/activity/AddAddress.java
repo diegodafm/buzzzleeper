@@ -1,6 +1,5 @@
 package br.com.dafm.android.buzzzleeper.activity;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +47,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class AddAddress extends FragmentActivity {
 
 	private GeocoderNetwork geocoderNetwork;
+	
+	ImageService imageService;
 
 	private LatLng latLng;
 
@@ -364,8 +365,16 @@ public class AddAddress extends FragmentActivity {
 		if (validate()) {
 
 			addressDAO = new AddressDAO(getApplicationContext());
-			BlrAddress savedAddress = addressDAO.save(blrAddress);
+			final BlrAddress savedAddress = addressDAO.save(blrAddress);
 			if (savedAddress != null && savedAddress.getId() != null) {
+
+				new Thread(new Runnable() {
+					public void run() {
+						imageService = new ImageService();
+						imageService.createImageMap(blrAddress, getApplicationContext());
+					}
+				}).start();
+
 				AlertDialog alertDialog = new AlertDialog.Builder(this)
 						.create();
 				alertDialog.setTitle(getString(R.string.success));
@@ -404,18 +413,4 @@ public class AddAddress extends FragmentActivity {
 		}
 	}
 
-	private void createImageMap(BlrAddress blrAddress) {
-		geocoderNetwork = new GeocoderNetwork();
-
-		String imgUrl = geocoderNetwork.getImageUrl(blrAddress.getLat()
-				.toString(), blrAddress.getLng().toString(), "13", "80");
-		String imgPath = getFilesDir() + "/" + "blrAddress_"
-				+ blrAddress.getId() + ".png";
-		try {
-			ImageService.downloadFile(imgUrl, imgPath);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 }
