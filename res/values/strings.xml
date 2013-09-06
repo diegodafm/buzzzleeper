@@ -33,6 +33,10 @@
     <string name="success">Success</string>
     <string name="busStopAdded">Bus Stop Added</string>
     
+    <!-- CONTEXT MENU ADDRESS -->
+    <string name="editBusStop">Edit Bus Stop</string>
+    <string name="removeBusStop">Remove Bus Stop</string>
+    
     
 
 
