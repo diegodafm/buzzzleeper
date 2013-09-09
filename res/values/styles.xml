@@ -183,8 +183,8 @@ d</style>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:shadowDy">10</item>
         <item name="android:shadowDx">1.2</item>
-        <item name="android:background">@color/inputBackgroundColor</item>
-        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@drawable/bus_stop_item_border</item>
+        <item name="android:orientation">vertical</item>
         <item name="android:layout_marginTop">5dip</item>
     </style>
 
@@ -209,7 +209,7 @@ d</style>
     </style>
 
     <style name="imgMap">
-        <item name="android:layout_width">80dip</item>
+        <item name="android:layout_width">120dip</item>
         <item name="android:layout_height">80dip</item>
         <item name="android:layout_margin">5dip</item>
         <item name="android:padding">1dip</item>

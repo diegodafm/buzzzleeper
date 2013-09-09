@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import br.com.dafm.android.buzzzleeper.R;
 import br.com.dafm.android.buzzzleeper.dao.AddressDAO;
@@ -28,17 +29,17 @@ public class MainActivity extends Activity {
 	
 	ImageService imageService;
 	
-	
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
 		setupBtnAddAddress();
+		
+		insertItemsTeste();
 		getBusStopList();
 	}
-
+	
 	private void setupBtnAddAddress() {
 		ImageView btnAddAddress = (ImageView) findViewById(R.id.btnAddAddress);
 		btnAddAddress.setOnClickListener(new OnClickListener() {
@@ -61,7 +62,7 @@ public class MainActivity extends Activity {
 	}
 
 	private View buildViewItems(final BlrAddress blrAddress) {
-		View view = LayoutInflater.from(getApplicationContext()).inflate(
+		final View view = LayoutInflater.from(getApplicationContext()).inflate(
 				R.layout.bus_stop_item, null);
 		
 
@@ -85,7 +86,38 @@ public class MainActivity extends Activity {
 			imgMap.setImageBitmap(BitmapFactory.decodeFile(imgPath));
 		}
 		
+		LinearLayout btnShowDetails = (LinearLayout) view.findViewById(R.id.btnShowDetails);
+		btnShowDetails.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent k = new Intent(getApplicationContext(),
+						ShowAddress.class);
+				startActivity(k);
+			}
+		});
+		
+		
 		return view;
+	}
+	
+	private void insertItemsTeste(){
+		addressDAO = new AddressDAO(getApplicationContext());
+		List<BlrAddress> list = addressDAO.getAllAddress();
+		
+		if(list.isEmpty()){		
+			for (int i = 0; i < 5; i++) {
+				BlrAddress blrAddress = new BlrAddress();
+				blrAddress.setName("Address "+ i);
+				blrAddress.setAddress("Address "+ i);
+				blrAddress.setLat(-19.858617d);
+				blrAddress.setLng(-43.918408d);
+				blrAddress.setRingtone("Claro");
+				blrAddress.setBuffer(300);
+				blrAddress.setStatus(true);
+				addressDAO.save(blrAddress);
+			}
+		}
+		
 	}
 
 }
