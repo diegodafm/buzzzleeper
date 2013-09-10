@@ -31,13 +31,10 @@ public class ImageService {
 			fos.write(buffer);
 			fos.flush();
 			fos.close();
-
 		} catch (FileNotFoundException e) {
 			Log.v("ERROR_DOWNLOADFILE", e.getMessage());
-			return;
 		} catch (IOException e) {
 			Log.v("ERROR_DOWNLOADFILE", e.getMessage());
-			return;
 		}
 	}
 

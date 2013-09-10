@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import br.com.dafm.android.buzzzleeper.R;
 import br.com.dafm.android.buzzzleeper.dao.AddressDAO;
@@ -90,9 +89,9 @@ public class MainActivity extends Activity {
 		btnShowDetails.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent k = new Intent(getApplicationContext(),
-						ShowAddress.class);
-				startActivity(k);
+				Intent intent = new Intent(getApplicationContext(), ShowAddress.class);
+				intent.putExtra("BLR_ADDRESS_ID", blrAddress.getId());
+				startActivity(intent);
 			}
 		});
 		

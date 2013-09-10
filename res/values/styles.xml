@@ -185,7 +185,7 @@ d</style>
         <item name="android:shadowDx">1.2</item>
         <item name="android:background">@drawable/bus_stop_item_border</item>
         <item name="android:orientation">vertical</item>
-        <item name="android:layout_marginTop">5dip</item>
+        <item name="android:layout_marginTop">10dip</item>
     </style>
 
     <style name="blrName">

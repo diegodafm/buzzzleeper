@@ -72,7 +72,8 @@ public class AddressDAO {
 		try {
 			this.open();
 
-			Cursor cursor = database.query("address", allColumns, null, null,null, null, null);
+			Cursor cursor = database.query("address", allColumns, null, null,
+					null, null, null);
 			cursor.moveToFirst();
 			while (!cursor.isAfterLast()) {
 				BlrAddress address = cursorToAddress(cursor);
@@ -98,6 +99,23 @@ public class AddressDAO {
 		address.setBuffer(Integer.parseInt(cursor.getString(5)));
 		address.setRingtone(cursor.getString(6));
 		address.setStatus(Boolean.valueOf(cursor.getString(7)));
+		return address;
+	}
+
+	public BlrAddress findById(Integer id) {
+		BlrAddress address = new BlrAddress();
+		try {
+			this.open();
+			Cursor cursor = database.rawQuery(
+					"select * from address where id =" + id, null);
+			cursor.moveToFirst();
+			address = cursorToAddress(cursor);
+			cursor.close();
+		} catch (Exception e) {
+			new RuntimeException();
+			e.getMessage();
+		}
+
 		return address;
 	}
 }
