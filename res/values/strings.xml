@@ -37,6 +37,9 @@
     <string name="editBusStop">Edit Bus Stop</string>
     <string name="removeBusStop">Remove Bus Stop</string>
     
+    <string name="edit">Edit</string>
+    <string name="remove">Remove</string>
+    
     
 
 

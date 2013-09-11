@@ -4,6 +4,9 @@
     <color name="backgroundThemeB">#54bfc8</color>
     <color name="backgroundThemeErrorA">#f5593f</color>
     <color name="backgroundThemeErrorB">#ff8d7a</color>
+    
+    <color name="backgroundThemeEditA">#fdb53f</color>
+    <color name="backgroundThemeEditB">#ffc564</color>
     <color name="grayBorder">#d1d1d1</color>
     <color name="grayControllers">#ebebeb</color>
     <color name="grayMainBackground">#f2f2f2</color>

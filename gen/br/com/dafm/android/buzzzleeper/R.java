@@ -134,6 +134,8 @@ containing a value of this type.
     public static final class color {
         public static final int backgroundThemeA=0x7f04000a;
         public static final int backgroundThemeB=0x7f04000b;
+        public static final int backgroundThemeEditA=0x7f04000e;
+        public static final int backgroundThemeEditB=0x7f04000f;
         public static final int backgroundThemeErrorA=0x7f04000c;
         public static final int backgroundThemeErrorB=0x7f04000d;
         public static final int common_action_bar_splitter=0x7f040009;
@@ -148,14 +150,14 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f040006;
         public static final int common_signin_btn_light_text_focused=0x7f040007;
         public static final int common_signin_btn_light_text_pressed=0x7f040005;
-        public static final int common_signin_btn_text_dark=0x7f040014;
-        public static final int common_signin_btn_text_light=0x7f040015;
-        public static final int grayBorder=0x7f04000e;
-        public static final int grayControllers=0x7f04000f;
-        public static final int grayMainBackground=0x7f040010;
-        public static final int inputBackgroundColor=0x7f040012;
-        public static final int inputTextColor=0x7f040013;
-        public static final int white=0x7f040011;
+        public static final int common_signin_btn_text_dark=0x7f040016;
+        public static final int common_signin_btn_text_light=0x7f040017;
+        public static final int grayBorder=0x7f040010;
+        public static final int grayControllers=0x7f040011;
+        public static final int grayMainBackground=0x7f040012;
+        public static final int inputBackgroundColor=0x7f040014;
+        public static final int inputTextColor=0x7f040015;
+        public static final int white=0x7f040013;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -210,38 +212,42 @@ containing a value of this type.
         public static final int ic_arrow_back=0x7f020027;
         public static final int ic_buffer=0x7f020028;
         public static final int ic_cross_white=0x7f020029;
-        public static final int ic_gps_white=0x7f02002a;
-        public static final int ic_launcher=0x7f02002b;
-        public static final int ic_magnifier_white=0x7f02002c;
-        public static final int ic_pin_map=0x7f02002d;
-        public static final int ic_play_silver=0x7f02002e;
-        public static final int ic_plus=0x7f02002f;
-        public static final int ic_ringtone=0x7f020030;
-        public static final int ic_send_white=0x7f020031;
-        public static final int ic_tags_silver=0x7f020032;
-        public static final int list_activated_holo=0x7f020033;
-        public static final int list_focused_holo=0x7f020034;
-        public static final int list_longpressed_holo=0x7f020035;
-        public static final int list_pressed_holo_light=0x7f020036;
-        public static final int list_selector_background_transition_holo_light=0x7f020037;
-        public static final int list_selector_disabled_holo_light=0x7f020038;
-        public static final int list_selector_holo_light=0x7f020039;
-        public static final int progress=0x7f02003a;
-        public static final int progress_thumb=0x7f02003b;
-        public static final int scrubber_control=0x7f02003c;
-        public static final int scrubber_control_disabled_holo=0x7f02003d;
-        public static final int scrubber_control_focused_holo=0x7f02003e;
-        public static final int scrubber_control_normal_holo=0x7f02003f;
-        public static final int scrubber_control_pressed_holo=0x7f020040;
-        public static final int scrubber_primary_holo=0x7f020041;
-        public static final int scrubber_progress=0x7f020042;
-        public static final int scrubber_secondary_holo=0x7f020043;
-        public static final int scrubber_track_holo_light=0x7f020044;
-        public static final int spinner_background_holo_light=0x7f020045;
-        public static final int spinner_default_holo_light=0x7f020046;
-        public static final int spinner_disabled_holo_light=0x7f020047;
-        public static final int spinner_focused_holo_light=0x7f020048;
-        public static final int spinner_pressed_holo_light=0x7f020049;
+        public static final int ic_flag_white=0x7f02002a;
+        public static final int ic_gps_white=0x7f02002b;
+        public static final int ic_launcher=0x7f02002c;
+        public static final int ic_magnifier_white=0x7f02002d;
+        public static final int ic_pencil=0x7f02002e;
+        public static final int ic_pin_map=0x7f02002f;
+        public static final int ic_pin_map_tiny=0x7f020030;
+        public static final int ic_pin_zzz=0x7f020031;
+        public static final int ic_play_silver=0x7f020032;
+        public static final int ic_plus=0x7f020033;
+        public static final int ic_ringtone=0x7f020034;
+        public static final int ic_send_white=0x7f020035;
+        public static final int ic_tags_silver=0x7f020036;
+        public static final int list_activated_holo=0x7f020037;
+        public static final int list_focused_holo=0x7f020038;
+        public static final int list_longpressed_holo=0x7f020039;
+        public static final int list_pressed_holo_light=0x7f02003a;
+        public static final int list_selector_background_transition_holo_light=0x7f02003b;
+        public static final int list_selector_disabled_holo_light=0x7f02003c;
+        public static final int list_selector_holo_light=0x7f02003d;
+        public static final int progress=0x7f02003e;
+        public static final int progress_thumb=0x7f02003f;
+        public static final int scrubber_control=0x7f020040;
+        public static final int scrubber_control_disabled_holo=0x7f020041;
+        public static final int scrubber_control_focused_holo=0x7f020042;
+        public static final int scrubber_control_normal_holo=0x7f020043;
+        public static final int scrubber_control_pressed_holo=0x7f020044;
+        public static final int scrubber_primary_holo=0x7f020045;
+        public static final int scrubber_progress=0x7f020046;
+        public static final int scrubber_secondary_holo=0x7f020047;
+        public static final int scrubber_track_holo_light=0x7f020048;
+        public static final int spinner_background_holo_light=0x7f020049;
+        public static final int spinner_default_holo_light=0x7f02004a;
+        public static final int spinner_disabled_holo_light=0x7f02004b;
+        public static final int spinner_focused_holo_light=0x7f02004c;
+        public static final int spinner_pressed_holo_light=0x7f02004d;
     }
     public static final class id {
         public static final int addAddressScrollView=0x7f050005;
@@ -251,7 +257,7 @@ containing a value of this type.
         public static final int btnAddAddress=0x7f050026;
         public static final int btnAddCancel=0x7f050019;
         public static final int btnAddConfirm=0x7f05001b;
-        public static final int btnArrowBack=0x7f05002d;
+        public static final int btnArrowBack=0x7f05002a;
         public static final int btnBuffer=0x7f050012;
         public static final int btnControllers=0x7f050018;
         public static final int btnRingtone=0x7f050015;
@@ -269,10 +275,10 @@ containing a value of this type.
         public static final int icPinMap=0x7f05000f;
         public static final int list=0x7f050023;
         public static final int logo=0x7f050024;
-        public static final int menuEditBusStop=0x7f050030;
-        public static final int menuItemAddressEdit=0x7f050031;
-        public static final int menuItemAddressRemove=0x7f050032;
-        public static final int menuRemoveBusStop=0x7f05002f;
+        public static final int menuEditBusStop=0x7f05002d;
+        public static final int menuItemAddressEdit=0x7f05002e;
+        public static final int menuItemAddressRemove=0x7f05002f;
+        public static final int menuRemoveBusStop=0x7f05002c;
         public static final int name=0x7f050025;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
@@ -281,20 +287,17 @@ containing a value of this type.
         public static final int rlInfoMap=0x7f05000e;
         public static final int satellite=0x7f050002;
         public static final int seekBuffer=0x7f050014;
+        public static final int showAddressScrollView=0x7f050027;
         public static final int terrain=0x7f050003;
         public static final int txtAddName=0x7f050007;
+        public static final int txtAddress=0x7f050029;
         public static final int txtAddressLocation=0x7f050010;
-        public static final int txtBlrAddress=0x7f050028;
-        public static final int txtBlrAddressBuffer=0x7f050029;
-        public static final int txtBlrAddressName=0x7f050027;
-        public static final int txtBlrAddressRemove=0x7f05002c;
-        public static final int txtBlrAddressRingtone=0x7f05002a;
-        public static final int txtBlrAddressUpdate=0x7f05002b;
         public static final int txtBuffer=0x7f050013;
         public static final int txtCoordinates=0x7f050011;
+        public static final int txtName=0x7f050028;
         public static final int txtRingtone=0x7f050016;
         public static final int txtSearchAddress=0x7f050009;
-        public static final int txtTitle=0x7f05002e;
+        public static final int txtTitle=0x7f05002b;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -405,6 +408,7 @@ containing a value of this type.
         public static final int common_signin_button_text_long=0x7f06000e;
         public static final int confirm=0x7f060020;
         public static final int coordinate=0x7f06001f;
+        public static final int edit=0x7f060030;
         /**  CONTEXT MENU ADDRESS 
          */
         public static final int editBusStop=0x7f06002e;
@@ -418,6 +422,7 @@ containing a value of this type.
         public static final int nameCannotBeIsEmpty=0x7f060026;
         public static final int pleaseFixItFirst=0x7f06002b;
         public static final int positionCannotBeIsEmpty=0x7f060028;
+        public static final int remove=0x7f060031;
         public static final int removeBusStop=0x7f06002f;
         public static final int ringtoneCannotBeIsEmpty=0x7f06002a;
         public static final int save=0x7f06001c;
@@ -466,30 +471,37 @@ containing a value of this type.
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f090001;
-        public static final int ListViewAppTheme=0x7f090016;
-        public static final int ListViewAppTheme_White=0x7f090017;
+        public static final int ListViewAppTheme=0x7f09001d;
+        public static final int ListViewAppTheme_White=0x7f09001e;
         /**  /BTN 
  SPINNER 
          */
-        public static final int SpinnerAppTheme=0x7f090013;
-        public static final int SpinnerDropDownItemAppTheme=0x7f090015;
-        public static final int SpinnerItem=0x7f090014;
-        public static final int Theme_BuzzzleeperTheme=0x7f09001c;
-        public static final int blrAddress=0x7f09001a;
-        public static final int blrName=0x7f090019;
+        public static final int SpinnerAppTheme=0x7f09001a;
+        public static final int SpinnerDropDownItemAppTheme=0x7f09001c;
+        public static final int SpinnerItem=0x7f09001b;
+        public static final int Theme_BuzzzleeperTheme=0x7f090023;
+        public static final int blrAddress=0x7f090021;
+        public static final int blrName=0x7f090020;
+        public static final int btn=0x7f090016;
+        public static final int btnAdd=0x7f090018;
         /**  /MAP 
  BTN 
          */
         public static final int btnBackgroundThemeA=0x7f09000d;
+        public static final int btnBackgroundThemeEditA=0x7f09000f;
         public static final int btnBackgroundThemeErrorA=0x7f09000e;
-        public static final int btnContent=0x7f09000f;
-        public static final int btnContentCancel=0x7f090011;
-        public static final int btnContentConfirm=0x7f090010;
-        public static final int btnSpinner=0x7f090012;
+        public static final int btnContent=0x7f090010;
+        public static final int btnContentCancel=0x7f090012;
+        public static final int btnContentConfirm=0x7f090011;
+        public static final int btnEdit=0x7f090019;
+        public static final int btnRemove=0x7f090017;
+        public static final int btnShowProperties=0x7f090014;
+        public static final int btnSpinner=0x7f090013;
         /**  /SPINNER 
  BUSSTOPITEM 
          */
-        public static final int busStopItem=0x7f090018;
+        public static final int busStopItem=0x7f09001f;
+        public static final int contentBtnShowProperties=0x7f090015;
         /**  /INPUT 
  MAP 
          */
@@ -498,7 +510,7 @@ containing a value of this type.
          */
         public static final int header=0x7f090002;
         public static final int icPinMap=0x7f090009;
-        public static final int imgMap=0x7f09001b;
+        public static final int imgMap=0x7f090022;
         public static final int infoMap=0x7f090008;
         /**  INPUT 
          */

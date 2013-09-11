@@ -122,6 +122,12 @@ d</style>
         <item name="android:layout_height">40dip</item>
         <item name="android:background">@color/backgroundThemeErrorA</item>
     </style>
+    
+    <style name="btnBackgroundThemeEditA">
+        <item name="android:layout_width">40dip</item>
+        <item name="android:layout_height">40dip</item>
+        <item name="android:background">@color/backgroundThemeEditA</item>
+    </style>
 
     <style name="btnContent">
         <item name="android:layout_height">40dip</item>
@@ -145,6 +151,49 @@ d</style>
         <item name="android:background">@color/inputBackgroundColor</item>
         <item name="android:gravity">right</item>
     </style>
+    
+    <style name="btnShowProperties">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/backgroundThemeB</item>
+        <item name="android:gravity">right</item>
+        <item name="android:layout_marginLeft">5dip</item>
+        <item name="android:layout_marginRight">5dip</item>
+        <item name="android:layout_marginTop">5dip</item>
+    </style>
+    
+    <style name="contentBtnShowProperties">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginLeft">5dip</item>
+    </style>
+    
+    
+    
+    <style name="btn">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">right</item>
+        <item name="android:layout_marginLeft">5dip</item>
+        <item name="android:layout_marginRight">5dip</item>
+        <item name="android:layout_marginTop">5dip</item>
+    </style>
+    
+    <style name="btnRemove" parent="@style/btn">
+        <item name="android:background">@color/backgroundThemeErrorB</item>
+    </style>
+    
+    <style name="btnAdd" parent="@style/btn">
+        <item name="android:background">@color/backgroundThemeB</item>
+    </style>
+    
+    <style name="btnEdit" parent="@style/btn">
+        <item name="android:background">@color/backgroundThemeEditB</item>
+    </style>
+    
     <!-- /BTN -->
 
 

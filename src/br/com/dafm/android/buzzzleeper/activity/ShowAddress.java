@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import br.com.dafm.android.buzzzleeper.R;
 import br.com.dafm.android.buzzzleeper.dao.AddressDAO;
@@ -102,17 +101,20 @@ public class ShowAddress extends FragmentActivity {
 				String value = extras.get("BLR_ADDRESS_ID").toString();
 				blrAddress = addressDAO.findById(Integer.parseInt(value));
 				
-				TextView name = (TextView) findViewById(R.id.txtBlrAddressName);
+				TextView name = (TextView) findViewById(R.id.txtName);
 				name.setText(blrAddress.getName());
 				
-				TextView address = (TextView) findViewById(R.id.txtBlrAddress);
+				TextView address = (TextView) findViewById(R.id.txtAddress);
 				address.setText(blrAddress.getAddress());
 				
-				TextView buffer = (TextView) findViewById(R.id.txtBlrAddressBuffer);
-				//buffer.setText(getString(R.string.bufferDistance) + ": "+ Integer.toString(blrAddress.getBuffer()) + " "+ getString(R.string.meters));
+				TextView buffer = (TextView) findViewById(R.id.txtBuffer);
+				buffer.setText(Integer.toString(blrAddress.getBuffer()) + " "+ getString(R.string.meters));
 				
-				TextView ringtone = (TextView) findViewById(R.id.txtBlrAddressRingtone);
+				TextView ringtone = (TextView) findViewById(R.id.txtRingtone);
 				ringtone.setText(blrAddress.getRingtone());
+				
+				TextView coordinates = (TextView) findViewById(R.id.txtCoordinates);
+				coordinates.setText(String.format("%.7f", blrAddress.getLat()) + ", " + String.format("%.7f", blrAddress.getLng()));
 				
 				setupMap();
 			}
@@ -134,17 +136,6 @@ public class ShowAddress extends FragmentActivity {
 		CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
 		googleMap.moveCamera(center);
 		googleMap.animateCamera(zoom);
-
-		LinearLayout rlInfoMap = (LinearLayout) this.findViewById(R.id.rlInfoMap);
-		rlInfoMap.setVisibility(0);
-
-		TextView coordinates = (TextView) this.findViewById(R.id.txtCoordinates);
-		coordinates.setText("Latitude: "+ String.format("%.7f", point.latitude) + ", Longitude: "+ String.format("%.7f", point.longitude));
-
-		TextView addressLocation = (TextView) this.findViewById(R.id.txtAddressLocation);
-		addressLocation.setText(blrAddress.getAddress());
-		
-		
 	}
 
 }
