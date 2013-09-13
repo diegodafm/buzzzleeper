@@ -21,11 +21,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
-import android.text.Layout;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import br.com.dafm.android.buzzzleeper.R;
-import br.com.dafm.android.buzzzleeper.R.layout;
 import br.com.dafm.android.buzzzleeper.entity.BlrAddress;
 
 public class TrackerService extends Service {
@@ -113,7 +112,7 @@ public class TrackerService extends Service {
 				Double distance = getCurrentDistance(location);
 				DecimalFormat df = new DecimalFormat("#.##");
 				textView.setText(df.format(distance) + " Km");
-				if (distance < (blrAddress.getBuffer() / 1000)) {
+				if (distance < (blrAddress.getBuffer().doubleValue() / 1000)) {
 					if (!arrived) {
 						startAlarm();
 						openBtnStop();
@@ -139,10 +138,11 @@ public class TrackerService extends Service {
 	}
 
 	private void openBtnStop() {
-
+		Button button = (Button) view.findViewById(R.id.btnStopAlarm);
+		button.setVisibility(1);
 	}
 
-	public void stopTracking(View view) {
+	public void stopTracking() {
 		TextView textView = (TextView) view.findViewById(R.id.txtDistance);
 		textView.setText("");
 		locationManager.removeUpdates(locationListener);
@@ -174,6 +174,7 @@ public class TrackerService extends Service {
 	
 	public void stopAlarm() {
 		mediaPlayer.stop();
+		
 	}
 
 	private void playSound(Uri alert) {
@@ -186,7 +187,6 @@ public class TrackerService extends Service {
 				mediaPlayer.prepare();
 				mediaPlayer.start();
 				arrived = true;
-				// this.nearFromYourDestinationBusStop();
 			}
 		} catch (IOException e) {
 			new RuntimeException(e);
