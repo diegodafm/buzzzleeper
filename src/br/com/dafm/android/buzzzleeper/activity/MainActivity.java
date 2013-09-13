@@ -95,6 +95,16 @@ public class MainActivity extends Activity {
 			}
 		});
 		
+		LinearLayout btnStartTracking = (LinearLayout) view.findViewById(R.id.btnStartActivity);
+		btnStartTracking.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getApplicationContext(), TrackingActivity.class);
+				intent.putExtra("BLR_ADDRESS_ID", blrAddress.getId());
+				startActivity(intent);
+			}
+		});
+		
 		
 		return view;
 	}

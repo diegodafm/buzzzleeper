@@ -265,6 +265,7 @@ containing a value of this type.
         public static final int btnSearchGPS=0x7f05000b;
         public static final int btnShowDetails=0x7f050020;
         public static final int btnStartActivity=0x7f050021;
+        public static final int btnStopAlarm=0x7f05002e;
         public static final int buzzzleepList=0x7f050022;
         public static final int googleMap=0x7f05000d;
         public static final int header=0x7f050006;
@@ -274,11 +275,12 @@ containing a value of this type.
         public static final int icBtnRingtone=0x7f050017;
         public static final int icPinMap=0x7f05000f;
         public static final int list=0x7f050023;
+        public static final int llTracking=0x7f05002c;
         public static final int logo=0x7f050024;
-        public static final int menuEditBusStop=0x7f05002d;
-        public static final int menuItemAddressEdit=0x7f05002e;
-        public static final int menuItemAddressRemove=0x7f05002f;
-        public static final int menuRemoveBusStop=0x7f05002c;
+        public static final int menuEditBusStop=0x7f050030;
+        public static final int menuItemAddressEdit=0x7f050031;
+        public static final int menuItemAddressRemove=0x7f050032;
+        public static final int menuRemoveBusStop=0x7f05002f;
         public static final int name=0x7f050025;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
@@ -294,6 +296,7 @@ containing a value of this type.
         public static final int txtAddressLocation=0x7f050010;
         public static final int txtBuffer=0x7f050013;
         public static final int txtCoordinates=0x7f050011;
+        public static final int txtDistance=0x7f05002d;
         public static final int txtName=0x7f050028;
         public static final int txtRingtone=0x7f050016;
         public static final int txtSearchAddress=0x7f050009;
@@ -308,6 +311,7 @@ containing a value of this type.
         public static final int map=0x7f030005;
         public static final int show_address=0x7f030006;
         public static final int title=0x7f030007;
+        public static final int tracking=0x7f030008;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;

@@ -188,6 +188,7 @@ public class GPSTracker extends Service implements LocationListener {
 
 	@Override
 	public void onProviderDisabled(String provider) {
+		showSettingsAlert();
 	}
 
 	@Override
@@ -197,6 +198,7 @@ public class GPSTracker extends Service implements LocationListener {
 	@Override
 	public void onStatusChanged(String provider, int status, Bundle extras) {
 	}
+	
 
 	@Override
 	public IBinder onBind(Intent arg0) {

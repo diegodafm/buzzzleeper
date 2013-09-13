@@ -47,20 +47,8 @@
                 android:textSize="25sp"
                 android:textStyle="bold" />
         </RelativeLayout>
-
-        <LinearLayout
-            android:id="@+id/rlGoogleMap"
-            style="@style/frameMap" >
-
-            <fragment
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/googleMap"
-                android:name="br.com.dafm.android.buzzzleeper.AddAddress"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                class="com.google.android.gms.maps.SupportMapFragment" />
-        </LinearLayout>
-
+        
+        
         <LinearLayout
             style="@style/btnShowProperties"
             android:baselineAligned="false" >
@@ -86,59 +74,79 @@
                     style="@style/contentBtnShowProperties" />
             </RelativeLayout>
         </LinearLayout>
+        
 
         <LinearLayout
-            style="@style/btnShowProperties"
-            android:layout_weight="1"
-            android:baselineAligned="false" >
+            android:id="@+id/rlGoogleMap"
+            style="@style/frameMap" >
 
-            <RelativeLayout style="@style/btnBackgroundThemeA" >
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_pin_map_tiny"
-                    tools:ignore="ContentDescription" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dp"
+            <fragment
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/googleMap"
+                android:name="br.com.dafm.android.buzzzleeper.AddAddress"
+                android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_weight="1" >
-
-                <TextView
-                    android:id="@+id/txtCoordinates"
-                    style="@style/contentBtnShowProperties" />
-            </RelativeLayout>
+                class="com.google.android.gms.maps.SupportMapFragment" />
         </LinearLayout>
 
         <LinearLayout
-            style="@style/btnShowProperties"
-            android:layout_weight="1"
-            android:baselineAligned="false" >
-
-            <RelativeLayout style="@style/btnBackgroundThemeA" >
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_buffer"
-                    tools:ignore="ContentDescription" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_weight="1" >
-
-                <TextView
-                    android:id="@+id/txtBuffer"
-                    style="@style/contentBtnShowProperties" />
-            </RelativeLayout>
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+	        <LinearLayout
+	            style="@style/btnShowProperties"
+	            android:layout_weight="1"
+	            android:baselineAligned="false" >
+	
+	            <RelativeLayout style="@style/btnBackgroundThemeA" >
+	
+	                <ImageView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_centerHorizontal="true"
+	                    android:layout_centerVertical="true"
+	                    android:src="@drawable/ic_pin_map_tiny"
+	                    tools:ignore="ContentDescription" />
+	            </RelativeLayout>
+	
+	            <RelativeLayout
+	                android:layout_width="0dp"
+	                android:layout_height="fill_parent"
+	                android:layout_weight="1" >
+	
+	                <TextView
+	                    android:id="@+id/txtCoordinates"
+	                    style="@style/contentBtnShowProperties" />
+	            </RelativeLayout>
+	        </LinearLayout>
+	
+	        <LinearLayout
+	            style="@style/btnShowProperties"
+	            android:layout_weight="1"
+	            android:baselineAligned="false" >
+	
+	            <RelativeLayout style="@style/btnBackgroundThemeA" >
+	
+	                <ImageView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_centerHorizontal="true"
+	                    android:layout_centerVertical="true"
+	                    android:src="@drawable/ic_buffer"
+	                    tools:ignore="ContentDescription" />
+	            </RelativeLayout>
+	
+	            <RelativeLayout
+	                android:layout_width="0dp"
+	                android:layout_height="fill_parent"
+	                android:layout_weight="1" >
+	
+	                <TextView
+	                    android:id="@+id/txtBuffer"
+	                    style="@style/contentBtnShowProperties" />
+	            </RelativeLayout>
+	        </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
