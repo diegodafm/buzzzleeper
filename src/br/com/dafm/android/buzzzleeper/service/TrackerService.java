@@ -114,6 +114,7 @@ public class TrackerService extends Service {
 				textView.setText(df.format(distance) + " Km");
 				if (distance < (blrAddress.getBuffer().doubleValue() / 1000)) {
 					if (!arrived) {
+						arrived = true;
 						startAlarm();
 						openBtnStop();
 					}

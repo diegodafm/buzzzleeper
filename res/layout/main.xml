@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/grayMainBackground"
     android:orientation="vertical" >
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/buzzzleepList"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
         <FrameLayout
+            android:id="@+id/flTitle"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top" >
@@ -19,15 +20,20 @@
             <include layout="@layout/main_title" />
         </FrameLayout>
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/flTitle"
             android:layout_marginLeft="5dip"
             android:layout_marginRight="5dip"
-            android:id="@+id/list"
             android:orientation="vertical" >
-            
-        </LinearLayout>
-    </LinearLayout>
 
-</ScrollView>
+            <LinearLayout
+                android:id="@+id/list"
+                android:layout_width="fill_parent"
+                android:orientation="vertical"
+                android:layout_height="fill_parent" />
+        </ScrollView>
+    </RelativeLayout>
+
+</LinearLayout>
