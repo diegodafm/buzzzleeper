@@ -1,10 +1,15 @@
 package br.com.dafm.android.buzzzleeper.activity;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface.OnClickListener;
+import android.content.res.Configuration;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import br.com.dafm.android.buzzzleeper.R;
 import br.com.dafm.android.buzzzleeper.dao.AddressDAO;
@@ -20,10 +25,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class ShowAddress extends FragmentActivity {
 
+	private Typeface signikaSemibold;
+
 	private BlrAddress blrAddress;
 
 	private AddressDAO addressDAO;
-	
+
 	private GoogleMap googleMap;
 
 	private ProgressDialog progressDialog;
@@ -33,6 +40,21 @@ public class ShowAddress extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		new LoadViewTask().execute();
 
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+	}
+
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+	}
+
+	private void setupFontTypeFace() {
+		signikaSemibold = Typeface.createFromAsset(getAssets(),
+				"fonts/Signika-Semibold.ttf");
 	}
 
 	// To use the AsyncTask, it must be subclassed
@@ -96,42 +118,73 @@ public class ShowAddress extends FragmentActivity {
 
 			Bundle extras = getIntent().getExtras();
 
+			setupFontTypeFace();
+
 			if (extras != null) {
 				addressDAO = new AddressDAO(getApplicationContext());
 				String value = extras.get("BLR_ADDRESS_ID").toString();
 				blrAddress = addressDAO.findById(Integer.parseInt(value));
-				
+
 				TextView name = (TextView) findViewById(R.id.txtName);
 				name.setText(blrAddress.getName());
-				
+				name.setTypeface(signikaSemibold);
+
 				TextView address = (TextView) findViewById(R.id.txtAddress);
 				address.setText(blrAddress.getAddress());
-				
+				address.setTypeface(signikaSemibold);
+
 				TextView buffer = (TextView) findViewById(R.id.txtBuffer);
-				buffer.setText(Integer.toString(blrAddress.getBuffer()) + " "+ getString(R.string.meters));
-				
+				buffer.setText(Integer.toString(blrAddress.getBuffer()) + " "
+						+ getString(R.string.meters));
+				buffer.setTypeface(signikaSemibold);
+
 				TextView ringtone = (TextView) findViewById(R.id.txtRingtone);
 				ringtone.setText(blrAddress.getRingtone());
-				
+				ringtone.setTypeface(signikaSemibold);
+
 				TextView coordinates = (TextView) findViewById(R.id.txtCoordinates);
-				coordinates.setText(String.format("%.7f", blrAddress.getLat()) + ", " + String.format("%.7f", blrAddress.getLng()));
+				coordinates.setText(String.format("%.7f", blrAddress.getLat())
+						+ ", " + String.format("%.7f", blrAddress.getLng()));
+				coordinates.setTypeface(signikaSemibold);
+
+				LinearLayout btnRemove = (LinearLayout) findViewById(R.id.btnRemoveBlrAddress);
+				((TextView) btnRemove.findViewById(R.id.txtRemove)).setTypeface(signikaSemibold);
+				btnRemove.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						
+					}
+				});
+				
+				LinearLayout btnEdit = (LinearLayout) findViewById(R.id.btnEditBlrAddress);
+				((TextView) btnEdit.findViewById(R.id.txtEdit)).setTypeface(signikaSemibold);
+				btnEdit.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						
+					}
+				});
+				
 				
 				setupMap();
 			}
 		}
 	}
-	
+
 	private void setupMap() {
-		googleMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.googleMap)).getMap();
+		googleMap = ((SupportMapFragment) getSupportFragmentManager()
+				.findFragmentById(R.id.googleMap)).getMap();
 		addMarker(new LatLng(blrAddress.getLat(), blrAddress.getLng()));
 	}
 
 	private void addMarker(LatLng point) {
 		googleMap.clear();
-		CircleOptions circleOptions = new CircleOptions().center(point).radius(blrAddress.getBuffer()).fillColor(0x40ff0000).strokeColor(Color.BLUE).strokeWidth(5);
+		CircleOptions circleOptions = new CircleOptions().center(point)
+				.radius(blrAddress.getBuffer()).fillColor(0x40ff0000)
+				.strokeColor(Color.BLUE).strokeWidth(5);
 		googleMap.addCircle(circleOptions);
 		googleMap.addMarker(new MarkerOptions().position(point));
-		
+
 		CameraUpdate center = CameraUpdateFactory.newLatLng(point);
 		CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
 		googleMap.moveCamera(center);

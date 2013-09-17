@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/showAddressScrollView"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:layout_gravity="center"
+    android:background="#80000000"
+    android:paddingBottom="15dip"
     android:paddingLeft="10dip"
     android:paddingRight="10dip"
     android:paddingTop="15dip"
-    android:paddingBottom="15dip"
-    android:background="#80000000"
     tools:context=".AddAddress" >
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:paddingBottom="5dip"
+        android:layout_height="fill_parent"
         android:background="@color/white"
-        android:orientation="vertical" >
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="5dip" >
 
         <RelativeLayout
             android:layout_width="fill_parent"
@@ -28,7 +28,7 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_margin="5dip"
                 android:layout_toLeftOf="@+id/txtName"
@@ -38,7 +38,7 @@
             <TextView
                 android:id="@+id/txtName"
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_margin="5dip"
@@ -47,158 +47,43 @@
                 android:textSize="25sp"
                 android:textStyle="bold" />
         </RelativeLayout>
-        
-        
-        <LinearLayout
-            style="@style/btnShowProperties"
-            android:baselineAligned="false" >
 
-            <RelativeLayout style="@style/btnBackgroundThemeA" >
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_flag_white"
-                    tools:ignore="ContentDescription" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_weight="1" >
-
-                <TextView
-                    android:id="@+id/txtAddress"
-                    style="@style/contentBtnShowProperties" />
-            </RelativeLayout>
-        </LinearLayout>
-        
-
-        <LinearLayout
-            android:id="@+id/rlGoogleMap"
-            style="@style/frameMap" >
-
-            <fragment
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/googleMap"
-                android:name="br.com.dafm.android.buzzzleeper.AddAddress"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                class="com.google.android.gms.maps.SupportMapFragment" />
-        </LinearLayout>
-
-        <LinearLayout
+        <ScrollView
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-	        <LinearLayout
-	            style="@style/btnShowProperties"
-	            android:layout_weight="1"
-	            android:baselineAligned="false" >
-	
-	            <RelativeLayout style="@style/btnBackgroundThemeA" >
-	
-	                <ImageView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_centerHorizontal="true"
-	                    android:layout_centerVertical="true"
-	                    android:src="@drawable/ic_pin_map_tiny"
-	                    tools:ignore="ContentDescription" />
-	            </RelativeLayout>
-	
-	            <RelativeLayout
-	                android:layout_width="0dp"
-	                android:layout_height="fill_parent"
-	                android:layout_weight="1" >
-	
-	                <TextView
-	                    android:id="@+id/txtCoordinates"
-	                    style="@style/contentBtnShowProperties" />
-	            </RelativeLayout>
-	        </LinearLayout>
-	
-	        <LinearLayout
-	            style="@style/btnShowProperties"
-	            android:layout_weight="1"
-	            android:baselineAligned="false" >
-	
-	            <RelativeLayout style="@style/btnBackgroundThemeA" >
-	
-	                <ImageView
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_centerHorizontal="true"
-	                    android:layout_centerVertical="true"
-	                    android:src="@drawable/ic_buffer"
-	                    tools:ignore="ContentDescription" />
-	            </RelativeLayout>
-	
-	            <RelativeLayout
-	                android:layout_width="0dp"
-	                android:layout_height="fill_parent"
-	                android:layout_weight="1" >
-	
-	                <TextView
-	                    android:id="@+id/txtBuffer"
-	                    style="@style/contentBtnShowProperties" />
-	            </RelativeLayout>
-	        </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/btnShowProperties"
-            android:baselineAligned="false" >
-
-            <RelativeLayout style="@style/btnBackgroundThemeA" >
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_ringtone"
-                    tools:ignore="ContentDescription" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_weight="1" >
-
-                <TextView
-                    android:id="@+id/txtRingtone"
-                    style="@style/contentBtnShowProperties" />
-            </RelativeLayout>
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_alignParentBottom="true" 
-            android:layout_height="wrap_content" >
+            android:layout_height="fill_parent"
+            android:fillViewport="true" >
 
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2" >
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
 
                 <LinearLayout
-                    style="@style/btnRemove"
-                    android:layout_weight="1"
+                    android:id="@+id/rlGoogleMap"
+                    style="@style/frameMap"
+                    android:layout_height="150dip" >
+
+                    <fragment
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/googleMap"
+                        android:name="br.com.dafm.android.buzzzleeper.AddAddress"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        class="com.google.android.gms.maps.SupportMapFragment" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/btnShowProperties"
                     android:baselineAligned="false" >
 
-                    <RelativeLayout style="@style/btnBackgroundThemeErrorA" >
+                    <RelativeLayout style="@style/imgContainer" >
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
-                            android:src="@drawable/ic_cross_white"
+                            android:src="@drawable/ic_flag_gray"
                             tools:ignore="ContentDescription" />
                     </RelativeLayout>
 
@@ -208,43 +93,168 @@
                         android:layout_weight="1" >
 
                         <TextView
-                            style="@style/contentBtnShowProperties"
-                            android:text="@string/remove"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:id="@+id/txtAddress"
+                            style="@style/contentBtnShowProperties" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout style="@style/borderInfo" />
+
+                <LinearLayout
+                    style="@style/btnShowProperties"
+                    android:baselineAligned="false" >
+
+                    <RelativeLayout style="@style/imgContainer" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_pin_map_tiny_gray"
+                            tools:ignore="ContentDescription" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" >
+
+                        <TextView
+                            android:id="@+id/txtCoordinates"
+                            style="@style/contentBtnShowProperties" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout style="@style/borderInfo" />
+
+                <LinearLayout
+                    style="@style/btnShowProperties"
+                    android:baselineAligned="false" >
+
+                    <RelativeLayout style="@style/imgContainer" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_buffer_gray"
+                            tools:ignore="ContentDescription" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" >
+
+                        <TextView
+                            android:id="@+id/txtBuffer"
+                            style="@style/contentBtnShowProperties" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout style="@style/borderInfo" />
+
+                <LinearLayout
+                    style="@style/btnShowProperties"
+                    android:baselineAligned="false" >
+
+                    <RelativeLayout style="@style/imgContainer" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_ringtone_gray"
+                            tools:ignore="ContentDescription" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1" >
+
+                        <TextView
+                            android:id="@+id/txtRingtone"
+                            style="@style/contentBtnShowProperties" />
                     </RelativeLayout>
                 </LinearLayout>
 
                 <LinearLayout
-                    style="@style/btnEdit"
-                    android:layout_weight="1"
-                    android:baselineAligned="false" >
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="bottom"
+                    android:orientation="horizontal"
+                    android:weightSum="2" >
 
-                    <RelativeLayout style="@style/btnBackgroundThemeEditA" >
+                    <LinearLayout
+                        android:id="@+id/btnRemoveBlrAddress"
+                        style="@style/btnRemove"
+                        android:layout_weight="1"
+                        android:baselineAligned="false" >
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:layout_centerVertical="true"
-                            android:src="@drawable/ic_pencil"
-                            tools:ignore="ContentDescription" />
-                    </RelativeLayout>
+                        <RelativeLayout style="@style/btnBackgroundThemeErrorA" >
 
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="fill_parent"
-                        android:layout_weight="1" >
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_cross_white"
+                                tools:ignore="ContentDescription" />
+                        </RelativeLayout>
 
-                        <TextView
-                            style="@style/contentBtnShowProperties"
-                            android:text="@string/edit"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-                    </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="1" >
+
+                            <TextView
+                                android:id="@+id/txtRemove"
+                                style="@style/contentBtnShowProperties"
+                                android:text="@string/remove"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/btnEditBlrAddress"
+                        style="@style/btnEdit"
+                        android:layout_weight="1"
+                        android:baselineAligned="false" >
+
+                        <RelativeLayout style="@style/btnBackgroundThemeEditA" >
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_pencil"
+                                tools:ignore="ContentDescription" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="1" >
+
+                            <TextView
+                                android:id="@+id/txtEdit"
+                                style="@style/contentBtnShowProperties"
+                                android:text="@string/edit"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-        </RelativeLayout>
+        </ScrollView>
     </LinearLayout>
 
-</ScrollView>
+</LinearLayout>

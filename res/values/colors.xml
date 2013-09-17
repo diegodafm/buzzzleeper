@@ -9,8 +9,10 @@
     <color name="backgroundThemeEditB">#ffc564</color>
     <color name="grayBorder">#d1d1d1</color>
     <color name="grayControllers">#ebebeb</color>
+    <color name="grayText">#9ea7b3</color>
     <color name="grayMainBackground">#f2f2f2</color>
     <color name="white">#FFFFFF</color>
+    
     <color name="inputBackgroundColor">#ecf0f5</color>
     <color name="inputTextColor">#696969</color>
 </resources>
