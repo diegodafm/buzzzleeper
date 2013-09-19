@@ -13,9 +13,9 @@ import br.com.dafm.android.buzzzleeper.service.TrackerService;
 public class TrackingActivity extends Activity {
 
 	private AddressDAO addressDAO;
-	
+
 	private BlrAddress blrAddress;
-	
+
 	private TrackerService trackerService;
 
 	@Override
@@ -30,6 +30,8 @@ public class TrackingActivity extends Activity {
 			addressDAO = new AddressDAO(getApplicationContext());
 			String value = extras.get("BLR_ADDRESS_ID").toString();
 			blrAddress = addressDAO.findById(Integer.parseInt(value));
+
+			
 			startTracking();
 			setupStopAlarm();
 		}
@@ -40,13 +42,14 @@ public class TrackingActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onResume();
 	}
-	
-	private void startTracking(){
-		trackerService = new TrackerService(getApplicationContext(),blrAddress, (View) findViewById(R.id.llTracking));
+
+	private void startTracking() {
+		trackerService = new TrackerService(getApplicationContext(),
+				blrAddress, (View) findViewById(R.id.llTracking));
 		trackerService.startTracking();
 	}
-	
-	private void setupStopAlarm(){
+
+	private void setupStopAlarm() {
 		Button button = (Button) findViewById(R.id.btnStopAlarm);
 		button.setOnClickListener(new OnClickListener() {
 			@Override
@@ -55,4 +58,7 @@ public class TrackingActivity extends Activity {
 			}
 		});
 	}
+
+	
+
 }

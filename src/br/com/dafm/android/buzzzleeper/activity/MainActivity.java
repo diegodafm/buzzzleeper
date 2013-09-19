@@ -7,11 +7,12 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import br.com.dafm.android.buzzzleeper.R;
 import br.com.dafm.android.buzzzleeper.dao.AddressDAO;
@@ -24,22 +25,40 @@ public class MainActivity extends Activity {
 	private AddressDAO addressDAO;
 
 	private List<BlrAddress> addresses;
-	
+
 	GeocoderNetwork geocoderNetwork;
-	
+
 	ImageService imageService;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
 		setupBtnAddAddress();
-		
+
 		insertItemsTeste();
 		getBusStopList();
 	}
-	
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		boolean ret;
+		if (item.getItemId() == R.id.menu_settings) {
+			// Handle Settings
+			ret = true;
+		} else {
+			ret = super.onOptionsItemSelected(item);
+		}
+		return ret;
+	}
+
 	private void setupBtnAddAddress() {
 		ImageView btnAddAddress = (ImageView) findViewById(R.id.btnAddAddress);
 		btnAddAddress.setOnClickListener(new OnClickListener() {
@@ -64,61 +83,65 @@ public class MainActivity extends Activity {
 	private View buildViewItems(final BlrAddress blrAddress) {
 		final View view = LayoutInflater.from(getApplicationContext()).inflate(
 				R.layout.bus_stop_item, null);
-		
 
 		TextView txtName = (TextView) view.findViewById(R.id.blrName);
 		txtName.setText(blrAddress.getName());
-		
+
 		TextView txtAddress = (TextView) view.findViewById(R.id.blrAddress);
 		txtAddress.setText(blrAddress.getAddress());
 
 		ImageView imgMap = (ImageView) view.findViewById(R.id.blrImgMap);
-		String imgPath = getFilesDir() + "/" + "blrAddress_"+ blrAddress.getId() + ".png";
-		if(BitmapFactory.decodeFile(imgPath)==null){
+		String imgPath = getFilesDir() + "/" + "blrAddress_"
+				+ blrAddress.getId() + ".png";
+		if (BitmapFactory.decodeFile(imgPath) == null) {
 			new Thread(new Runnable() {
 				public void run() {
 					imageService = new ImageService();
-					imageService.createImageMap(blrAddress, getApplicationContext());
+					imageService.createImageMap(blrAddress,
+							getApplicationContext());
 				}
 			}).start();
-			
-		}else{			
+
+		} else {
 			imgMap.setImageBitmap(BitmapFactory.decodeFile(imgPath));
 		}
-		
-		LinearLayout btnShowDetails = (LinearLayout) view.findViewById(R.id.btnShowDetails);
+
+		LinearLayout btnShowDetails = (LinearLayout) view
+				.findViewById(R.id.btnShowDetails);
 		btnShowDetails.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(getApplicationContext(), ShowAddress.class);
+				Intent intent = new Intent(getApplicationContext(),
+						ShowAddress.class);
 				intent.putExtra("BLR_ADDRESS_ID", blrAddress.getId());
 				startActivity(intent);
 			}
 		});
-		
-		LinearLayout btnStartTracking = (LinearLayout) view.findViewById(R.id.btnStartActivity);
+
+		LinearLayout btnStartTracking = (LinearLayout) view
+				.findViewById(R.id.btnStartActivity);
 		btnStartTracking.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(getApplicationContext(), TrackingActivity.class);
+				Intent intent = new Intent(getApplicationContext(),
+						TrackingActivity.class);
 				intent.putExtra("BLR_ADDRESS_ID", blrAddress.getId());
 				startActivity(intent);
 			}
 		});
-		
-		
+
 		return view;
 	}
-	
-	private void insertItemsTeste(){
+
+	private void insertItemsTeste() {
 		addressDAO = new AddressDAO(getApplicationContext());
 		List<BlrAddress> list = addressDAO.getAllAddress();
-		
-		if(list.isEmpty()){		
+
+		if (list.isEmpty()) {
 			for (int i = 0; i < 5; i++) {
 				BlrAddress blrAddress = new BlrAddress();
-				blrAddress.setName("Address "+ i);
-				blrAddress.setAddress("Address "+ i);
+				blrAddress.setName("Address " + i);
+				blrAddress.setAddress("Address " + i);
 				blrAddress.setLat(-19.858617d);
 				blrAddress.setLng(-43.918408d);
 				blrAddress.setRingtone("Claro");
@@ -127,7 +150,7 @@ public class MainActivity extends Activity {
 				addressDAO.save(blrAddress);
 			}
 		}
-		
+
 	}
 
 }

@@ -22,10 +22,13 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.view.View;
+import android.webkit.DownloadListener;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import br.com.dafm.android.buzzzleeper.R;
 import br.com.dafm.android.buzzzleeper.entity.BlrAddress;
+import br.com.dafm.android.buzzzleeper.views.DrawView;
 
 public class TrackerService extends Service {
 
@@ -42,6 +45,10 @@ public class TrackerService extends Service {
 	private Boolean arrived;
 
 	private View view;
+	
+	private View pctgView;
+	
+	private Double firstDistanceDetected;
 
 	public TrackerService(Context context, BlrAddress blrAddress, View view) {
 		super();
@@ -110,8 +117,17 @@ public class TrackerService extends Service {
 					return;
 
 				Double distance = getCurrentDistance(location);
+				
+				if(firstDistanceDetected == null){
+					firstDistanceDetected = distance;
+				}
+				
+				
 				DecimalFormat df = new DecimalFormat("#.##");
 				textView.setText(df.format(distance) + " Km");
+				
+				Double pctg = (100*distance/firstDistanceDetected);
+				setupCirclePctg(pctg.intValue());
 				if (distance < (blrAddress.getBuffer().doubleValue() / 1000)) {
 					if (!arrived) {
 						arrived = true;
@@ -176,6 +192,15 @@ public class TrackerService extends Service {
 	public void stopAlarm() {
 		mediaPlayer.stop();
 		
+	}
+	
+	private void setupCirclePctg(Integer percent) {
+		LinearLayout circle = (LinearLayout) view.findViewById(R.id.canvasPctgDistance);
+		if(pctgView != null){
+			pctgView.invalidate();
+		}
+		pctgView = new DrawView(context, percent);
+		circle.addView(pctgView);
 	}
 
 	private void playSound(Uri alert) {
