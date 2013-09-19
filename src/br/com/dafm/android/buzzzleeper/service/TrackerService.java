@@ -22,7 +22,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.view.View;
-import android.webkit.DownloadListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -61,13 +60,14 @@ public class TrackerService extends Service {
 
 	public void startTracking() {
 
-		getAlarmUri();
+		setupCirclePctg(0);
+		
 		locationManager = (LocationManager) context
 				.getSystemService(Context.LOCATION_SERVICE);
 
 		locationListener = new LocationListener() {
 
-			TextView textView = (TextView) view.findViewById(R.id.txtDistance);
+			
 
 			@Override
 			public void onProviderEnabled(String provider) {
@@ -115,26 +115,12 @@ public class TrackerService extends Service {
 				// TODO Auto-generated method stub
 				if (location == null)
 					return;
+				
+				
+				displayDistance(location);
 
-				Double distance = getCurrentDistance(location);
-				
-				if(firstDistanceDetected == null){
-					firstDistanceDetected = distance;
-				}
 				
 				
-				DecimalFormat df = new DecimalFormat("#.##");
-				textView.setText(df.format(distance) + " Km");
-				
-				Double pctg = (100*distance/firstDistanceDetected);
-				setupCirclePctg(pctg.intValue());
-				if (distance < (blrAddress.getBuffer().doubleValue() / 1000)) {
-					if (!arrived) {
-						arrived = true;
-						startAlarm();
-						openBtnStop();
-					}
-				}
 			}
 
 			@Override
@@ -153,6 +139,38 @@ public class TrackerService extends Service {
 		locationManager.requestLocationUpdates(bestProvider, 1000, 0,
 				locationListener);
 	}
+	
+	private void displayDistance(Location location){
+		TextView textView = (TextView) view.findViewById(R.id.trackingTxtDistance);
+		
+		Double distance = getCurrentDistance(location);
+		
+		if(firstDistanceDetected == null){
+			firstDistanceDetected = distance;
+		}
+		
+		
+		
+		DecimalFormat df = new DecimalFormat("#.##");
+		
+		if(distance>2000d){
+			textView.setText(df.format(distance) + " Km");			
+		}else{
+			Double distanceMts = distance/1000d;
+			textView.setText(distanceMts.toString() + getString(R.string.meters));
+		}
+		
+		Double pctg = (100*distance/firstDistanceDetected);
+		setupCirclePctg(pctg.intValue());
+		
+		if (distance < (blrAddress.getBuffer().doubleValue() / 1000)) {
+			if (!arrived) {
+				arrived = true;
+				startAlarm();
+				openBtnStop();
+			}
+		}
+	}
 
 	private void openBtnStop() {
 		Button button = (Button) view.findViewById(R.id.btnStopAlarm);
@@ -160,7 +178,7 @@ public class TrackerService extends Service {
 	}
 
 	public void stopTracking() {
-		TextView textView = (TextView) view.findViewById(R.id.txtDistance);
+		TextView textView = (TextView) view.findViewById(R.id.trackingTxtDistance);
 		textView.setText("");
 		locationManager.removeUpdates(locationListener);
 		locationManager = null;
@@ -196,9 +214,7 @@ public class TrackerService extends Service {
 	
 	private void setupCirclePctg(Integer percent) {
 		LinearLayout circle = (LinearLayout) view.findViewById(R.id.canvasPctgDistance);
-		if(pctgView != null){
-			pctgView.invalidate();
-		}
+		circle.removeAllViews();
 		pctgView = new DrawView(context, percent);
 		circle.addView(pctgView);
 	}
@@ -212,7 +228,6 @@ public class TrackerService extends Service {
 				mediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
 				mediaPlayer.prepare();
 				mediaPlayer.start();
-				arrived = true;
 			}
 		} catch (IOException e) {
 			new RuntimeException(e);

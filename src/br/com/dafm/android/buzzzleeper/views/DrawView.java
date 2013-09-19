@@ -1,4 +1,5 @@
 package br.com.dafm.android.buzzzleeper.views;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -7,6 +8,7 @@ import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.view.View;
 
+@SuppressLint("DrawAllocation")
 public class DrawView extends View {
 
     Paint mPaint = new Paint();
@@ -23,6 +25,7 @@ public class DrawView extends View {
 
     @Override
     public void onDraw(Canvas canvas) {
+    	
     	canvas.setViewport(getMeasuredWidth(), 150);
 
         Paint mPaint = new Paint(Paint.FILTER_BITMAP_FLAG |
@@ -38,16 +41,12 @@ public class DrawView extends View {
         circleCenter.setColor(Color.parseColor("#323a45"));
         circleCenter.setStyle(Paint.Style.FILL); 
 
-        int size = 50;
-        int radius = 50;
-        int delta = size - radius;
-        int arcSize = (size - (delta / 2)) * 2;
-
         //Arc
         mPaint.setColor(Color.parseColor("#58c2cb"));
         mPaint.setStrokeWidth(20);
-        RectF box = new RectF(20,20,arcSize+20,arcSize+20);
-        float sweep = 360 * percent * 0.01f;
+        RectF box = new RectF(20,20,getWidth()-20,getWidth()-20);
+        
+        float sweep = 360 * this.percent * 0.01f;
         
         Paint txtPctg = new Paint(); 
         txtPctg.setColor(Color.WHITE); 
@@ -55,11 +54,10 @@ public class DrawView extends View {
         txtPctg.setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/Signika-Semibold.ttf"));
         
         
-        canvas.drawArc(box, 270, sweep, false, mPaint);
-        canvas.drawCircle(70, 70, radius, circleCenter);        
-        canvas.drawText(percent.toString() + "%", 45, 80, txtPctg);
+        canvas.drawCircle(getWidth()/2, getHeight()/2, 100, circleCenter);
+        canvas.drawArc(box, 270, sweep, false, mPaint);        
+        canvas.drawText(this.percent.toString() + "%", getWidth()/3, getWidth()/2, txtPctg);
         
-        invalidate();
     }
 /*
   @Override
