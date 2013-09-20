@@ -47,6 +47,14 @@ public class TrackingActivity extends Activity {
 		super.onResume();
 	}
 	
+	@Override
+    public void onBackPressed() {
+            super.onBackPressed();
+            trackerService.stopTracking();
+            
+            this.finish();
+    }
+	
 	private void displayData(){
 
 		signikaSemibold = Typeface.createFromAsset(getAssets(),

@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -60,7 +61,7 @@ public class TrackerService extends Service {
 
 	public void startTracking() {
 
-		setupCirclePctg(0);
+		setupCirclePctg(0f);
 		
 		locationManager = (LocationManager) context
 				.getSystemService(Context.LOCATION_SERVICE);
@@ -113,14 +114,10 @@ public class TrackerService extends Service {
 			@Override
 			public void onLocationChanged(Location location) {
 				// TODO Auto-generated method stub
-				if (location == null)
+				if (location == null){
 					return;
-				
-				
+				}
 				displayDistance(location);
-
-				
-				
 			}
 
 			@Override
@@ -141,29 +138,28 @@ public class TrackerService extends Service {
 	}
 	
 	private void displayDistance(Location location){
+		Typeface signikaSemibold = Typeface.createFromAsset(this.context.getAssets(),"fonts/Signika-Semibold.ttf");
 		TextView textView = (TextView) view.findViewById(R.id.trackingTxtDistance);
+		textView.setTypeface(signikaSemibold);
 		
 		Double distance = getCurrentDistance(location);
 		
-		if(firstDistanceDetected == null){
+		if(firstDistanceDetected == null || firstDistanceDetected < distance){
 			firstDistanceDetected = distance;
 		}
 		
-		
-		
-		DecimalFormat df = new DecimalFormat("#.##");
-		
-		if(distance>2000d){
-			textView.setText(df.format(distance) + " Km");			
+		if(distance > 2000){
+			DecimalFormat df = new DecimalFormat("#.##");
+			textView.setText(df.format(distance/1000) + " Km");			
 		}else{
-			Double distanceMts = distance/1000d;
-			textView.setText(distanceMts.toString() + getString(R.string.meters));
+			DecimalFormat df = new DecimalFormat("#");
+			textView.setText(df.format(distance)+ " " + context.getString(R.string.meters));
 		}
 		
 		Double pctg = (100*distance/firstDistanceDetected);
-		setupCirclePctg(pctg.intValue());
+		setupCirclePctg(100-pctg.floatValue());
 		
-		if (distance < (blrAddress.getBuffer().doubleValue() / 1000)) {
+		if (distance < (blrAddress.getBuffer().doubleValue())) {
 			if (!arrived) {
 				arrived = true;
 				startAlarm();
@@ -200,7 +196,7 @@ public class TrackerService extends Service {
 		locationB.setLongitude(blrAddress.getLng());
 
 		distance = (double) locationA.distanceTo(locationB);
-		return distance / 1000;
+		return distance;
 	}
 
 	public void startAlarm() {
@@ -212,7 +208,7 @@ public class TrackerService extends Service {
 		
 	}
 	
-	private void setupCirclePctg(Integer percent) {
+	private void setupCirclePctg(Float percent) {
 		LinearLayout circle = (LinearLayout) view.findViewById(R.id.canvasPctgDistance);
 		circle.removeAllViews();
 		pctgView = new DrawView(context, percent);
