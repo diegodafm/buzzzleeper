@@ -7,6 +7,7 @@
 
     <!-- ADD ADDRESS-->
     <string name="add">Add</string>
+    <string name="addNewLocation">Add New Location</string>
     <string name="name">Name</string>
     <string name="address">Address</string>
     <string name="alarm">Alarm</string>

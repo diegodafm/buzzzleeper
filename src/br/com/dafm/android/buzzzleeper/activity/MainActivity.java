@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import br.com.dafm.android.buzzzleeper.R;
 import br.com.dafm.android.buzzzleeper.dao.AddressDAO;
@@ -60,7 +61,7 @@ public class MainActivity extends Activity {
 	}
 
 	private void setupBtnAddAddress() {
-		ImageView btnAddAddress = (ImageView) findViewById(R.id.btnAddAddress);
+		RelativeLayout btnAddAddress = (RelativeLayout) findViewById(R.id.btnAddAddress);
 		btnAddAddress.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {

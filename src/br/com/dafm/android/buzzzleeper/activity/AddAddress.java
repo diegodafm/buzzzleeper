@@ -6,9 +6,9 @@ import java.util.List;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.location.Address;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -18,8 +18,8 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
@@ -45,16 +45,16 @@ import com.google.android.gms.maps.model.MarkerOptions;
  * Created by Diego Alisson on 8/16/13.
  */
 public class AddAddress extends FragmentActivity {
+	
+	private Typeface signikaSemibold;
 
 	private GeocoderNetwork geocoderNetwork;
 	
-	ImageService imageService;
+	private ImageService imageService;
 
 	private LatLng latLng;
 
 	private GoogleMap googleMap;
-
-	private EditText searchAddress;
 
 	private SeekBar buffer;
 
@@ -69,9 +69,9 @@ public class AddAddress extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_address);
 
-		searchAddress = (EditText) this.findViewById(R.id.txtSearchAddress);
 
 		blrAddress = new BlrAddress();
+		setupFontFace();
 		setupBtnBackHome();
 		setupMap();
 		setupBtnSearchAddress();
@@ -81,6 +81,16 @@ public class AddAddress extends FragmentActivity {
 		setupBtnSave();
 		setupBtnCancel();
 
+	}
+	
+	@Override
+    public void onBackPressed() {
+        super.onBackPressed();         
+        this.finish();
+    }
+	
+	private void setupFontFace() {
+		signikaSemibold = Typeface.createFromAsset(getAssets(),"fonts/Signika-Semibold.ttf");
 	}
 
 	private void setupBtnSearchAddress() {
@@ -96,13 +106,11 @@ public class AddAddress extends FragmentActivity {
 	}
 
 	private void setupBtnBackHome() {
-		ImageView btnAddAddress = (ImageView) findViewById(R.id.btnArrowBack);
+		RelativeLayout btnAddAddress = (RelativeLayout) findViewById(R.id.btnArrowBack);
 		btnAddAddress.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				Intent k = new Intent(getApplicationContext(),
-						MainActivity.class);
-				startActivity(k);
+				onBackPressed();
 			}
 		});
 	}
@@ -135,6 +143,10 @@ public class AddAddress extends FragmentActivity {
 
 	private void findAddress() {
 
+		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		EditText searchAddress = (EditText) this.findViewById(R.id.txtSearchAddress);
+		imm.hideSoftInputFromWindow(searchAddress.getWindowToken(), 0);
+		
 		Address address = geocoderNetwork.findAddress(searchAddress.getText()
 				.toString(), 1, getApplicationContext());
 
@@ -183,21 +195,14 @@ public class AddAddress extends FragmentActivity {
 			googleMap.addCircle(circleOptions);
 			googleMap.addMarker(new MarkerOptions().position(point));
 
-			RelativeLayout rlInfoMap = (RelativeLayout) this
-					.findViewById(R.id.rlInfoMap);
+			RelativeLayout rlInfoMap = (RelativeLayout) this.findViewById(R.id.rlInfoMap);
 			rlInfoMap.setVisibility(0);
 
-			TextView coordinates = (TextView) this
-					.findViewById(R.id.txtCoordinates);
-			coordinates.setText("Latitude: "
-					+ String.format("%.7f", point.latitude) + ", Longitude: "
-					+ String.format("%.7f", point.longitude));
+			TextView coordinates = (TextView) this.findViewById(R.id.txtCoordinates);
+			coordinates.setText("Latitude: "+ String.format("%.7f", point.latitude) + ", Longitude: "+ String.format("%.7f", point.longitude));
 
-			searchAddress.setText(geocoderNetwork.getAddress(point.latitude,
-					point.longitude, 1, getApplicationContext()));
-			TextView addressLocation = (TextView) this
-					.findViewById(R.id.txtAddressLocation);
-			addressLocation.setText(searchAddress.getText());
+			TextView addressLocation = (TextView) this.findViewById(R.id.txtAddressLocation);
+			addressLocation.setText(geocoderNetwork.getAddress(point.latitude,point.longitude, 1, getApplicationContext()));
 
 			latLng = point;
 		}
@@ -302,9 +307,7 @@ public class AddAddress extends FragmentActivity {
 		btnCancel.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent k = new Intent(getApplicationContext(),
-						MainActivity.class);
-				startActivity(k);
+				onBackPressed();
 			}
 		});
 	}
@@ -341,8 +344,7 @@ public class AddAddress extends FragmentActivity {
 		EditText name = (EditText) this.findViewById(R.id.txtAddName);
 		blrAddress.setName(name.getText().toString());
 
-		TextView address = (TextView) this
-				.findViewById(R.id.txtAddressLocation);
+		TextView address = (TextView) this.findViewById(R.id.txtAddressLocation);
 		blrAddress.setAddress(address.getText().toString());
 
 		if (latLng != null) {
@@ -367,7 +369,7 @@ public class AddAddress extends FragmentActivity {
 			addressDAO = new AddressDAO(getApplicationContext());
 			final BlrAddress savedAddress = addressDAO.save(blrAddress);
 			if (savedAddress != null && savedAddress.getId() != null) {
-
+				
 				new Thread(new Runnable() {
 					public void run() {
 						imageService = new ImageService();
@@ -384,9 +386,7 @@ public class AddAddress extends FragmentActivity {
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,
 									int which) {
-								Intent k = new Intent(getApplicationContext(),
-										MainActivity.class);
-								startActivity(k);
+								onBackPressed();
 							}
 						});
 				alertDialog.setIcon(R.drawable.ic_launcher);
