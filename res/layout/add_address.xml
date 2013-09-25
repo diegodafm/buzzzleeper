@@ -21,18 +21,18 @@
 
         <ScrollView
             android:layout_below="@id/header"
+            android:fillViewport="true"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="fill_parent" >
 
             <RelativeLayout
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="fill_parent" >
 
                 <EditText
                     android:id="@+id/txtAddName"
                     style="@style/textEdit"
                     android:layout_width="fill_parent"
-                    android:layout_below="@id/header"
                     android:hint="@string/name" />
 
                 <RelativeLayout
@@ -190,6 +190,7 @@
                     android:id="@+id/btnControllers"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="bottom"
                     android:layout_below="@id/btnRingtone"
                     android:layout_margin="5dip"
                     android:baselineAligned="false"
@@ -203,7 +204,8 @@
 
                         <RelativeLayout
                             android:id="@+id/icBtnCancel"
-                            style="@style/btnBackgroundThemeErrorA" >
+                            style="@style/imgContainer"
+                            android:background="@color/backgroundThemeErrorA" >
 
                             <ImageView
                                 android:layout_width="wrap_content"
@@ -218,13 +220,10 @@
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
                             android:layout_weight="1"
-                            android:background="@color/backgroundThemeErrorB" >
+                            android:background="@drawable/btn_theme_error_inverse" >
 
                             <TextView
                                 style="@style/btnContentCancel"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:gravity="center"
                                 android:text="@string/cancel" />
                         </RelativeLayout>
                     </LinearLayout>
@@ -237,7 +236,8 @@
 
                         <RelativeLayout
                             android:id="@+id/icBtnConfirm"
-                            style="@style/btnBackgroundThemeA"
+                            style="@style/imgContainer"
+                            android:background="@color/backgroundThemeA"
                             android:layout_marginLeft="5dip" >
 
                             <ImageView
@@ -253,13 +253,11 @@
                             android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
                             android:layout_weight="1"
-                            android:background="@color/backgroundThemeB" >
+                            android:background="@drawable/btn_theme_default_inverse" >
 
                             <TextView
                                 style="@style/btnContentConfirm"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:gravity="center"
+                                
                                 android:text="@string/confirm" />
                         </RelativeLayout>
                     </LinearLayout>

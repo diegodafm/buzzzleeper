@@ -182,79 +182,84 @@ containing a value of this type.
         public static final int btn_radio_on_focused_holo_light=0x7f020008;
         public static final int btn_radio_on_holo_light=0x7f020009;
         public static final int btn_radio_on_pressed_holo_light=0x7f02000a;
-        public static final int bus_stop_item_border=0x7f02000b;
-        public static final int bus_stop_item_border_controller=0x7f02000c;
-        public static final int bus_stop_item_border_controllers=0x7f02000d;
-        public static final int common_signin_btn_icon_dark=0x7f02000e;
-        public static final int common_signin_btn_icon_disabled_dark=0x7f02000f;
-        public static final int common_signin_btn_icon_disabled_focus_dark=0x7f020010;
-        public static final int common_signin_btn_icon_disabled_focus_light=0x7f020011;
-        public static final int common_signin_btn_icon_disabled_light=0x7f020012;
-        public static final int common_signin_btn_icon_focus_dark=0x7f020013;
-        public static final int common_signin_btn_icon_focus_light=0x7f020014;
-        public static final int common_signin_btn_icon_light=0x7f020015;
-        public static final int common_signin_btn_icon_normal_dark=0x7f020016;
-        public static final int common_signin_btn_icon_normal_light=0x7f020017;
-        public static final int common_signin_btn_icon_pressed_dark=0x7f020018;
-        public static final int common_signin_btn_icon_pressed_light=0x7f020019;
-        public static final int common_signin_btn_text_dark=0x7f02001a;
-        public static final int common_signin_btn_text_disabled_dark=0x7f02001b;
-        public static final int common_signin_btn_text_disabled_focus_dark=0x7f02001c;
-        public static final int common_signin_btn_text_disabled_focus_light=0x7f02001d;
-        public static final int common_signin_btn_text_disabled_light=0x7f02001e;
-        public static final int common_signin_btn_text_focus_dark=0x7f02001f;
-        public static final int common_signin_btn_text_focus_light=0x7f020020;
-        public static final int common_signin_btn_text_light=0x7f020021;
-        public static final int common_signin_btn_text_normal_dark=0x7f020022;
-        public static final int common_signin_btn_text_normal_light=0x7f020023;
-        public static final int common_signin_btn_text_pressed_dark=0x7f020024;
-        public static final int common_signin_btn_text_pressed_light=0x7f020025;
-        public static final int container_dropshadow=0x7f020026;
-        public static final int front=0x7f020027;
-        public static final int ic_app=0x7f020028;
-        public static final int ic_arrow_back=0x7f020029;
-        public static final int ic_buffer=0x7f02002a;
-        public static final int ic_buffer_gray=0x7f02002b;
-        public static final int ic_cross_white=0x7f02002c;
-        public static final int ic_flag_gray=0x7f02002d;
-        public static final int ic_flag_white=0x7f02002e;
-        public static final int ic_gps_white=0x7f02002f;
-        public static final int ic_launcher=0x7f020030;
-        public static final int ic_magnifier_white=0x7f020031;
-        public static final int ic_pencil=0x7f020032;
-        public static final int ic_pin_map=0x7f020033;
-        public static final int ic_pin_map_tiny=0x7f020034;
-        public static final int ic_pin_map_tiny_gray=0x7f020035;
-        public static final int ic_pin_zzz=0x7f020036;
-        public static final int ic_play_silver=0x7f020037;
-        public static final int ic_plus=0x7f020038;
-        public static final int ic_ringtone=0x7f020039;
-        public static final int ic_ringtone_gray=0x7f02003a;
-        public static final int ic_send_white=0x7f02003b;
-        public static final int ic_tags_silver=0x7f02003c;
-        public static final int list_activated_holo=0x7f02003d;
-        public static final int list_focused_holo=0x7f02003e;
-        public static final int list_longpressed_holo=0x7f02003f;
-        public static final int list_pressed_holo_light=0x7f020040;
-        public static final int list_selector_background_transition_holo_light=0x7f020041;
-        public static final int list_selector_disabled_holo_light=0x7f020042;
-        public static final int list_selector_holo_light=0x7f020043;
-        public static final int progress=0x7f020044;
-        public static final int progress_thumb=0x7f020045;
-        public static final int scrubber_control=0x7f020046;
-        public static final int scrubber_control_disabled_holo=0x7f020047;
-        public static final int scrubber_control_focused_holo=0x7f020048;
-        public static final int scrubber_control_normal_holo=0x7f020049;
-        public static final int scrubber_control_pressed_holo=0x7f02004a;
-        public static final int scrubber_primary_holo=0x7f02004b;
-        public static final int scrubber_progress=0x7f02004c;
-        public static final int scrubber_secondary_holo=0x7f02004d;
-        public static final int scrubber_track_holo_light=0x7f02004e;
-        public static final int spinner_background_holo_light=0x7f02004f;
-        public static final int spinner_default_holo_light=0x7f020050;
-        public static final int spinner_disabled_holo_light=0x7f020051;
-        public static final int spinner_focused_holo_light=0x7f020052;
-        public static final int spinner_pressed_holo_light=0x7f020053;
+        public static final int btn_theme_default=0x7f02000b;
+        public static final int btn_theme_default_inverse=0x7f02000c;
+        public static final int btn_theme_edit=0x7f02000d;
+        public static final int btn_theme_error=0x7f02000e;
+        public static final int btn_theme_error_inverse=0x7f02000f;
+        public static final int bus_stop_item_border=0x7f020010;
+        public static final int bus_stop_item_border_controller=0x7f020011;
+        public static final int bus_stop_item_border_controllers=0x7f020012;
+        public static final int common_signin_btn_icon_dark=0x7f020013;
+        public static final int common_signin_btn_icon_disabled_dark=0x7f020014;
+        public static final int common_signin_btn_icon_disabled_focus_dark=0x7f020015;
+        public static final int common_signin_btn_icon_disabled_focus_light=0x7f020016;
+        public static final int common_signin_btn_icon_disabled_light=0x7f020017;
+        public static final int common_signin_btn_icon_focus_dark=0x7f020018;
+        public static final int common_signin_btn_icon_focus_light=0x7f020019;
+        public static final int common_signin_btn_icon_light=0x7f02001a;
+        public static final int common_signin_btn_icon_normal_dark=0x7f02001b;
+        public static final int common_signin_btn_icon_normal_light=0x7f02001c;
+        public static final int common_signin_btn_icon_pressed_dark=0x7f02001d;
+        public static final int common_signin_btn_icon_pressed_light=0x7f02001e;
+        public static final int common_signin_btn_text_dark=0x7f02001f;
+        public static final int common_signin_btn_text_disabled_dark=0x7f020020;
+        public static final int common_signin_btn_text_disabled_focus_dark=0x7f020021;
+        public static final int common_signin_btn_text_disabled_focus_light=0x7f020022;
+        public static final int common_signin_btn_text_disabled_light=0x7f020023;
+        public static final int common_signin_btn_text_focus_dark=0x7f020024;
+        public static final int common_signin_btn_text_focus_light=0x7f020025;
+        public static final int common_signin_btn_text_light=0x7f020026;
+        public static final int common_signin_btn_text_normal_dark=0x7f020027;
+        public static final int common_signin_btn_text_normal_light=0x7f020028;
+        public static final int common_signin_btn_text_pressed_dark=0x7f020029;
+        public static final int common_signin_btn_text_pressed_light=0x7f02002a;
+        public static final int container_dropshadow=0x7f02002b;
+        public static final int front=0x7f02002c;
+        public static final int ic_app=0x7f02002d;
+        public static final int ic_arrow_back=0x7f02002e;
+        public static final int ic_buffer=0x7f02002f;
+        public static final int ic_buffer_gray=0x7f020030;
+        public static final int ic_cross_white=0x7f020031;
+        public static final int ic_flag_gray=0x7f020032;
+        public static final int ic_flag_white=0x7f020033;
+        public static final int ic_gps_white=0x7f020034;
+        public static final int ic_launcher=0x7f020035;
+        public static final int ic_magnifier_white=0x7f020036;
+        public static final int ic_pencil=0x7f020037;
+        public static final int ic_pin_map=0x7f020038;
+        public static final int ic_pin_map_tiny=0x7f020039;
+        public static final int ic_pin_map_tiny_gray=0x7f02003a;
+        public static final int ic_pin_zzz=0x7f02003b;
+        public static final int ic_play_silver=0x7f02003c;
+        public static final int ic_plus=0x7f02003d;
+        public static final int ic_ringtone=0x7f02003e;
+        public static final int ic_ringtone_gray=0x7f02003f;
+        public static final int ic_send_white=0x7f020040;
+        public static final int ic_tags_silver=0x7f020041;
+        public static final int list_activated_holo=0x7f020042;
+        public static final int list_focused_holo=0x7f020043;
+        public static final int list_longpressed_holo=0x7f020044;
+        public static final int list_pressed_holo_light=0x7f020045;
+        public static final int list_selector_background_transition_holo_light=0x7f020046;
+        public static final int list_selector_disabled_holo_light=0x7f020047;
+        public static final int list_selector_holo_light=0x7f020048;
+        public static final int progress=0x7f020049;
+        public static final int progress_thumb=0x7f02004a;
+        public static final int scrubber_control=0x7f02004b;
+        public static final int scrubber_control_disabled_holo=0x7f02004c;
+        public static final int scrubber_control_focused_holo=0x7f02004d;
+        public static final int scrubber_control_normal_holo=0x7f02004e;
+        public static final int scrubber_control_pressed_holo=0x7f02004f;
+        public static final int scrubber_primary_holo=0x7f020050;
+        public static final int scrubber_progress=0x7f020051;
+        public static final int scrubber_secondary_holo=0x7f020052;
+        public static final int scrubber_track_holo_light=0x7f020053;
+        public static final int spinner_background_holo_light=0x7f020054;
+        public static final int spinner_default_holo_light=0x7f020055;
+        public static final int spinner_disabled_holo_light=0x7f020056;
+        public static final int spinner_focused_holo_light=0x7f020057;
+        public static final int spinner_pressed_holo_light=0x7f020058;
     }
     public static final class id {
         public static final int addAddressScrollView=0x7f050005;
@@ -293,7 +298,6 @@ containing a value of this type.
         public static final int menuItemAddressRemove=0x7f05003e;
         public static final int menuRemoveBusStop=0x7f05003b;
         public static final int menu_settings=0x7f05003a;
-        public static final int name=0x7f050026;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
         public static final int rlAddAddress=0x7f050008;
@@ -320,6 +324,7 @@ containing a value of this type.
         public static final int txtRingtone=0x7f050016;
         public static final int txtSearchAddress=0x7f050009;
         public static final int txtTitle=0x7f050030;
+        public static final int txtTitleMain=0x7f050026;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -342,9 +347,10 @@ containing a value of this type.
         /**  ADD ADDRESS
          */
         public static final int add=0x7f060018;
-        public static final int address=0x7f06001a;
-        public static final int addressCannotBeIsEmpty=0x7f060027;
-        public static final int alarm=0x7f06001b;
+        public static final int addNewLocation=0x7f060019;
+        public static final int address=0x7f06001b;
+        public static final int addressCannotBeIsEmpty=0x7f060028;
+        public static final int alarm=0x7f06001c;
         public static final int app_name=0x7f060015;
         /**   Title for notification shown when GooglePlayServices needs to be
         enabled for a application to work. [CHAR LIMIT=70] 
@@ -369,11 +375,11 @@ containing a value of this type.
         [CHAR LIMIT=70] 
          */
         public static final int auth_client_using_bad_version_title=0x7f06000f;
-        public static final int buffer=0x7f06001e;
-        public static final int bufferCannotBeIsEmpty=0x7f060029;
-        public static final int bufferDistance=0x7f060024;
-        public static final int busStopAdded=0x7f06002d;
-        public static final int cancel=0x7f06001d;
+        public static final int buffer=0x7f06001f;
+        public static final int bufferCannotBeIsEmpty=0x7f06002a;
+        public static final int bufferDistance=0x7f060025;
+        public static final int busStopAdded=0x7f06002e;
+        public static final int cancel=0x7f06001e;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -429,70 +435,44 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f06000e;
-        public static final int confirm=0x7f060020;
-        public static final int coordinate=0x7f06001f;
-        public static final int edit=0x7f060030;
+        public static final int confirm=0x7f060021;
+        public static final int coordinate=0x7f060020;
+        public static final int edit=0x7f060031;
         /**  CONTEXT MENU ADDRESS 
          */
-        public static final int editBusStop=0x7f06002e;
+        public static final int editBusStop=0x7f06002f;
         public static final int hello_world=0x7f060017;
-        public static final int latitude=0x7f060021;
-        public static final int longitude=0x7f060022;
+        public static final int latitude=0x7f060022;
+        public static final int longitude=0x7f060023;
         /**  CONTEXT MAIN MENU  
          */
-        public static final int menu_settings=0x7f060032;
-        public static final int meters=0x7f060023;
-        public static final int name=0x7f060019;
+        public static final int menu_settings=0x7f060033;
+        public static final int meters=0x7f060024;
+        public static final int name=0x7f06001a;
         /**  ADD ADDRESS MGS ERROS
          */
-        public static final int nameCannotBeIsEmpty=0x7f060026;
-        public static final int pleaseFixItFirst=0x7f06002b;
-        public static final int positionCannotBeIsEmpty=0x7f060028;
-        public static final int remove=0x7f060031;
-        public static final int removeBusStop=0x7f06002f;
-        public static final int ringtoneCannotBeIsEmpty=0x7f06002a;
-        public static final int save=0x7f06001c;
-        public static final int setRingtone=0x7f060025;
+        public static final int nameCannotBeIsEmpty=0x7f060027;
+        public static final int pleaseFixItFirst=0x7f06002c;
+        public static final int positionCannotBeIsEmpty=0x7f060029;
+        public static final int remove=0x7f060032;
+        public static final int removeBusStop=0x7f060030;
+        public static final int ringtoneCannotBeIsEmpty=0x7f06002b;
+        public static final int save=0x7f06001d;
+        public static final int setRingtone=0x7f060026;
         /**  ADD ADDRESS MGS SUCCESS
          */
-        public static final int success=0x7f06002c;
+        public static final int success=0x7f06002d;
     }
     public static final class style {
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     
 
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         
          */

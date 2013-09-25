@@ -2,29 +2,28 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/header" >
 
-    <ImageView
+    <RelativeLayout
         android:id="@+id/btnArrowBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dip"
+        android:layout_height="fill_parent"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="5dip"
-        android:src="@drawable/ic_arrow_back" />
+        android:background="@drawable/btn_theme_default" >
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="5dip"
-        android:layout_toRightOf="@id/btnArrowBack"
-        android:src="@drawable/ic_launcher" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_arrow_back" />
+    </RelativeLayout>
 
     <TextView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/txtTitle"
         style="@style/textHeader"
-        android:layout_toRightOf="@id/logo"
-        android:text="@string/add" />
+        android:layout_marginLeft="5dip"
+        android:layout_toRightOf="@id/btnArrowBack"
+        android:text="@string/addNewLocation" />
 
 </RelativeLayout>

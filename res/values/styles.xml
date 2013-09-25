@@ -2,13 +2,13 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
     </style>
 
@@ -117,15 +117,15 @@
     </style>
 
     <style name="btnBackgroundThemeA" parent="@style/imgContainer">
-        <item name="android:background">@color/backgroundThemeA</item>
+        <item name="android:background">@drawable/btn_theme_default</item>
     </style>
 
     <style name="btnBackgroundThemeErrorA" parent="@style/imgContainer">
-        <item name="android:background">@color/backgroundThemeErrorA</item>
+        <item name="android:background">@drawable/btn_theme_error</item>
     </style>
 
     <style name="btnBackgroundThemeEditA" parent="@style/imgContainer">
-        <item name="android:background">@color/backgroundThemeEditA</item>
+        <item name="android:background">@drawable/btn_theme_edit</item>
     </style>
 
     <style name="btnContent">
@@ -137,11 +137,15 @@
     </style>
 
     <style name="btnContentConfirm" parent="@style/btnContent">
-        <item name="android:background">@color/backgroundThemeB</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="btnContentCancel" parent="@style/btnContent">
-        <item name="android:background">@color/backgroundThemeErrorB</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="btnSpinner">
