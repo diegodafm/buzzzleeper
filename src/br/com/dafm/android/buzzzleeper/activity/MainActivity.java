@@ -59,6 +59,16 @@ public class MainActivity extends Activity {
 		}
 		return ret;
 	}
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		
+		LinearLayout list = (LinearLayout) findViewById(R.id.list);
+		list.removeAllViews();
+		getBusStopList();
+		
+	}
 
 	private void setupBtnAddAddress() {
 		RelativeLayout btnAddAddress = (RelativeLayout) findViewById(R.id.btnAddAddress);

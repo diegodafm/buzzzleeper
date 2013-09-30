@@ -28,7 +28,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import br.com.dafm.android.buzzzleeper.R;
 import br.com.dafm.android.buzzzleeper.entity.BlrAddress;
-import br.com.dafm.android.buzzzleeper.views.DrawView;
+import br.com.dafm.android.buzzzleeper.views.PctgDistanceView;
 
 public class TrackerService extends Service {
 
@@ -211,7 +211,7 @@ public class TrackerService extends Service {
 	private void setupCirclePctg(Float percent) {
 		LinearLayout circle = (LinearLayout) view.findViewById(R.id.canvasPctgDistance);
 		circle.removeAllViews();
-		pctgView = new DrawView(context, percent);
+		pctgView = new PctgDistanceView(context, percent);
 		circle.addView(pctgView);
 	}
 

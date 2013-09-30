@@ -46,8 +46,7 @@ public class AddressDAO {
 		try {
 			this.open();
 			long insertId = database.insert("address", null, values);
-			Cursor cursor = database.query("address", allColumns, "id = "
-					+ insertId, null, null, null, null);
+			Cursor cursor = database.query("address", allColumns, "id = " + insertId, null, null, null, null);
 			cursor.moveToFirst();
 			newAddress = cursorToAddress(cursor);
 			cursor.close();
@@ -59,11 +58,39 @@ public class AddressDAO {
 		}
 		return newAddress;
 	}
+	
+	public BlrAddress update(BlrAddress address){
+		String strFilter = "id=" + address.getId();
+		ContentValues args = new ContentValues();
+		args.put("name", address.getName());
+		args.put("address", address.getAddress());
+		args.put("lat", address.getLat());
+		args.put("lng", address.getLng());
+		args.put("buffer", address.getBuffer());
+		args.put("ringtone", address.getRingtone());
+		args.put("status", address.getStatus());
+		
+		BlrAddress newAddress = null;
+		try {
+			this.open();
+			database.update("address", args, strFilter, null);
+			Cursor cursor = database.query("address", allColumns, strFilter , null, null, null, null);
+			cursor.moveToFirst();
+			newAddress = cursorToAddress(cursor);
+			this.clone();
+		} catch (Exception e) {
+			new RuntimeException();
+			e.getMessage();
+		}
+		return newAddress;
+	}
 
 	public void delete(BlrAddress address) {
 		long id = address.getId();
 		System.out.println("Comment deleted with id: " + id);
+		this.open();
 		database.delete("address", "id  = " + id, null);
+		this.close();
 	}
 
 	public List<BlrAddress> getAllAddress() {

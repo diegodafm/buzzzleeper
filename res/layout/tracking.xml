@@ -6,157 +6,157 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        style="@style/header"
-        android:orientation="horizontal" >
+    <include layout="@layout/title" />
 
-        <ImageView
-            android:id="@+id/btnArrowBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="5dip"
-            android:src="@drawable/ic_arrow_back" />
-
-        <TextView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/trackingTxtName"
-            android:layout_marginLeft="10dip"
-            android:layout_gravity="center_vertical"
-            style="@style/textHeader"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/canvasPctgDistance"
-        android:layout_width="150dip"
-        android:layout_height="150dip"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dip"
-        android:gravity="center"
-        android:orientation="vertical" />
-
-    <TextView
-        android:id="@+id/trackingTxtDistance"
+    <ScrollView
+        android:id="@+id/svTrackingInfo"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="30sp" />
+        android:layout_height="fill_parent" >
 
-    <LinearLayout
-        style="@style/btnShowProperties"
-        android:baselineAligned="false" >
-
-        <RelativeLayout style="@style/imgContainer" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_flag_gray"
-                tools:ignore="ContentDescription" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="1" >
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/canvasPctgDistance"
+                android:layout_width="150dip"
+                android:layout_height="150dip"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dip"
+                android:gravity="center"
+                android:orientation="vertical" />
 
             <TextView
-                android:id="@+id/trackingTxtAddress"
-                style="@style/contentBtnShowProperties" />
-        </RelativeLayout>
-    </LinearLayout>
+                android:id="@+id/trackingTxtDistance"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="30sp" />
 
-    <LinearLayout style="@style/borderInfo" />
+            <LinearLayout
+                style="@style/btnShowProperties"
+                android:baselineAligned="false" >
+
+                <RelativeLayout style="@style/imgContainer" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_flag_gray"
+                        tools:ignore="ContentDescription" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1" >
+
+                    <TextView
+                        android:id="@+id/trackingTxtAddress"
+                        style="@style/contentBtnShowProperties" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout style="@style/borderInfo" />
+
+            <LinearLayout
+                style="@style/btnShowProperties"
+                android:baselineAligned="false" >
+
+                <RelativeLayout style="@style/imgContainer" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_pin_map_tiny_gray"
+                        tools:ignore="ContentDescription" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1" >
+
+                    <TextView
+                        android:id="@+id/trackingTxtCoordinates"
+                        style="@style/contentBtnShowProperties" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout style="@style/borderInfo" />
+
+            <LinearLayout
+                style="@style/btnShowProperties"
+                android:baselineAligned="false" >
+
+                <RelativeLayout style="@style/imgContainer" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_buffer_gray"
+                        tools:ignore="ContentDescription" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1" >
+
+                    <TextView
+                        android:id="@+id/trackingTxtBuffer"
+                        style="@style/contentBtnShowProperties" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout style="@style/borderInfo" />
+
+            <LinearLayout
+                style="@style/btnShowProperties"
+                android:baselineAligned="false" >
+
+                <RelativeLayout style="@style/imgContainer" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_ringtone_gray"
+                        tools:ignore="ContentDescription" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1" >
+
+                    <TextView
+                        android:id="@+id/trackingTxtRingtone"
+                        style="@style/contentBtnShowProperties" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnStopAlarm"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel" />
+        </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
-        style="@style/btnShowProperties"
-        android:baselineAligned="false" >
-
-        <RelativeLayout style="@style/imgContainer" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_pin_map_tiny_gray"
-                tools:ignore="ContentDescription" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1" >
-
-            <TextView
-                android:id="@+id/trackingTxtCoordinates"
-                style="@style/contentBtnShowProperties" />
-        </RelativeLayout>
-    </LinearLayout>
-
-    <LinearLayout style="@style/borderInfo" />
-
-    <LinearLayout
-        style="@style/btnShowProperties"
-        android:baselineAligned="false" >
-
-        <RelativeLayout style="@style/imgContainer" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_buffer_gray"
-                tools:ignore="ContentDescription" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1" >
-
-            <TextView
-                android:id="@+id/trackingTxtBuffer"
-                style="@style/contentBtnShowProperties" />
-        </RelativeLayout>
-    </LinearLayout>
-
-    <LinearLayout style="@style/borderInfo" />
-
-    <LinearLayout
-        style="@style/btnShowProperties"
-        android:baselineAligned="false" >
-
-        <RelativeLayout style="@style/imgContainer" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_ringtone_gray"
-                tools:ignore="ContentDescription" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1" >
-
-            <TextView
-                android:id="@+id/trackingTxtRingtone"
-                style="@style/contentBtnShowProperties" />
-        </RelativeLayout>
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btnStopAlarm"
+        android:id="@+id/llTrackingMapView"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cancel" />
+        android:layout_height="fill_parent"
+        android:visibility="gone" >
+    </LinearLayout>
 
 </LinearLayout>

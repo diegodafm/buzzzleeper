@@ -33,6 +33,8 @@
     <!-- ADD ADDRESS MGS SUCCESS-->
     <string name="success">Success</string>
     <string name="busStopAdded">Bus Stop Added</string>
+    <string name="busStopUpdated">Bus Stop Updated</string>
+    <string name="ok">OK</string>
     
     <!-- CONTEXT MENU ADDRESS -->
     <string name="editBusStop">Edit Bus Stop</string>
@@ -40,6 +42,8 @@
     
     <string name="edit">Edit</string>
     <string name="remove">Remove</string>
+    <string name="removeLocation">Remove Location</string>
+    <string name="msgRemoveBusStop">Are you sure you want to remove this Bus Stop?</string>
     
     
     <!-- CONTEXT MAIN MENU  -->

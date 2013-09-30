@@ -45,11 +45,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
  * Created by Diego Alisson on 8/16/13.
  */
 public class AddAddress extends FragmentActivity {
-	
+
 	private Typeface signikaSemibold;
 
 	private GeocoderNetwork geocoderNetwork;
-	
+
 	private ImageService imageService;
 
 	private LatLng latLng;
@@ -69,8 +69,6 @@ public class AddAddress extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_address);
 
-
-		blrAddress = new BlrAddress();
 		setupFontFace();
 		setupBtnBackHome();
 		setupMap();
@@ -80,17 +78,28 @@ public class AddAddress extends FragmentActivity {
 		setupSeekBarBuffer();
 		setupBtnSave();
 		setupBtnCancel();
+		
+		Bundle extras = getIntent().getExtras();
+		if (extras != null) {
+			addressDAO = new AddressDAO(getApplicationContext());
+			String value = extras.get("BLR_ADDRESS_ID").toString();
+			blrAddress = addressDAO.findById(Integer.parseInt(value));
+			loadData();
+		}else{
+			blrAddress = new BlrAddress();			
+		}
 
 	}
-	
+
 	@Override
-    public void onBackPressed() {
-        super.onBackPressed();         
-        this.finish();
-    }
-	
+	public void onBackPressed() {
+		super.onBackPressed();
+		this.finish();
+	}
+
 	private void setupFontFace() {
-		signikaSemibold = Typeface.createFromAsset(getAssets(),"fonts/Signika-Semibold.ttf");
+		signikaSemibold = Typeface.createFromAsset(getAssets(),
+				"fonts/Signika-Semibold.ttf");
 	}
 
 	private void setupBtnSearchAddress() {
@@ -144,9 +153,10 @@ public class AddAddress extends FragmentActivity {
 	private void findAddress() {
 
 		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-		EditText searchAddress = (EditText) this.findViewById(R.id.txtSearchAddress);
+		EditText searchAddress = (EditText) this
+				.findViewById(R.id.txtSearchAddress);
 		imm.hideSoftInputFromWindow(searchAddress.getWindowToken(), 0);
-		
+
 		Address address = geocoderNetwork.findAddress(searchAddress.getText()
 				.toString(), 1, getApplicationContext());
 
@@ -169,19 +179,25 @@ public class AddAddress extends FragmentActivity {
 	}
 
 	private void setupMap() {
-		googleMap = ((SupportMapFragment) getSupportFragmentManager()
-				.findFragmentById(R.id.googleMap)).getMap();
 
-		googleMap
-				.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
-					@Override
-					public void onMapLongClick(LatLng point) {
-						addMarker(point);
-						CameraUpdate center = CameraUpdateFactory
-								.newLatLng(point);
-						googleMap.moveCamera(center);
-					}
-				});
+		SupportMapFragment mapFragment = ((SupportMapFragment) getSupportFragmentManager()
+				.findFragmentById(R.id.googleMap));
+		googleMap = mapFragment.getMap();
+
+		if (googleMap != null) {
+
+			googleMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+				@Override
+				public void onMapLongClick(LatLng point) {
+					addMarker(point);
+					CameraUpdate center = CameraUpdateFactory
+							.newLatLng(point);
+					googleMap.moveCamera(center);
+				}
+			});
+			
+			
+		}
 	}
 
 	private void addMarker(LatLng point) {
@@ -195,14 +211,20 @@ public class AddAddress extends FragmentActivity {
 			googleMap.addCircle(circleOptions);
 			googleMap.addMarker(new MarkerOptions().position(point));
 
-			RelativeLayout rlInfoMap = (RelativeLayout) this.findViewById(R.id.rlInfoMap);
+			RelativeLayout rlInfoMap = (RelativeLayout) this
+					.findViewById(R.id.rlInfoMap);
 			rlInfoMap.setVisibility(0);
 
-			TextView coordinates = (TextView) this.findViewById(R.id.txtCoordinates);
-			coordinates.setText("Latitude: "+ String.format("%.7f", point.latitude) + ", Longitude: "+ String.format("%.7f", point.longitude));
+			TextView coordinates = (TextView) this
+					.findViewById(R.id.txtCoordinates);
+			coordinates.setText("Latitude: "
+					+ String.format("%.7f", point.latitude) + ", Longitude: "
+					+ String.format("%.7f", point.longitude));
 
-			TextView addressLocation = (TextView) this.findViewById(R.id.txtAddressLocation);
-			addressLocation.setText(geocoderNetwork.getAddress(point.latitude,point.longitude, 1, getApplicationContext()));
+			TextView addressLocation = (TextView) this
+					.findViewById(R.id.txtAddressLocation);
+			addressLocation.setText(geocoderNetwork.getAddress(point.latitude,
+					point.longitude, 1, getApplicationContext()));
 
 			latLng = point;
 		}
@@ -210,8 +232,7 @@ public class AddAddress extends FragmentActivity {
 
 	private void setupSpinnerRingtones() {
 		final List<String> ringtones = this.getListRingtones(this);
-		RelativeLayout icBtnRingtone = (RelativeLayout) this
-				.findViewById(R.id.icBtnRingtone);
+		RelativeLayout icBtnRingtone = (RelativeLayout) this.findViewById(R.id.icBtnRingtone);
 		icBtnRingtone.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -229,14 +250,12 @@ public class AddAddress extends FragmentActivity {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		final TextView txtRingtone = (TextView) this
 				.findViewById(R.id.txtRingtone);
-		builder.setTitle(R.string.setRingtone).setItems(
-				ringtones.toArray(new CharSequence[ringtones.size()]),
-				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-						blrAddress.setRingtone(ringtones.get(which));
-						txtRingtone.setText(blrAddress.getRingtone());
-					}
-				});
+		builder.setTitle(R.string.setRingtone).setItems(ringtones.toArray(new CharSequence[ringtones.size()]),new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				blrAddress.setRingtone(ringtones.get(which));
+				txtRingtone.setText(blrAddress.getRingtone());
+			}
+		});
 		builder.create();
 		builder.show();
 	}
@@ -297,7 +316,12 @@ public class AddAddress extends FragmentActivity {
 		btnConfirm.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				save();
+				
+				if(blrAddress.getId() == null){
+					save();
+				}else{
+					update();
+				}
 			}
 		});
 	}
@@ -344,7 +368,8 @@ public class AddAddress extends FragmentActivity {
 		EditText name = (EditText) this.findViewById(R.id.txtAddName);
 		blrAddress.setName(name.getText().toString());
 
-		TextView address = (TextView) this.findViewById(R.id.txtAddressLocation);
+		TextView address = (TextView) this
+				.findViewById(R.id.txtAddressLocation);
 		blrAddress.setAddress(address.getText().toString());
 
 		if (latLng != null) {
@@ -369,11 +394,12 @@ public class AddAddress extends FragmentActivity {
 			addressDAO = new AddressDAO(getApplicationContext());
 			final BlrAddress savedAddress = addressDAO.save(blrAddress);
 			if (savedAddress != null && savedAddress.getId() != null) {
-				
+
 				new Thread(new Runnable() {
 					public void run() {
 						imageService = new ImageService();
-						imageService.createImageMap(blrAddress, getApplicationContext());
+						imageService.createImageMap(blrAddress,
+								getApplicationContext());
 					}
 				}).start();
 
@@ -382,13 +408,12 @@ public class AddAddress extends FragmentActivity {
 				alertDialog.setTitle(getString(R.string.success));
 
 				alertDialog.setMessage(getString(R.string.busStopAdded));
-				alertDialog.setButton("OK",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int which) {
-								onBackPressed();
-							}
-						});
+				alertDialog.setButton(getString(R.string.ok),new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,
+							int which) {
+						onBackPressed();
+					}
+				});
 				alertDialog.setIcon(R.drawable.ic_launcher);
 				alertDialog.show();
 			}
@@ -410,6 +435,70 @@ public class AddAddress extends FragmentActivity {
 			// Set the Icon for the Dialog
 			alertDialog.setIcon(R.drawable.ic_launcher);
 			alertDialog.show();
+		}
+	}
+	
+
+
+	private void update() {
+		updateValues();
+
+		if (validate()) {
+			addressDAO = new AddressDAO(getApplicationContext());
+			addressDAO.update(blrAddress);
+			
+			new Thread(new Runnable() {
+				public void run() {
+					imageService = new ImageService();
+					imageService.createImageMap(blrAddress,
+							getApplicationContext());
+				}
+			}).start();
+
+			AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+			alertDialog.setTitle(getString(R.string.success));
+
+			alertDialog.setMessage(getString(R.string.busStopUpdated));
+			alertDialog.setButton(getString(R.string.ok),new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog,
+						int which) {
+					onBackPressed();
+				}
+			});
+			alertDialog.setIcon(R.drawable.ic_launcher);
+			alertDialog.show();
+		}
+		
+	}
+	
+	private void loadData(){
+		
+		if(blrAddress.getName() != null){
+			EditText name = (EditText) this.findViewById(R.id.txtAddName);
+			name.setText(blrAddress.getName());
+		}
+		
+		if(blrAddress.getBuffer() != null){
+			buffer.setProgress(blrAddress.getBuffer());
+		}
+		if(blrAddress.getBuffer() != null){
+			buffer.setProgress(blrAddress.getBuffer());
+		}
+		
+		if(blrAddress.getLat() != null && blrAddress.getLng() != null){
+			LatLng point = new LatLng(blrAddress.getLat(), blrAddress.getLng());
+			addMarker(point);
+			
+			CameraUpdate center = CameraUpdateFactory.newLatLng(point);
+			googleMap.moveCamera(center);
+
+			CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
+			googleMap.animateCamera(zoom);
+		}
+		
+		if(blrAddress.getRingtone() != null){
+			TextView ringtone = (TextView) this.findViewById(R.id.txtRingtone);
+			ringtone.setText(blrAddress.getRingtone());
 		}
 	}
 

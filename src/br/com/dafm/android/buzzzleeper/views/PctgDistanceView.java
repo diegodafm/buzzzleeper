@@ -13,7 +13,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 
 @SuppressLint({ "DrawAllocation", "ViewConstructor" })
-public class DrawView extends View {
+public class PctgDistanceView extends View {
 
     Paint mPaint = new Paint();
     
@@ -21,7 +21,7 @@ public class DrawView extends View {
     
     private Context context;
 
-    public DrawView(Context context,Float percent) {
+    public PctgDistanceView(Context context,Float percent) {
         super(context);            
         this.context = context;
         this.percent = percent;

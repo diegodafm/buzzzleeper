@@ -60,7 +60,7 @@ public class TrackingActivity extends Activity {
 		signikaSemibold = Typeface.createFromAsset(getAssets(),
 				"fonts/Signika-Semibold.ttf");
 
-		TextView name = (TextView) findViewById(R.id.trackingTxtName);
+		TextView name = (TextView) findViewById(R.id.txtTitle);
 		name.setText(blrAddress.getName());
 		name.setTypeface(signikaSemibold);
 
