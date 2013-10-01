@@ -6,7 +6,7 @@
             <solid android:color="@color/grayBorder" />
         </shape>
     </item>
-    <item android:top="2dp">
+    <item android:top="1dp">
         <shape>
             <solid android:color="@color/grayControllers" />
         </shape>

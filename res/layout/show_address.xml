@@ -191,11 +191,12 @@
 
                     <LinearLayout
                         android:id="@+id/btnRemoveBlrAddress"
-                        style="@style/btnRemove"
+                        style="@style/btn"
                         android:layout_weight="1"
                         android:baselineAligned="false" >
 
-                        <RelativeLayout style="@style/btnBackgroundThemeErrorA" >
+                        <RelativeLayout style="@style/imgContainer"
+                            android:background="@color/backgroundThemeErrorA" >
 
                             <ImageView
                                 android:layout_width="wrap_content"
@@ -206,18 +207,18 @@
                                 tools:ignore="ContentDescription" />
                         </RelativeLayout>
 
+                
+                        
                         <RelativeLayout
-                            android:layout_width="0dp"
+                            android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
-                            android:layout_weight="1" >
+                            android:layout_weight="1"
+                            android:background="@drawable/btn_theme_error_inverse" >
 
                             <TextView
                                 android:id="@+id/txtRemove"
-                                style="@style/contentBtnShowProperties"
-                                android:text="@string/remove"
-                                android:textColor="@color/white"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
+                                style="@style/btnContentCancel"
+                                android:text="@string/remove" />
                         </RelativeLayout>
                     </LinearLayout>
 
@@ -227,7 +228,8 @@
                         android:layout_weight="1"
                         android:baselineAligned="false" >
 
-                        <RelativeLayout style="@style/btnBackgroundThemeEditA" >
+                        <RelativeLayout style="@style/imgContainer"
+                            android:background="@color/backgroundThemeEditA" >
 
                             <ImageView
                                 android:layout_width="wrap_content"
@@ -239,17 +241,15 @@
                         </RelativeLayout>
 
                         <RelativeLayout
-                            android:layout_width="0dp"
+                            android:layout_width="fill_parent"
                             android:layout_height="fill_parent"
-                            android:layout_weight="1" >
+                            android:layout_weight="1"
+                            android:background="@drawable/btn_theme_edit_inverse" >
 
                             <TextView
                                 android:id="@+id/txtEdit"
-                                style="@style/contentBtnShowProperties"
-                                android:text="@string/edit"
-                                android:textColor="@color/white"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
+                                style="@style/btnContentCancel"
+                                android:text="@string/edit" />
                         </RelativeLayout>
                     </LinearLayout>
                 </LinearLayout>

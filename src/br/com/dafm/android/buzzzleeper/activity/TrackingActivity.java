@@ -85,8 +85,7 @@ public class TrackingActivity extends Activity {
 	}
 
 	private void startTracking() {
-		trackerService = new TrackerService(getApplicationContext(),
-				blrAddress, (View) findViewById(R.id.llTracking));
+		trackerService = new TrackerService(getApplicationContext(),blrAddress, (View) findViewById(R.id.llTracking));
 		trackerService.startTracking();
 	}
 

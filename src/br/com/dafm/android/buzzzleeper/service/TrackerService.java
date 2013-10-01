@@ -60,16 +60,10 @@ public class TrackerService extends Service {
 	}
 
 	public void startTracking() {
-
 		setupCirclePctg(0f);
-		
-		locationManager = (LocationManager) context
-				.getSystemService(Context.LOCATION_SERVICE);
+		locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 
 		locationListener = new LocationListener() {
-
-			
-
 			@Override
 			public void onProviderEnabled(String provider) {
 				// TODO [diego] informar que o GPS foi ativado
@@ -88,24 +82,22 @@ public class TrackerService extends Service {
 						.setMessage("GPS is not enabled. Do you want to go to settings menu?");
 
 				// On pressing Settings button
-				alertDialog.setPositiveButton("Settings",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int which) {
-								Intent intent = new Intent(
-										Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-								context.startActivity(intent);
-							}
-						});
+				alertDialog.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,
+							int which) {
+						Intent intent = new Intent(
+								Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+						context.startActivity(intent);
+					}
+				});
 
 				// on pressing cancel button
-				alertDialog.setNegativeButton("Cancel",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int which) {
-								dialog.cancel();
-							}
-						});
+				alertDialog.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,
+							int which) {
+						dialog.cancel();
+					}
+				});
 
 				// Showing Alert Message
 				alertDialog.show();
@@ -125,7 +117,6 @@ public class TrackerService extends Service {
 					Bundle extras) {
 				// TODO [diego] metodo chamado a cada 1000mts
 			}
-
 		};
 
 		Criteria criteria = new Criteria();
@@ -218,8 +209,7 @@ public class TrackerService extends Service {
 	private void playSound(Uri alert) {
 		try {
 			mediaPlayer.setDataSource(context, alert);
-			final AudioManager audioManager = (AudioManager) context
-					.getSystemService(Context.AUDIO_SERVICE);
+			final AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 			if (audioManager.getStreamVolume(AudioManager.STREAM_ALARM) != 0) {
 				mediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
 				mediaPlayer.prepare();

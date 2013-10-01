@@ -2,14 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/addAddressScrollView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:layout_marginBottom="5dip"
     tools:context=".AddAddress" >
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:orientation="vertical" >
 
         <include layout="@layout/title" />
@@ -17,8 +17,7 @@
         <ScrollView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:fillViewport="true"
-            tools:ignore="NestedScrolling" >
+            android:fillViewport="true" >
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -31,26 +30,23 @@
                     android:layout_width="fill_parent"
                     android:hint="@string/name" />
 
-                <RelativeLayout
+                <LinearLayout
                     android:id="@+id/rlAddAddress"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/txtAddName"
+                    android:layout_height="53dp"
                     android:orientation="horizontal" >
 
                     <EditText
                         android:id="@+id/txtSearchAddress"
                         style="@style/textEdit"
-                        android:layout_width="wrap_content"
-                        android:layout_alignParentLeft="true"
+                        android:layout_width="fill_parent"
+                        android:layout_weight="1"
                         android:layout_marginRight="0dip"
-                        android:layout_toLeftOf="@+id/btnSearchAddress"
                         android:hint="@string/address" />
 
                     <RelativeLayout
                         android:id="@+id/btnSearchGPS"
                         style="@style/btnBackgroundThemeA"
-                        android:layout_alignParentRight="true"
                         android:layout_marginRight="5dip"
                         android:layout_marginTop="5dip" >
 
@@ -66,9 +62,8 @@
                     <RelativeLayout
                         android:id="@+id/btnSearchAddress"
                         style="@style/btnBackgroundThemeA"
-                        android:layout_alignParentBottom="true"
                         android:layout_marginRight="5dip"
-                        android:layout_toLeftOf="@+id/btnSearchGPS" >
+                        android:layout_marginTop="5dip">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -78,12 +73,11 @@
                             android:src="@drawable/ic_magnifier_white"
                             tools:ignore="ContentDescription" />
                     </RelativeLayout>
-                </RelativeLayout>
+                </LinearLayout>
 
                 <RelativeLayout
                     android:id="@+id/rlGoogleMap"
-                    style="@style/frameMap"
-                    android:layout_below="@id/rlAddAddress" >
+                    style="@style/frameMap" >
 
                     <fragment
                         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -96,8 +90,7 @@
 
                 <RelativeLayout
                     android:id="@+id/rlInfoMap"
-                    style="@style/infoMap"
-                    android:layout_below="@id/rlGoogleMap" >
+                    style="@style/infoMap" >
 
                     <ImageView
                         android:id="@+id/icPinMap"
@@ -122,7 +115,6 @@
                     android:id="@+id/btnBuffer"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/rlInfoMap"
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="5dip"
@@ -137,7 +129,7 @@
                     <SeekBar
                         android:id="@+id/seekBuffer"
                         android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
+                        android:layout_height="wrap_content"
                         android:layout_below="@id/txtBuffer"
                         android:layout_marginTop="3dp"
                         android:max="2000"
@@ -149,7 +141,6 @@
                 <LinearLayout
                     android:id="@+id/btnRingtone"
                     style="@style/btnSpinner"
-                    android:layout_below="@id/btnBuffer"
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:layout_marginTop="5dip" >
@@ -185,7 +176,7 @@
                 <LinearLayout
                     android:id="@+id/btnControllers"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="fill_parent"
                     android:layout_margin="5dip"
                     android:baselineAligned="false"
                     android:gravity="bottom"
