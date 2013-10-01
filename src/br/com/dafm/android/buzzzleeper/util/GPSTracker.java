@@ -1,4 +1,4 @@
-package br.com.dafm.android.buzzzleeper.service;
+package br.com.dafm.android.buzzzleeper.util;
 
 import android.app.AlertDialog;
 import android.app.Service;

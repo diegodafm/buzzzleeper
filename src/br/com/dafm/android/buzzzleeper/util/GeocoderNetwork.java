@@ -1,4 +1,4 @@
-package br.com.dafm.android.buzzzleeper.service;
+package br.com.dafm.android.buzzzleeper.util;
 
 import java.io.IOException;
 import java.util.List;

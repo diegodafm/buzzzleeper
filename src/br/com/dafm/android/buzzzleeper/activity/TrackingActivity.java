@@ -1,16 +1,32 @@
 package br.com.dafm.android.buzzzleeper.activity;
 
+import java.io.IOException;
+import java.text.DecimalFormat;
+
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.database.Cursor;
 import android.graphics.Typeface;
+import android.location.Location;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import br.com.dafm.android.buzzzleeper.R;
 import br.com.dafm.android.buzzzleeper.dao.AddressDAO;
 import br.com.dafm.android.buzzzleeper.entity.BlrAddress;
-import br.com.dafm.android.buzzzleeper.service.TrackerService;
+import br.com.dafm.android.buzzzleeper.util.AlarmService;
+import br.com.dafm.android.buzzzleeper.views.PctgDistanceView;
 
 public class TrackingActivity extends Activity {
 	
@@ -20,7 +36,15 @@ public class TrackingActivity extends Activity {
 
 	private BlrAddress blrAddress;
 
-	private TrackerService trackerService;
+	private AlarmService alarm;
+	
+	private View pctgView;
+	
+	private Double firstDistanceDetected;
+	
+	private MediaPlayer mediaPlayer;
+
+	private Boolean arrived = Boolean.FALSE;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +59,24 @@ public class TrackingActivity extends Activity {
 			String value = extras.get("BLR_ADDRESS_ID").toString();
 			blrAddress = addressDAO.findById(Integer.parseInt(value));
 			
+			mediaPlayer = new MediaPlayer();
+			
+			setupCirclePctg(0f);
+			alarm = new AlarmService();
+			alarm.setAlarm(getApplicationContext());
+			IntentFilter filter = new IntentFilter("my.action");
+			BroadcastReceiver receiver = new BroadcastReceiver() {
+			  public void onReceive(Context context, Intent intent) {
+			    if(intent.getAction().equals("my.action")) {
+			    	
+			    	Location location = (Location) intent.getExtras().get("location");
+			    	displayDistance(location);
+			    }
+			  }
+			};
+			registerReceiver(receiver, filter);
+			
 			displayData();
-			startTracking();
 			setupStopAlarm();
 		}
 	}
@@ -49,10 +89,14 @@ public class TrackingActivity extends Activity {
 	
 	@Override
     public void onBackPressed() {
-            super.onBackPressed();
-            trackerService.stopTracking();
-            
-            this.finish();
+        super.onBackPressed();
+        if(mediaPlayer.isPlaying()){
+        	mediaPlayer.stop();
+        }
+        
+        alarm.cancelAlarm(getApplicationContext());
+        
+        this.finish();
     }
 	
 	private void displayData(){
@@ -84,19 +128,120 @@ public class TrackingActivity extends Activity {
 		
 	}
 
-	private void startTracking() {
-		trackerService = new TrackerService(getApplicationContext(),blrAddress, (View) findViewById(R.id.llTracking));
-		trackerService.startTracking();
-	}
-
 	private void setupStopAlarm() {
 		Button button = (Button) findViewById(R.id.btnStopAlarm);
 		button.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				trackerService.stopTracking();
+				alarm.cancelAlarm(getApplicationContext());
+				mediaPlayer.stop();
 			}
 		});
+	}
+	
+	private void displayDistance(Location location){
+		TextView textView = (TextView) findViewById(R.id.trackingTxtDistance);
+		textView.setTypeface(signikaSemibold);
+		
+		Double distance = getCurrentDistance(location);
+		
+		if(firstDistanceDetected == null || firstDistanceDetected < distance){
+			firstDistanceDetected = distance;
+		}
+		
+		if(distance > 2000){
+			DecimalFormat df = new DecimalFormat("#.##");
+			textView.setText(df.format(distance/1000) + " Km");			
+		}else{
+			DecimalFormat df = new DecimalFormat("#");
+			textView.setText(df.format(distance)+ " " + getString(R.string.meters));
+		}
+		
+		Double pctg = (100*distance/firstDistanceDetected);
+		setupCirclePctg(100-pctg.floatValue());
+		
+		if (distance < (blrAddress.getBuffer().doubleValue())) {
+			if (!arrived) {
+				arrived = true;
+				playSound(getAlarmUri());
+				openBtnStop();
+			}
+		}
+	}
+
+	private void openBtnStop() {
+		Button button = (Button) findViewById(R.id.btnStopAlarm);
+		button.setVisibility(1);
+	}
+
+	public void stopTracking() {
+		TextView textView = (TextView) findViewById(R.id.trackingTxtDistance);
+		textView.setText("");
+		mediaPlayer.stop();
+	}
+
+	public Double getCurrentDistance(Location location) {
+		Double distance;
+
+		Location locationA = new Location("Posicao Atual");
+
+		locationA.setLatitude(location.getLatitude());
+		locationA.setLongitude(location.getLongitude());
+
+		Location locationB = new Location(blrAddress.getName());
+
+		locationB.setLatitude(blrAddress.getLat());
+		locationB.setLongitude(blrAddress.getLng());
+
+		distance = (double) locationA.distanceTo(locationB);
+		return distance;
+	}
+	
+	private void setupCirclePctg(Float percent) {
+		LinearLayout circle = (LinearLayout) findViewById(R.id.canvasPctgDistance);
+		circle.removeAllViews();
+		pctgView = new PctgDistanceView(getApplicationContext(), percent);
+		circle.addView(pctgView);
+	}
+
+	private void playSound(Uri alert) {
+		mediaPlayer = new MediaPlayer();
+		try {
+			mediaPlayer.setDataSource(getApplicationContext(), alert);
+			final AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+			if (audioManager.getStreamVolume(AudioManager.STREAM_ALARM) != 0) {
+				mediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
+				mediaPlayer.prepare();
+				mediaPlayer.start();
+			}
+		} catch (IOException e) {
+			new RuntimeException(e);
+			System.out.println(e);
+		}
+	}
+
+	// Get an alarm sound. Try for an alarm. If none set, try notification,
+	// Otherwise, ringtone.
+	private Uri getAlarmUri() {
+		Uri alarmUri = null;
+
+		RingtoneManager ringtoneManager = new RingtoneManager(getApplicationContext());
+		ringtoneManager.setType(RingtoneManager.TYPE_RINGTONE);
+		Cursor cursor = ringtoneManager.getCursor();
+
+		while (!cursor.isAfterLast() && cursor.moveToNext()) {
+			Ringtone ringtone = ringtoneManager.getRingtone(cursor
+					.getPosition());
+
+			if (ringtone.getTitle(getApplicationContext()).equalsIgnoreCase(
+					blrAddress.getRingtone())) {
+				alarmUri = ringtoneManager.getRingtoneUri(cursor.getPosition());
+				break;
+			}
+		}
+		cursor.close();
+
+		return alarmUri;
 	}
 
 	

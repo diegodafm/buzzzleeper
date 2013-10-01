@@ -29,9 +29,9 @@ import android.widget.Toast;
 import br.com.dafm.android.buzzzleeper.R;
 import br.com.dafm.android.buzzzleeper.dao.AddressDAO;
 import br.com.dafm.android.buzzzleeper.entity.BlrAddress;
-import br.com.dafm.android.buzzzleeper.service.GPSTracker;
-import br.com.dafm.android.buzzzleeper.service.GeocoderNetwork;
-import br.com.dafm.android.buzzzleeper.service.ImageService;
+import br.com.dafm.android.buzzzleeper.util.GPSTracker;
+import br.com.dafm.android.buzzzleeper.util.GeocoderNetwork;
+import br.com.dafm.android.buzzzleeper.util.ImageService;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
