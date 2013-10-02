@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import br.com.dafm.android.buzzzleeper.R;
 import br.com.dafm.android.buzzzleeper.dao.AddressDAO;
@@ -78,6 +79,7 @@ public class TrackingActivity extends Activity {
 			
 			displayData();
 			setupStopAlarm();
+			setupBtnBackHome();
 		}
 	}
 
@@ -98,6 +100,16 @@ public class TrackingActivity extends Activity {
         
         this.finish();
     }
+	
+	private void setupBtnBackHome() {
+		RelativeLayout btnAddAddress = (RelativeLayout) findViewById(R.id.btnArrowBack);
+		btnAddAddress.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				onBackPressed();
+			}
+		});
+	}
 	
 	private void displayData(){
 

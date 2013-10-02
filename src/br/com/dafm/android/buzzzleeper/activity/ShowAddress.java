@@ -148,18 +148,20 @@ public class ShowAddress extends FragmentActivity {
 		alert.setTitle(R.string.removeBusStop);
 		alert.setMessage(R.string.msgRemoveBusStop);
 		alert.setCancelable(false);
+
+		alert.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				
+			}
+		});
+		
 		alert.setPositiveButton(getString(R.string.confirm), new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				addressDAO.delete(blrAddress);
 				onBackPressed();
 			}
 		});
-		
-		alert.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				
-			}
-		});
+		 
 		alert.show();
 	}
 	
