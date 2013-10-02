@@ -26,9 +26,6 @@ public class AlarmService extends BroadcastReceiver {
 		PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "");
 		wl.acquire();
 
-		// Put here YOUR code.
-		Toast.makeText(context, "Alarm !!!!!!!!!!", Toast.LENGTH_LONG).show(); // For
-
 		wl.release();
 	}
 

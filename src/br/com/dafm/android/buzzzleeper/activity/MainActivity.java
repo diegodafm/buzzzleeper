@@ -149,19 +149,35 @@ public class MainActivity extends Activity {
 		List<BlrAddress> list = addressDAO.getAllAddress();
 
 		if (list.isEmpty()) {
-			for (int i = 0; i < 5; i++) {
-				BlrAddress blrAddress = new BlrAddress();
-				blrAddress.setName("Address " + i);
-				blrAddress.setAddress("Address " + i);
-				blrAddress.setLat(-19.858617d);
-				blrAddress.setLng(-43.918408d);
-				blrAddress.setRingtone("Claro");
-				blrAddress.setBuffer(300);
-				blrAddress.setStatus(true);
-				addressDAO.save(blrAddress);
-			}
+		
+			BlrAddress blrAddress = new BlrAddress();
+			blrAddress.setName("Parents home");
+			blrAddress.setAddress("Avenida Tropical, 2790, Tropical,32070-380, Contagem, MG - Brasil");
+			blrAddress.setLat(-19.925606d);
+			blrAddress.setLng(-44.123307d);
+			blrAddress.setRingtone("Claro");
+			blrAddress.setBuffer(300);
+			addressDAO.save(blrAddress);
+			
+			blrAddress = new BlrAddress();
+			blrAddress.setName("Home Sweet Home");
+			blrAddress.setAddress("Rua Antonio da Silva, 71, Ingá, 32604-492, Betim, MG, Brasil");
+			blrAddress.setLat(-19.858617d);
+			blrAddress.setLng(-43.918408d);
+			blrAddress.setRingtone("Pump It");
+			blrAddress.setBuffer(300);
+			addressDAO.save(blrAddress);
+			
+			blrAddress = new BlrAddress();
+			blrAddress.setName("Puc São Gabriel");
+			blrAddress.setAddress("R. Walter Ianni, 46-92 - Providência, Belo Horizonte - MG, 31980-110, Brazil");
+			blrAddress.setLat(-19.858617d);
+			blrAddress.setLng(-43.918408d);
+			blrAddress.setRingtone("Claro");
+			blrAddress.setBuffer(300);
+			blrAddress.setStatus(true);
+			addressDAO.save(blrAddress);
+		
 		}
-
 	}
-
 }

@@ -276,8 +276,8 @@ containing a value of this type.
         public static final int btnEditBlrAddress=0x7f05002d;
         public static final int btnRemoveBlrAddress=0x7f05002b;
         public static final int btnRingtone=0x7f050014;
-        public static final int btnSearchAddress=0x7f05000a;
-        public static final int btnSearchGPS=0x7f050009;
+        public static final int btnSearchAddress=0x7f050009;
+        public static final int btnSearchGPS=0x7f05000a;
         public static final int btnShowDetails=0x7f05001f;
         public static final int btnStartActivity=0x7f050020;
         public static final int btnStopAlarm=0x7f050039;

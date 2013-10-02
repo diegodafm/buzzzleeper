@@ -30,22 +30,17 @@ public class PctgDistanceView extends View {
     @Override
     public void onDraw(Canvas canvas) {
     	
-    	canvas.setViewport(getMeasuredWidth(), 150);
+    	canvas.setViewport(getMeasuredWidth(), getMeasuredHeight());
     	
     	Float defaultPxDistance = convertDpToPixel(15, this.context);
     	Float defaultPxArc = convertDpToPixel(18, this.context);
-    	
 
-        Paint mPaint = new Paint(Paint.FILTER_BITMAP_FLAG |
-                Paint.DITHER_FLAG |
-                Paint.ANTI_ALIAS_FLAG);
+        Paint mPaint = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.DITHER_FLAG | Paint.ANTI_ALIAS_FLAG);
         mPaint.setDither(true);
         mPaint.setColor(Color.GRAY);
         mPaint.setStyle(Paint.Style.STROKE);
         
-        Paint circleCenter = new Paint(Paint.FILTER_BITMAP_FLAG |
-                Paint.DITHER_FLAG |
-                Paint.ANTI_ALIAS_FLAG);
+        Paint circleCenter = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.DITHER_FLAG | Paint.ANTI_ALIAS_FLAG);
         circleCenter.setColor(Color.parseColor("#323a45"));
         circleCenter.setStyle(Paint.Style.FILL); 
 
@@ -58,13 +53,13 @@ public class PctgDistanceView extends View {
         
         Paint txtPctg = new Paint(); 
         txtPctg.setColor(Color.WHITE); 
-        txtPctg.setTextSize(60);
+        txtPctg.setTextSize(convertDpToPixel(30, this.context));
         txtPctg.setTextAlign(Paint.Align.CENTER);
         txtPctg.setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/Signika-Semibold.ttf"));
         
         
         
-        canvas.drawCircle(getWidth()/2, getHeight()/2, 100, circleCenter);
+        canvas.drawCircle(getWidth()/2, getWidth()/2, getWidth() / 2 , circleCenter);
         canvas.drawArc(box, 270, sweep, false, mPaint);        
         
         DecimalFormat df = new DecimalFormat("#.##");
@@ -83,6 +78,7 @@ public class PctgDistanceView extends View {
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
         float px = dp * (metrics.densityDpi / 160f);
+        
         return px;
     }
 
