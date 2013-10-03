@@ -280,7 +280,7 @@ containing a value of this type.
         public static final int btnSearchGPS=0x7f05000a;
         public static final int btnShowDetails=0x7f05001f;
         public static final int btnStartActivity=0x7f050020;
-        public static final int btnStopAlarm=0x7f050039;
+        public static final int btnStopAlarm=0x7f050038;
         public static final int buzzzleepList=0x7f050021;
         public static final int canvasPctgDistance=0x7f050033;
         public static final int flTitle=0x7f050022;
@@ -292,14 +292,14 @@ containing a value of this type.
         public static final int icPinMap=0x7f05000e;
         public static final int list=0x7f050023;
         public static final int llTracking=0x7f050031;
-        public static final int llTrackingMapView=0x7f05003a;
+        public static final int llTrackingMapView=0x7f050039;
         public static final int logo=0x7f050024;
         public static final int map=0x7f050027;
-        public static final int menuEditBusStop=0x7f05003d;
-        public static final int menuItemAddressEdit=0x7f05003e;
-        public static final int menuItemAddressRemove=0x7f05003f;
-        public static final int menuRemoveBusStop=0x7f05003c;
-        public static final int menu_settings=0x7f05003b;
+        public static final int menuEditBusStop=0x7f05003c;
+        public static final int menuItemAddressEdit=0x7f05003d;
+        public static final int menuItemAddressRemove=0x7f05003e;
+        public static final int menuRemoveBusStop=0x7f05003b;
+        public static final int menu_settings=0x7f05003a;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
         public static final int rlAddAddress=0x7f050007;
@@ -310,11 +310,10 @@ containing a value of this type.
         public static final int showAddressScrollView=0x7f050028;
         public static final int svTrackingInfo=0x7f050032;
         public static final int terrain=0x7f050003;
-        public static final int trackingTxtAddress=0x7f050035;
-        public static final int trackingTxtBuffer=0x7f050037;
-        public static final int trackingTxtCoordinates=0x7f050036;
-        public static final int trackingTxtDistance=0x7f050034;
-        public static final int trackingTxtRingtone=0x7f050038;
+        public static final int trackingTxtAddress=0x7f050034;
+        public static final int trackingTxtBuffer=0x7f050036;
+        public static final int trackingTxtCoordinates=0x7f050035;
+        public static final int trackingTxtRingtone=0x7f050037;
         public static final int txtAddName=0x7f050006;
         public static final int txtAddress=0x7f05002a;
         public static final int txtAddressLocation=0x7f05000f;
@@ -351,7 +350,7 @@ containing a value of this type.
         public static final int add=0x7f060018;
         public static final int addNewLocation=0x7f060019;
         public static final int address=0x7f06001b;
-        public static final int addressCannotBeIsEmpty=0x7f060028;
+        public static final int addressCannotBeIsEmpty=0x7f060029;
         public static final int alarm=0x7f06001c;
         public static final int app_name=0x7f060015;
         /**   Title for notification shown when GooglePlayServices needs to be
@@ -378,10 +377,10 @@ containing a value of this type.
          */
         public static final int auth_client_using_bad_version_title=0x7f06000f;
         public static final int buffer=0x7f06001f;
-        public static final int bufferCannotBeIsEmpty=0x7f06002a;
-        public static final int bufferDistance=0x7f060025;
-        public static final int busStopAdded=0x7f06002e;
-        public static final int busStopUpdated=0x7f06002f;
+        public static final int bufferCannotBeIsEmpty=0x7f06002b;
+        public static final int bufferDistance=0x7f060026;
+        public static final int busStopAdded=0x7f06002f;
+        public static final int busStopUpdated=0x7f060030;
         public static final int cancel=0x7f06001e;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
@@ -440,34 +439,35 @@ containing a value of this type.
         public static final int common_signin_button_text_long=0x7f06000e;
         public static final int confirm=0x7f060021;
         public static final int coordinate=0x7f060020;
-        public static final int edit=0x7f060033;
+        public static final int edit=0x7f060034;
         /**  CONTEXT MENU ADDRESS 
          */
-        public static final int editBusStop=0x7f060031;
+        public static final int editBusStop=0x7f060032;
         public static final int hello_world=0x7f060017;
+        public static final int km=0x7f060025;
         public static final int latitude=0x7f060022;
         public static final int longitude=0x7f060023;
         /**  CONTEXT MAIN MENU  
          */
-        public static final int menu_settings=0x7f060037;
+        public static final int menu_settings=0x7f060038;
         public static final int meters=0x7f060024;
-        public static final int msgRemoveBusStop=0x7f060036;
+        public static final int msgRemoveBusStop=0x7f060037;
         public static final int name=0x7f06001a;
         /**  ADD ADDRESS MGS ERROS
          */
-        public static final int nameCannotBeIsEmpty=0x7f060027;
-        public static final int ok=0x7f060030;
-        public static final int pleaseFixItFirst=0x7f06002c;
-        public static final int positionCannotBeIsEmpty=0x7f060029;
-        public static final int remove=0x7f060034;
-        public static final int removeBusStop=0x7f060032;
-        public static final int removeLocation=0x7f060035;
-        public static final int ringtoneCannotBeIsEmpty=0x7f06002b;
+        public static final int nameCannotBeIsEmpty=0x7f060028;
+        public static final int ok=0x7f060031;
+        public static final int pleaseFixItFirst=0x7f06002d;
+        public static final int positionCannotBeIsEmpty=0x7f06002a;
+        public static final int remove=0x7f060035;
+        public static final int removeBusStop=0x7f060033;
+        public static final int removeLocation=0x7f060036;
+        public static final int ringtoneCannotBeIsEmpty=0x7f06002c;
         public static final int save=0x7f06001d;
-        public static final int setRingtone=0x7f060026;
+        public static final int setRingtone=0x7f060027;
         /**  ADD ADDRESS MGS SUCCESS
          */
-        public static final int success=0x7f06002d;
+        public static final int success=0x7f06002e;
     }
     public static final class style {
         /** 

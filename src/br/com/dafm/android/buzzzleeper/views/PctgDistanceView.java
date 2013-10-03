@@ -1,6 +1,8 @@
 package br.com.dafm.android.buzzzleeper.views;
 import java.text.DecimalFormat;
 
+import br.com.dafm.android.buzzzleeper.R;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
@@ -20,11 +22,14 @@ public class PctgDistanceView extends View {
     private Float percent;
     
     private Context context;
+    
+    private Double distance;
 
-    public PctgDistanceView(Context context,Float percent) {
+    public PctgDistanceView(Context context,Float percent, Double distance) {
         super(context);            
         this.context = context;
         this.percent = percent;
+        this.distance = distance;
     }
 
     @Override
@@ -32,8 +37,7 @@ public class PctgDistanceView extends View {
     	
     	canvas.setViewport(getMeasuredWidth(), getMeasuredHeight());
     	
-    	Float defaultPxDistance = convertDpToPixel(15, this.context);
-    	Float defaultPxArc = convertDpToPixel(18, this.context);
+    	Float defaultPxArc = convertDpToPixel(8, this.context);
 
         Paint mPaint = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.DITHER_FLAG | Paint.ANTI_ALIAS_FLAG);
         mPaint.setDither(true);
@@ -46,24 +50,39 @@ public class PctgDistanceView extends View {
 
         //Arc
         mPaint.setColor(Color.parseColor("#58c2cb"));
-        mPaint.setStrokeWidth(defaultPxDistance);
+        mPaint.setStrokeWidth(convertDpToPixel(15, this.context));
         RectF box = new RectF(defaultPxArc,defaultPxArc,getWidth()-defaultPxArc,getWidth()-defaultPxArc);
         
         float sweep = 360 * this.percent * 0.01f;
         
         Paint txtPctg = new Paint(); 
         txtPctg.setColor(Color.WHITE); 
-        txtPctg.setTextSize(convertDpToPixel(30, this.context));
+        txtPctg.setTextSize(convertDpToPixel(40, this.context));
         txtPctg.setTextAlign(Paint.Align.CENTER);
         txtPctg.setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/Signika-Semibold.ttf"));
         
+        Paint txtDistance = new Paint(); 
+        txtDistance.setColor(Color.WHITE); 
+        txtDistance.setTextSize(convertDpToPixel(15, this.context));
+        txtDistance.setTextAlign(Paint.Align.CENTER);
+        txtDistance.setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/Signika-Semibold.ttf"));
         
-        
-        canvas.drawCircle(getWidth()/2, getWidth()/2, getWidth() / 2 , circleCenter);
+        canvas.drawCircle(getWidth()/2, getWidth()/2, getWidth() / 2  - convertDpToPixel(15, this.context) , circleCenter);
         canvas.drawArc(box, 270, sweep, false, mPaint);        
         
-        DecimalFormat df = new DecimalFormat("#.##");
-        canvas.drawText(df.format(this.percent.floatValue()), getWidth()/2, getHeight()/2+convertDpToPixel(10, this.context), txtPctg);
+        DecimalFormat df = new DecimalFormat("#");
+        canvas.drawText(df.format(this.percent.floatValue()), getWidth()/2, getHeight()/2, txtPctg);
+        canvas.drawText("%", getWidth()/2+convertDpToPixel(30, this.context), getHeight()/2 - convertDpToPixel(15, this.context), txtDistance);
+        
+        if(distance > 2000){
+        	df = new DecimalFormat("#.##");
+        	canvas.drawText(df.format(this.distance/1000), getWidth()/2, getHeight()/2+convertDpToPixel(25, this.context), txtDistance);
+        	canvas.drawText(this.context.getString(R.string.km), getWidth()/2, getHeight()/2+convertDpToPixel(40, this.context), txtDistance);
+        }else{
+        	df = new DecimalFormat("#");
+        	canvas.drawText(df.format(this.distance), getWidth()/2, getHeight()/2+convertDpToPixel(25, this.context), txtDistance);
+        	canvas.drawText(this.context.getString(R.string.meters), getWidth()/2, getHeight()/2+convertDpToPixel(40, this.context), txtDistance);
+        }
         
     }
     

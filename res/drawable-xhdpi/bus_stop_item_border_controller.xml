@@ -1,17 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
-
-    <item>
-        <shape>
-            <solid android:color="@color/grayBorder" />
-        </shape>
-    </item>
-    <item
-        android:left="1dp"
-        android:top="1dp">
-        <shape>
-            <solid android:color="@color/grayControllers" />
-        </shape>
-    </item>
-
-</layer-list>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+	<!-- pressed -->
+	<item  android:state_pressed="true">
+		<layer-list>
+		    <item>
+		        <shape>
+		            <solid android:color="@color/grayBorder" />
+		        </shape>
+		    </item>
+		    <item android:left="1dp" android:top="1dp">
+		        <shape><solid android:color="@color/white" /></shape>
+		    </item>
+		</layer-list>
+	</item>
+	
+	<!-- focused -->
+	<item  android:state_focused="true">
+		<layer-list>
+		    <item>
+		        <shape>
+		            <solid android:color="@color/grayBorder" />
+		        </shape>
+		    </item>
+		    <item android:left="1dp" android:top="1dp">
+		        <shape><solid android:color="@color/white" /></shape>
+		    </item>
+		</layer-list>
+	</item>
+	
+	<!-- default -->
+	<item>
+		<layer-list>
+		    <item>
+		        <shape>
+		            <solid android:color="@color/grayBorder" />
+		        </shape>
+		    </item>
+		    <item android:left="1dp" android:top="1dp">
+		        <shape><solid android:color="@color/grayControllers" /></shape>
+		    </item>
+		</layer-list>
+	</item>
+</selector>

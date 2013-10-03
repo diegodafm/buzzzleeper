@@ -19,6 +19,7 @@
     <string name="latitude">Latitude</string>
     <string name="longitude">Longitude</string>
     <string name="meters">Meters</string>
+    <string name="km">KM</string>
     <string name="bufferDistance">Buffer Distance</string>
     <string name="setRingtone">Set a Ringtone</string>
     

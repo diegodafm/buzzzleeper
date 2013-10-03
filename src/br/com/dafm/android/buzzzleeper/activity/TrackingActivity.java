@@ -62,7 +62,7 @@ public class TrackingActivity extends Activity {
 			
 			mediaPlayer = new MediaPlayer();
 			
-			setupCirclePctg(0f);
+			setupCirclePctg(0f,0d);
 			alarm = new AlarmService();
 			alarm.setAlarm(getApplicationContext());
 			IntentFilter filter = new IntentFilter("my.action");
@@ -152,26 +152,12 @@ public class TrackingActivity extends Activity {
 	}
 	
 	private void displayDistance(Location location){
-		TextView textView = (TextView) findViewById(R.id.trackingTxtDistance);
-		textView.setTypeface(signikaSemibold);
-		
 		Double distance = getCurrentDistance(location);
-		
 		if(firstDistanceDetected == null || firstDistanceDetected < distance){
 			firstDistanceDetected = distance;
 		}
-		
-		if(distance > 2000){
-			DecimalFormat df = new DecimalFormat("#.##");
-			textView.setText(df.format(distance/1000) + " Km");			
-		}else{
-			DecimalFormat df = new DecimalFormat("#");
-			textView.setText(df.format(distance)+ " " + getString(R.string.meters));
-		}
-		
 		Double pctg = (100*distance/firstDistanceDetected);
-		setupCirclePctg(100-pctg.floatValue());
-		
+		setupCirclePctg(100-pctg.floatValue(),distance);
 		if (distance < (blrAddress.getBuffer().doubleValue())) {
 			if (!arrived) {
 				arrived = true;
@@ -187,8 +173,6 @@ public class TrackingActivity extends Activity {
 	}
 
 	public void stopTracking() {
-		TextView textView = (TextView) findViewById(R.id.trackingTxtDistance);
-		textView.setText("");
 		mediaPlayer.stop();
 	}
 
@@ -209,10 +193,10 @@ public class TrackingActivity extends Activity {
 		return distance;
 	}
 	
-	private void setupCirclePctg(Float percent) {
+	private void setupCirclePctg(Float percent, Double distance) {
 		LinearLayout circle = (LinearLayout) findViewById(R.id.canvasPctgDistance);
 		circle.removeAllViews();
-		pctgView = new PctgDistanceView(getApplicationContext(), percent);
+		pctgView = new PctgDistanceView(getApplicationContext(), percent,distance);
 		circle.addView(pctgView);
 	}
 
