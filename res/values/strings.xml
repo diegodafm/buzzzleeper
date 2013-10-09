@@ -50,7 +50,7 @@
     <!-- CONTEXT MAIN MENU  -->
     <string name="menu_settings">Settings</string>
     
-
-
+    <string name="info">Info</string>
+    <string name="map">Map</string>
 
 </resources>

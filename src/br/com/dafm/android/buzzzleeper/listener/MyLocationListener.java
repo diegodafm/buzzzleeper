@@ -10,14 +10,17 @@ public class MyLocationListener implements LocationListener {
 	
 	private Context context;
 	
-	public MyLocationListener(Context context) {
+	private Intent intentFilter;
+	
+	public MyLocationListener(Context context, Intent intentFilter) {
 		super();
 		this.context = context;
+		this.intentFilter = intentFilter;
 	}
 
 	@Override
 	public void onLocationChanged(Location loc) {
-		Intent data = new Intent("my.action");
+		Intent data = new Intent(this.intentFilter);
 		data.putExtra("location", loc);
 		context.sendBroadcast(data);
 	}

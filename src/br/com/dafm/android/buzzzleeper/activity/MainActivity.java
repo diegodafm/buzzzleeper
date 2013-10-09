@@ -122,8 +122,7 @@ public class MainActivity extends Activity {
 		btnShowDetails.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(getApplicationContext(),
-						ShowAddress.class);
+				Intent intent = new Intent(getApplicationContext(),ShowAddress.class);
 				intent.putExtra("BLR_ADDRESS_ID", blrAddress.getId());
 				startActivity(intent);
 			}
@@ -134,8 +133,7 @@ public class MainActivity extends Activity {
 		btnStartTracking.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(getApplicationContext(),
-						TrackingActivity.class);
+				Intent intent = new Intent(getApplicationContext(),TabTrackingActivity.class);
 				intent.putExtra("BLR_ADDRESS_ID", blrAddress.getId());
 				startActivity(intent);
 			}

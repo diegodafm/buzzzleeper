@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-  android:id="@+id/map"
-  android:layout_width="fill_parent"
-  android:layout_height="fill_parent"
-  class="com.google.android.gms.maps.MapFragment"/>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/title" />
+
+    <fragment
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/googleMap"
+        android:name="br.com.dafm.android.buzzzleeper.AddAddress"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        class="com.google.android.gms.maps.SupportMapFragment" />
+
+</LinearLayout>

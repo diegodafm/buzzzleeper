@@ -265,6 +265,12 @@
         <item name="android:padding">1dip</item>
     </style>
     <!-- /BUSSTOPITEM -->
+    
+    <!-- TAB -->
+	<style name="tabWidget">
+	    <item name="android:background">@drawable/tab_selector</item>
+	</style>
+	<!--/TAB -->
 
     <style name="borderInfo">
         <item name="android:layout_height">1dip</item>

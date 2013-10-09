@@ -1,7 +1,6 @@
 package br.com.dafm.android.buzzzleeper.activity;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -64,18 +63,18 @@ public class TrackingActivity extends Activity {
 			
 			setupCirclePctg(0f,0d);
 			alarm = new AlarmService();
-			alarm.setAlarm(getApplicationContext());
-			IntentFilter filter = new IntentFilter("my.action");
+			
+			final IntentFilter intentFilter = new IntentFilter("trackingInfo");
+			alarm.setAlarm(getApplicationContext(),intentFilter);
 			BroadcastReceiver receiver = new BroadcastReceiver() {
 			  public void onReceive(Context context, Intent intent) {
-			    if(intent.getAction().equals("my.action")) {
-			    	
+			    if(intent.getAction().equals(intentFilter)) {
 			    	Location location = (Location) intent.getExtras().get("location");
 			    	displayDistance(location);
 			    }
 			  }
 			};
-			registerReceiver(receiver, filter);
+			registerReceiver(receiver, intentFilter);
 			
 			displayData();
 			setupStopAlarm();

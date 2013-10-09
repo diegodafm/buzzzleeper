@@ -6,6 +6,7 @@
         <item name="android:spinnerItemStyle">@style/SpinnerItem</item>
         <item name="android:spinnerStyle">@style/SpinnerAppTheme</item>
         <item name="android:spinnerDropDownItemStyle">@style/SpinnerDropDownItemAppTheme</item>
+        <item name="android:tabWidgetStyle">@style/tabWidget</item>
     </style>
 
 </resources>

@@ -237,30 +237,40 @@ containing a value of this type.
         public static final int ic_ringtone=0x7f02003f;
         public static final int ic_ringtone_gray=0x7f020040;
         public static final int ic_send_white=0x7f020041;
-        public static final int ic_tags_silver=0x7f020042;
-        public static final int list_activated_holo=0x7f020043;
-        public static final int list_focused_holo=0x7f020044;
-        public static final int list_longpressed_holo=0x7f020045;
-        public static final int list_pressed_holo_light=0x7f020046;
-        public static final int list_selector_background_transition_holo_light=0x7f020047;
-        public static final int list_selector_disabled_holo_light=0x7f020048;
-        public static final int list_selector_holo_light=0x7f020049;
-        public static final int progress=0x7f02004a;
-        public static final int progress_thumb=0x7f02004b;
-        public static final int scrubber_control=0x7f02004c;
-        public static final int scrubber_control_disabled_holo=0x7f02004d;
-        public static final int scrubber_control_focused_holo=0x7f02004e;
-        public static final int scrubber_control_normal_holo=0x7f02004f;
-        public static final int scrubber_control_pressed_holo=0x7f020050;
-        public static final int scrubber_primary_holo=0x7f020051;
-        public static final int scrubber_progress=0x7f020052;
-        public static final int scrubber_secondary_holo=0x7f020053;
-        public static final int scrubber_track_holo_light=0x7f020054;
-        public static final int spinner_background_holo_light=0x7f020055;
-        public static final int spinner_default_holo_light=0x7f020056;
-        public static final int spinner_disabled_holo_light=0x7f020057;
-        public static final int spinner_focused_holo_light=0x7f020058;
-        public static final int spinner_pressed_holo_light=0x7f020059;
+        public static final int ic_tab_info=0x7f020042;
+        public static final int ic_tab_info_deactivated=0x7f020043;
+        public static final int ic_tab_map=0x7f020044;
+        public static final int ic_tab_map_deactivated=0x7f020045;
+        public static final int ic_tags_silver=0x7f020046;
+        public static final int list_activated_holo=0x7f020047;
+        public static final int list_focused_holo=0x7f020048;
+        public static final int list_longpressed_holo=0x7f020049;
+        public static final int list_pressed_holo_light=0x7f02004a;
+        public static final int list_selector_background_transition_holo_light=0x7f02004b;
+        public static final int list_selector_disabled_holo_light=0x7f02004c;
+        public static final int list_selector_holo_light=0x7f02004d;
+        public static final int progress=0x7f02004e;
+        public static final int progress_thumb=0x7f02004f;
+        public static final int scrubber_control=0x7f020050;
+        public static final int scrubber_control_disabled_holo=0x7f020051;
+        public static final int scrubber_control_focused_holo=0x7f020052;
+        public static final int scrubber_control_normal_holo=0x7f020053;
+        public static final int scrubber_control_pressed_holo=0x7f020054;
+        public static final int scrubber_primary_holo=0x7f020055;
+        public static final int scrubber_progress=0x7f020056;
+        public static final int scrubber_secondary_holo=0x7f020057;
+        public static final int scrubber_track_holo_light=0x7f020058;
+        public static final int spinner_background_holo_light=0x7f020059;
+        public static final int spinner_default_holo_light=0x7f02005a;
+        public static final int spinner_disabled_holo_light=0x7f02005b;
+        public static final int spinner_focused_holo_light=0x7f02005c;
+        public static final int spinner_pressed_holo_light=0x7f02005d;
+        public static final int tab_focused=0x7f02005e;
+        public static final int tab_indicator=0x7f02005f;
+        public static final int tab_pressed=0x7f020060;
+        public static final int tab_selected=0x7f020061;
+        public static final int tab_selector=0x7f020062;
+        public static final int tab_unselected=0x7f020063;
     }
     public static final class id {
         public static final int addAddressScrollView=0x7f050005;
@@ -270,19 +280,19 @@ containing a value of this type.
         public static final int btnAddAddress=0x7f050026;
         public static final int btnAddCancel=0x7f050018;
         public static final int btnAddConfirm=0x7f05001a;
-        public static final int btnArrowBack=0x7f05002f;
+        public static final int btnArrowBack=0x7f050031;
         public static final int btnBuffer=0x7f050011;
         public static final int btnControllers=0x7f050017;
-        public static final int btnEditBlrAddress=0x7f05002d;
-        public static final int btnRemoveBlrAddress=0x7f05002b;
+        public static final int btnEditBlrAddress=0x7f05002c;
+        public static final int btnRemoveBlrAddress=0x7f05002a;
         public static final int btnRingtone=0x7f050014;
         public static final int btnSearchAddress=0x7f050009;
         public static final int btnSearchGPS=0x7f05000a;
         public static final int btnShowDetails=0x7f05001f;
         public static final int btnStartActivity=0x7f050020;
-        public static final int btnStopAlarm=0x7f050038;
+        public static final int btnStopAlarm=0x7f05003a;
         public static final int buzzzleepList=0x7f050021;
-        public static final int canvasPctgDistance=0x7f050033;
+        public static final int canvasPctgDistance=0x7f050035;
         public static final int flTitle=0x7f050022;
         public static final int googleMap=0x7f05000c;
         public static final int hybrid=0x7f050004;
@@ -291,15 +301,14 @@ containing a value of this type.
         public static final int icBtnRingtone=0x7f050016;
         public static final int icPinMap=0x7f05000e;
         public static final int list=0x7f050023;
-        public static final int llTracking=0x7f050031;
-        public static final int llTrackingMapView=0x7f050039;
+        public static final int llTracking=0x7f050033;
+        public static final int llTrackingMapView=0x7f05003b;
         public static final int logo=0x7f050024;
-        public static final int map=0x7f050027;
-        public static final int menuEditBusStop=0x7f05003c;
-        public static final int menuItemAddressEdit=0x7f05003d;
-        public static final int menuItemAddressRemove=0x7f05003e;
-        public static final int menuRemoveBusStop=0x7f05003b;
-        public static final int menu_settings=0x7f05003a;
+        public static final int menuEditBusStop=0x7f05003e;
+        public static final int menuItemAddressEdit=0x7f05003f;
+        public static final int menuItemAddressRemove=0x7f050040;
+        public static final int menuRemoveBusStop=0x7f05003d;
+        public static final int menu_settings=0x7f05003c;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
         public static final int rlAddAddress=0x7f050007;
@@ -307,24 +316,27 @@ containing a value of this type.
         public static final int rlInfoMap=0x7f05000d;
         public static final int satellite=0x7f050002;
         public static final int seekBuffer=0x7f050013;
-        public static final int showAddressScrollView=0x7f050028;
-        public static final int svTrackingInfo=0x7f050032;
+        public static final int showAddressScrollView=0x7f050027;
+        public static final int svTrackingInfo=0x7f050034;
+        public static final int tab_icon=0x7f05002f;
+        public static final int tab_text=0x7f050030;
+        public static final int tabsLayout=0x7f05002e;
         public static final int terrain=0x7f050003;
-        public static final int trackingTxtAddress=0x7f050034;
-        public static final int trackingTxtBuffer=0x7f050036;
-        public static final int trackingTxtCoordinates=0x7f050035;
-        public static final int trackingTxtRingtone=0x7f050037;
+        public static final int trackingTxtAddress=0x7f050036;
+        public static final int trackingTxtBuffer=0x7f050038;
+        public static final int trackingTxtCoordinates=0x7f050037;
+        public static final int trackingTxtRingtone=0x7f050039;
         public static final int txtAddName=0x7f050006;
-        public static final int txtAddress=0x7f05002a;
+        public static final int txtAddress=0x7f050029;
         public static final int txtAddressLocation=0x7f05000f;
         public static final int txtBuffer=0x7f050012;
         public static final int txtCoordinates=0x7f050010;
-        public static final int txtEdit=0x7f05002e;
-        public static final int txtName=0x7f050029;
-        public static final int txtRemove=0x7f05002c;
+        public static final int txtEdit=0x7f05002d;
+        public static final int txtName=0x7f050028;
+        public static final int txtRemove=0x7f05002b;
         public static final int txtRingtone=0x7f050015;
         public static final int txtSearchAddress=0x7f050008;
-        public static final int txtTitle=0x7f050030;
+        public static final int txtTitle=0x7f050032;
         public static final int txtTitleMain=0x7f050025;
     }
     public static final class layout {
@@ -335,8 +347,10 @@ containing a value of this type.
         public static final int main_title=0x7f030004;
         public static final int map=0x7f030005;
         public static final int show_address=0x7f030006;
-        public static final int title=0x7f030007;
-        public static final int tracking=0x7f030008;
+        public static final int tab=0x7f030007;
+        public static final int title=0x7f030008;
+        public static final int tracking=0x7f030009;
+        public static final int tracking_tab=0x7f03000a;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
@@ -444,9 +458,11 @@ containing a value of this type.
          */
         public static final int editBusStop=0x7f060032;
         public static final int hello_world=0x7f060017;
+        public static final int info=0x7f060039;
         public static final int km=0x7f060025;
         public static final int latitude=0x7f060022;
         public static final int longitude=0x7f060023;
+        public static final int map=0x7f06003a;
         /**  CONTEXT MAIN MENU  
          */
         public static final int menu_settings=0x7f060038;
@@ -495,12 +511,12 @@ containing a value of this type.
         public static final int SpinnerAppTheme=0x7f09001b;
         public static final int SpinnerDropDownItemAppTheme=0x7f09001d;
         public static final int SpinnerItem=0x7f09001c;
-        public static final int Theme_BuzzzleeperTheme=0x7f090025;
+        public static final int Theme_BuzzzleeperTheme=0x7f090026;
         public static final int blrAddress=0x7f090022;
         public static final int blrName=0x7f090021;
-        /**  /BUSSTOPITEM 
+        /** /TAB 
          */
-        public static final int borderInfo=0x7f090024;
+        public static final int borderInfo=0x7f090025;
         public static final int btn=0x7f090017;
         public static final int btnAdd=0x7f090019;
         public static final int btnBackgroundThemeA=0x7f09000e;
@@ -538,6 +554,10 @@ containing a value of this type.
         /**  /HEADER 
          */
         public static final int scrollViewStyle=0x7f090004;
+        /**  /BUSSTOPITEM 
+ TAB 
+         */
+        public static final int tabWidget=0x7f090024;
         public static final int textAddress=0x7f09000b;
         public static final int textCoordinate=0x7f09000c;
         public static final int textEdit=0x7f090006;
