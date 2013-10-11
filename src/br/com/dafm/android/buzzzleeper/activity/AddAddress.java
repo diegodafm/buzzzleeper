@@ -98,8 +98,35 @@ public class AddAddress extends FragmentActivity {
 	}
 
 	private void setupFontFace() {
-		signikaSemibold = Typeface.createFromAsset(getAssets(),
-				"fonts/Signika-Semibold.ttf");
+		this.signikaSemibold = Typeface.createFromAsset(getAssets(),"fonts/Signika-Semibold.ttf");
+		
+		EditText editText = null;
+		
+		TextView textView = null;
+		
+		editText =  (EditText) findViewById(R.id.txtAddName);
+		editText.setTypeface(signikaSemibold);
+		
+		editText =  (EditText) findViewById(R.id.txtSearchAddress);
+		editText.setTypeface(signikaSemibold);
+		
+		textView =  (TextView) findViewById(R.id.txtAddressLocation);
+		textView.setTypeface(signikaSemibold);
+		
+		textView =  (TextView) findViewById(R.id.txtCoordinates);
+		textView.setTypeface(signikaSemibold);
+		
+		textView =  (TextView) findViewById(R.id.txtRingtone);
+		textView.setTypeface(signikaSemibold);
+		
+		textView =  (TextView) findViewById(R.id.txtBuffer);
+		textView.setTypeface(signikaSemibold);
+		
+		textView =  (TextView) findViewById(R.id.txtBtnCancel);
+		textView.setTypeface(signikaSemibold);
+		
+		textView =  (TextView) findViewById(R.id.txtBtnConfirm);
+		textView.setTypeface(signikaSemibold);
 	}
 
 	private void setupBtnSearchAddress() {
@@ -290,7 +317,7 @@ public class AddAddress extends FragmentActivity {
 		buffer = (SeekBar) findViewById(R.id.seekBuffer);
 
 		TextView textView = (TextView) findViewById(R.id.txtBuffer);
-		textView.setText(getString(R.string.bufferDistance) + ": "
+		textView.setText(getString(R.string.buffer) + ": "
 				+ Integer.toString(buffer.getProgress()) + " "
 				+ getString(R.string.meters));
 

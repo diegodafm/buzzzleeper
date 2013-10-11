@@ -1,11 +1,9 @@
 package br.com.dafm.android.buzzzleeper.views;
 import java.text.DecimalFormat;
 
-import br.com.dafm.android.buzzzleeper.R;
-import br.com.dafm.android.buzzzleeper.entity.BlrAddress;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -14,9 +12,14 @@ import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Toast;
+import br.com.dafm.android.buzzzleeper.R;
+import br.com.dafm.android.buzzzleeper.entity.BlrAddress;
 
 @SuppressLint({ "DrawAllocation", "ViewConstructor" })
-public class PctgDistanceView extends View {
+public class PctgDistanceView extends View implements View.OnClickListener{
+
 
     Paint mPaint = new Paint();
     
@@ -27,13 +30,32 @@ public class PctgDistanceView extends View {
     private Double distance;
     
     private BlrAddress blrAddress;
+    
+    private String textCircle;
+    
+    private Boolean statusAlarm; 
 
-    public PctgDistanceView(Context context,Float percent, Double distance, BlrAddress blrAddress) {
+	public PctgDistanceView(Context context, Float percent, Double distance,
+			Boolean status, BlrAddress blrAddress) {
+		
         super(context);            
         this.context = context;
         this.percent = percent;
         this.distance = distance;
+        this.statusAlarm = status;
         this.blrAddress = blrAddress;
+    }
+    
+	public PctgDistanceView(Context context, Float percent, Double distance,
+			Boolean status, BlrAddress blrAddress, String textCircle) {
+		
+    	super(context);            
+    	this.context = context;
+    	this.percent = percent;
+    	this.distance = distance;
+    	this.statusAlarm = status;
+    	this.blrAddress = blrAddress;
+    	this.textCircle = textCircle;
     }
 
     @Override
@@ -41,62 +63,77 @@ public class PctgDistanceView extends View {
     	
     	canvas.setViewport(getMeasuredWidth(), getMeasuredHeight());
     	
-    	Float defaultPxArc = convertDpToPixel(8, this.context);
 
         Paint mPaint = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.DITHER_FLAG | Paint.ANTI_ALIAS_FLAG);
         mPaint.setDither(true);
         mPaint.setColor(Color.GRAY);
         mPaint.setStyle(Paint.Style.STROKE);
-        
-        Paint circleCenter = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.DITHER_FLAG | Paint.ANTI_ALIAS_FLAG);
-        circleCenter.setColor(Color.parseColor("#323a45"));
-        circleCenter.setStyle(Paint.Style.FILL); 
-
-        //Arc
         if(this.distance > blrAddress.getBuffer()){
         	mPaint.setColor(Color.parseColor("#58c2cb"));
         }else{        	
         	mPaint.setColor(Color.parseColor("#d64d4d"));
         }
-        mPaint.setStrokeWidth(convertDpToPixel(15, this.context));
+        mPaint.setStrokeWidth(convertDpToPixel(16));    
+        
+        Float defaultPxArc = convertDpToPixel(8);
         RectF box = new RectF(defaultPxArc,defaultPxArc,getWidth()-defaultPxArc,getWidth()-defaultPxArc);
+        Float sweep = 360 * this.percent * 0.01f;
+        canvas.drawArc(box, 270, sweep, false, mPaint);    
+    	
+        Paint circleCenter = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.DITHER_FLAG | Paint.ANTI_ALIAS_FLAG);
+        circleCenter.setColor(Color.parseColor("#323a45"));
+        circleCenter.setStyle(Paint.Style.FILL);
+        canvas.drawCircle(getWidth()/2, getWidth()/2, getWidth() / 2  - convertDpToPixel(15) , circleCenter);
         
-        float sweep = 360 * this.percent * 0.01f;
-        
-        Paint txtPctg = new Paint(); 
-        txtPctg.setColor(Color.WHITE); 
-        txtPctg.setTextSize(convertDpToPixel(40, this.context));
-        txtPctg.setTextAlign(Paint.Align.CENTER);
-        txtPctg.setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/Signika-Semibold.ttf"));
-        
-        Paint txtDistance = new Paint(); 
-        txtDistance.setColor(Color.WHITE); 
-        txtDistance.setTextSize(convertDpToPixel(15, this.context));
-        txtDistance.setTextAlign(Paint.Align.CENTER);
-        txtDistance.setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/Signika-Semibold.ttf"));
-        
-        canvas.drawCircle(getWidth()/2, getWidth()/2, getWidth() / 2  - convertDpToPixel(15, this.context) , circleCenter);
-        canvas.drawArc(box, 270, sweep, false, mPaint);        
+        if(textCircle == null){
+        	drawPctgDistance(canvas);        	
+        }else{
+        	drawTextCircle(canvas);
+        }
+    }
+    
+    private void drawTextCircle(Canvas canvas) {
+    	
+    	canvas.drawText(textCircle, getWidth() / 2, (getHeight() / 2 + convertDpToPixel(10)), textPaint(30));
+    	
+	}
+
+	private void drawPctgDistance(Canvas canvas){
         
         DecimalFormat df = new DecimalFormat("#");
-        if(this.distance > blrAddress.getBuffer()){
-        	canvas.drawText(df.format(this.percent.floatValue()), getWidth()/2, getHeight()/2, txtPctg);
-        	canvas.drawText("%", getWidth()/2+convertDpToPixel((this.percent.floatValue()<10)?20:30, this.context), getHeight()/2 - convertDpToPixel(15, this.context), txtDistance);
-        }else{        	
-        	canvas.drawText(this.context.getString(R.string.stop), getWidth()/2, getHeight()/2, txtPctg);
-        }
-        
-        if(distance > 2000){
-        	df = new DecimalFormat("#.##");
-        	canvas.drawText(df.format(this.distance/1000), getWidth()/2, getHeight()/2+convertDpToPixel(25, this.context), txtDistance);
-        	canvas.drawText(this.context.getString(R.string.km), getWidth()/2, getHeight()/2+convertDpToPixel(40, this.context), txtDistance);
-        }else{
-        	df = new DecimalFormat("#");
-        	canvas.drawText(df.format(this.distance), getWidth()/2, getHeight()/2+convertDpToPixel(25, this.context), txtDistance);
-        	canvas.drawText(this.context.getString(R.string.meters), getWidth()/2, getHeight()/2+convertDpToPixel(40, this.context), txtDistance);
-        }
-        
+        	
+    	canvas.drawText(df.format(this.percent.floatValue()), getWidth()/2, getHeight()/2, textPaint(40));
+    	
+    	Float leftPos = null;
+    	if(this.percent.floatValue()<10){
+    		leftPos = getWidth()/2+convertDpToPixel(25);
+    	}else if(this.percent.floatValue() <= 99){
+    		leftPos = getWidth()/2+convertDpToPixel(30);
+    	}else{
+    		leftPos = getWidth()/2+convertDpToPixel(40);
+    	}
+    	canvas.drawText("%", leftPos , getHeight()/2 - convertDpToPixel(15), textPaint(15));
+    	
+    	df = new DecimalFormat("#.##");
+    	if(distance > 2000){
+    		canvas.drawText(df.format(this.distance/1000), getWidth()/2, getHeight()/2+convertDpToPixel(25), textPaint(15));
+    		canvas.drawText(this.context.getString(R.string.km), getWidth()/2, getHeight()/2+convertDpToPixel(40), textPaint(15));
+    	}else{
+    		df = new DecimalFormat("#");
+    		canvas.drawText(df.format(this.distance), getWidth()/2, getHeight()/2+convertDpToPixel(25), textPaint(15));
+    		canvas.drawText(this.context.getString(R.string.meters), getWidth()/2, getHeight()/2+convertDpToPixel(40), textPaint(15));
+    	}
+    	
     }
+    
+	private Paint textPaint(Integer fontSize) {
+		Paint text = new Paint();
+		text.setColor(Color.WHITE);
+		text.setTextSize(convertDpToPixel(fontSize));
+		text.setTextAlign(Paint.Align.CENTER);
+		text.setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/Signika-Semibold.ttf"));
+		return text;
+	}
     
     /**
      * This method converts dp unit to equivalent pixels, depending on device density. 
@@ -105,10 +142,10 @@ public class PctgDistanceView extends View {
      * @param context Context to get resources and device specific display metrics
      * @return A float value to represent px equivalent to dp depending on device density
      */
-    public static float convertDpToPixel(float dp, Context context){
+    public Float convertDpToPixel(float dp){
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
-        float px = dp * (metrics.densityDpi / 160f);
+        Float px = dp * (metrics.densityDpi / 160f);
         
         return px;
     }
@@ -120,10 +157,31 @@ public class PctgDistanceView extends View {
      * @param context Context to get resources and device specific display metrics
      * @return A float value to represent dp equivalent to px value
      */
-    public static float convertPixelsToDp(float px, Context context){
+    public Float convertPixelsToDp(float px){
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
         float dp = px / (metrics.densityDpi / 160f);
         return dp;
     }
+
+	@Override
+	public void onClick(View v) {
+		 Toast.makeText(getContext(), "Mock", Toast.LENGTH_SHORT).show();
+		
+		Intent data;
+		
+		if(statusAlarm){
+			data = new Intent("stopTrackingInfo");
+			context.sendBroadcast(data);
+			
+			data = new Intent("stopTrackingMap");
+			context.sendBroadcast(data);
+		}else{
+			data = new Intent("startTrackingInfo");
+			context.sendBroadcast(data);
+			
+			data = new Intent("startTrackingMap");
+			context.sendBroadcast(data);
+		}				
+	}
 }

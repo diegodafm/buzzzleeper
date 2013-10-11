@@ -45,6 +45,10 @@ public class TrackingActivity extends Activity {
 	private MediaPlayer mediaPlayer;
 
 	private Boolean arrived = Boolean.FALSE;
+	
+	private Boolean statusAlarm = Boolean.FALSE;
+	
+	private BroadcastReceiver receiver;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,33 +66,27 @@ public class TrackingActivity extends Activity {
 			displayData();
 			setupStopAlarm();
 			setupBtnBackHome();
-			setupCirclePctg(0f,0d);
+			registerReceiver();
 			startTracking();			
 		}
 	}
 
 	@Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-	}
-	
-	@Override
     public void onBackPressed() {
         super.onBackPressed();
-        if(mediaPlayer.isPlaying()){
-        	mediaPlayer.stop();
-        }
-        alarm.cancelAlarm(getApplicationContext());
-        this.finish();
+        stopActivity();
     }
 	
 	private void startTracking(){
-		alarm = new AlarmService();
+		statusAlarm = Boolean.TRUE;
+		setupCirclePctg(0f,0d, getString(R.string.starting));
 		IntentFilter tracking = new IntentFilter("trackingInfo");
-		IntentFilter stopTracking = new IntentFilter("stopTrackingInfo");
+		alarm = new AlarmService();
 		alarm.setAlarm(getApplicationContext(),tracking);
-		BroadcastReceiver receiver = new BroadcastReceiver() {
+	}
+	
+	private void registerReceiver(){
+		receiver = new BroadcastReceiver() {
 		  public void onReceive(Context context, Intent intent) {
 			  
 		    if(intent.getAction().equals("trackingInfo")) {
@@ -99,10 +97,20 @@ public class TrackingActivity extends Activity {
 		    if(intent.getAction().equals("stopTrackingInfo")) {
 		    	stopTracking();
 		    }
+		    
+		    if(intent.getAction().equals("stopActivityInfo")) {
+		    	stopActivity();
+		    }
+		    
+		    if(intent.getAction().equals("startTrackingInfo")) {
+		    	startTracking();
+		    }
 		  }
 		};
-		registerReceiver(receiver, tracking);
-		registerReceiver(receiver, stopTracking);
+
+		registerReceiver(receiver, new IntentFilter("trackingInfo"));
+		registerReceiver(receiver, new IntentFilter("stopTrackingInfo"));
+		registerReceiver(receiver, new IntentFilter("startTrackingInfo"));
 	}
 	
 	private void setupBtnBackHome() {
@@ -117,8 +125,7 @@ public class TrackingActivity extends Activity {
 	
 	private void displayData(){
 
-		signikaSemibold = Typeface.createFromAsset(getAssets(),
-				"fonts/Signika-Semibold.ttf");
+		signikaSemibold = Typeface.createFromAsset(getAssets(),"fonts/Signika-Semibold.ttf");
 
 		TextView name = (TextView) findViewById(R.id.txtTitle);
 		name.setText(blrAddress.getName());
@@ -138,8 +145,7 @@ public class TrackingActivity extends Activity {
 		ringtone.setTypeface(signikaSemibold);
 
 		TextView coordinates = (TextView) findViewById(R.id.trackingTxtCoordinates);
-		coordinates.setText(String.format("%.7f", blrAddress.getLat())
-				+ ", " + String.format("%.7f", blrAddress.getLng()));
+		coordinates.setText(String.format("%.7f", blrAddress.getLat()) + ", " + String.format("%.7f", blrAddress.getLng()));
 		coordinates.setTypeface(signikaSemibold);
 		
 	}
@@ -149,8 +155,7 @@ public class TrackingActivity extends Activity {
 		button.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				alarm.cancelAlarm(getApplicationContext());
-				mediaPlayer.stop();
+				stopTracking();
 			}
 		});
 	}
@@ -160,36 +165,46 @@ public class TrackingActivity extends Activity {
 		if(firstDistanceDetected == null || firstDistanceDetected < distance){
 			firstDistanceDetected = distance;
 		}
-		Double pctg = (100*distance/firstDistanceDetected);
-		setupCirclePctg(100-pctg.floatValue(),distance);
+		Double pctg = (100 - (100*distance/firstDistanceDetected));
+				
+		if(arrived){
+			setupCirclePctg(pctg.floatValue(),distance,getString(R.string.stop));
+		}else{
+			setupCirclePctg(pctg.floatValue(),distance);			
+		}
+				
 		if (distance < (blrAddress.getBuffer().doubleValue())) {
 			if (!arrived) {
 				arrived = true;
-				playSound(getAlarmUri());
-				openBtnStop();
+				playSound();
 			}
 		}
 	}
-
-	private void openBtnStop() {
-		Button button = (Button) findViewById(R.id.btnStopAlarm);
-		button.setVisibility(1);
-	}
-
-	public void stopTracking() {
-		if(mediaPlayer.isPlaying()){
-        	mediaPlayer.stop();
-        }
-        alarm.cancelAlarm(getApplicationContext());
-        this.finish();
+	
+	
+	public void stopActivity() {
+		stopTracking();		
+		this.finish();
 	}
 	
-	public void stopTracking(Boolean stopAll) {
+	public void stopActivity(Boolean stopAll) {
 		stopTracking();
 		alarm.cancelAlarm(getApplicationContext());
 		Intent data = new Intent("stopTrackingMap");
 		sendBroadcast(data);
 	}
+
+	public void stopTracking() {
+		statusAlarm = Boolean.FALSE;
+		
+		if(mediaPlayer.isPlaying()){
+			mediaPlayer.stop();
+		}
+		alarm.cancelAlarm(getApplicationContext());
+		
+		setupCirclePctg(0f,0d, getString(R.string.start));
+	}
+	
 
 	public Double getCurrentDistance(Location location) {
 		Double distance;
@@ -211,11 +226,19 @@ public class TrackingActivity extends Activity {
 	private void setupCirclePctg(Float percent, Double distance) {
 		LinearLayout circle = (LinearLayout) findViewById(R.id.canvasPctgDistance);
 		circle.removeAllViews();
-		pctgView = new PctgDistanceView(getApplicationContext(), percent,distance,blrAddress);
+		pctgView = new PctgDistanceView(getApplicationContext(), percent,distance,statusAlarm,blrAddress);
+		circle.addView(pctgView);
+	}
+	
+	private void setupCirclePctg(Float percent, Double distance, String textCirlce) {
+		LinearLayout circle = (LinearLayout) findViewById(R.id.canvasPctgDistance);
+		circle.removeAllViews();
+		pctgView = new PctgDistanceView(getApplicationContext(), percent,distance,statusAlarm,blrAddress,textCirlce);
 		circle.addView(pctgView);
 	}
 
-	private void playSound(Uri alert) {
+	private void playSound() {
+		Uri alert = getAlarmUri();
 		mediaPlayer = new MediaPlayer();
 		try {
 			mediaPlayer.setDataSource(getApplicationContext(), alert);
@@ -231,8 +254,6 @@ public class TrackingActivity extends Activity {
 		}
 	}
 
-	// Get an alarm sound. Try for an alarm. If none set, try notification,
-	// Otherwise, ringtone.
 	private Uri getAlarmUri() {
 		Uri alarmUri = null;
 
@@ -251,10 +272,9 @@ public class TrackingActivity extends Activity {
 			}
 		}
 		cursor.close();
-
+		if(alarmUri == null){
+			alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+		}
 		return alarmUri;
 	}
-
-	
-
 }

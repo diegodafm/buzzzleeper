@@ -211,6 +211,7 @@
                             android:background="@drawable/btn_theme_error_inverse" >
 
                             <TextView
+                                android:id="@+id/txtBtnCancel"
                                 style="@style/btnContentCancel"
                                 android:text="@string/cancel" />
                         </RelativeLayout>
@@ -244,6 +245,7 @@
                             android:background="@drawable/btn_theme_default_inverse" >
 
                             <TextView
+                                android:id="@+id/txtBtnConfirm"
                                 style="@style/btnContentConfirm"
                                 android:text="@string/confirm" />
                         </RelativeLayout>

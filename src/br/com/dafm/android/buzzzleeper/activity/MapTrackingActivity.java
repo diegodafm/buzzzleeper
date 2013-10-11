@@ -35,6 +35,9 @@ public class MapTrackingActivity extends FragmentActivity {
 	private AlarmService alarm;
 	
 	private AddressDAO addressDAO;
+
+	private BroadcastReceiver receiver;
+	
 	@Override
 	 public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
@@ -48,6 +51,7 @@ public class MapTrackingActivity extends FragmentActivity {
 	  blrPoint = new LatLng(blrAddress.getLat(), blrAddress.getLng());
 	  setupMap();
 	  setupBtnBackHome();
+	  registerReceiver();
 	  startTracking();	  
 	}
 	
@@ -65,7 +69,7 @@ public class MapTrackingActivity extends FragmentActivity {
 		btnAddAddress.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				stopTracking(true);
+				stopActivity(true);
 				onBackPressed();
 			}
 		});
@@ -104,26 +108,36 @@ public class MapTrackingActivity extends FragmentActivity {
 	private void startTracking(){
 		alarm = new AlarmService();
 		IntentFilter trackingMap = new IntentFilter("trackingMap");
-		IntentFilter stopTrackingMap = new IntentFilter("stopTrackingMap");
 		alarm.setAlarm(getApplicationContext(),trackingMap);
-		BroadcastReceiver receiver = new BroadcastReceiver() {
-		  public void onReceive(Context context, Intent intent) {
-		    if(intent.getAction().equals("trackingMap")) {
-		    	Location location = (Location) intent.getExtras().get("location");
-		    	Double distance = getCurrentDistance(location);	    	
-		    	if(distance <=  blrAddress.getBuffer()){
-		    		updateMarker();
-		    	}
-		    }
+	}	
+	
+	private void registerReceiver(){
+		receiver = new BroadcastReceiver() {
+			public void onReceive(Context context, Intent intent) {
+				
+				if(intent.getAction().equals("trackingMap")) {
+					Location location = (Location) intent.getExtras().get("location");
+					Double distance = getCurrentDistance(location);	    	
+					
+					if(distance <=  blrAddress.getBuffer()){
+						updateMarker();
+					}
+				}
 		    
-		    if(intent.getAction().equals("stopTrackingMap")) {
-		    	stopTracking();
-		    }
+			    if(intent.getAction().equals("stopTrackingMap")) {
+			    	stopTracking();
+			    }
+		    
+			    if(intent.getAction().equals("startTrackingMap")) {
+			    	startTracking();
+			    }
 		  }
 		};
-		registerReceiver(receiver, trackingMap);
-		registerReceiver(receiver, stopTrackingMap);
-	}	
+
+		registerReceiver(receiver, new IntentFilter("trackingMap"));
+		registerReceiver(receiver, new IntentFilter("stopTrackingMap"));
+		registerReceiver(receiver, new IntentFilter("startTrackingMap"));
+	}
 	
 	public Double getCurrentDistance(Location location) {
 		Double distance;
@@ -141,7 +155,7 @@ public class MapTrackingActivity extends FragmentActivity {
 		alarm.cancelAlarm(getApplicationContext());
 	}
 
-	private void stopTracking(Boolean stopAll){
+	private void stopActivity(Boolean stopAll){
 		alarm.cancelAlarm(getApplicationContext());
 		Intent data = new Intent("stopTrackingInfo");
 		sendBroadcast(data);

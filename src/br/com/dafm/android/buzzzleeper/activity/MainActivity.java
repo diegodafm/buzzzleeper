@@ -5,12 +5,14 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -26,6 +28,8 @@ public class MainActivity extends Activity {
 	private AddressDAO addressDAO;
 
 	private List<BlrAddress> addresses;
+	
+	private Typeface signikaSemibold;
 
 	GeocoderNetwork geocoderNetwork;
 
@@ -38,6 +42,7 @@ public class MainActivity extends Activity {
 
 		setupBtnAddAddress();
 
+		setupFontFace();
 		insertItemsTeste();
 		getBusStopList();
 	}
@@ -92,18 +97,18 @@ public class MainActivity extends Activity {
 	}
 
 	private View buildViewItems(final BlrAddress blrAddress) {
-		final View view = LayoutInflater.from(getApplicationContext()).inflate(
-				R.layout.bus_stop_item, null);
+		final View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.bus_stop_item, null);
 
 		TextView txtName = (TextView) view.findViewById(R.id.blrName);
 		txtName.setText(blrAddress.getName());
+		txtName.setTypeface(this.signikaSemibold);
 
 		TextView txtAddress = (TextView) view.findViewById(R.id.blrAddress);
 		txtAddress.setText(blrAddress.getAddress());
+		txtAddress.setTypeface(this.signikaSemibold);
 
 		ImageView imgMap = (ImageView) view.findViewById(R.id.blrImgMap);
-		String imgPath = getFilesDir() + "/" + "blrAddress_"
-				+ blrAddress.getId() + ".png";
+		String imgPath = getFilesDir() + "/" + "blrAddress_" + blrAddress.getId() + ".png";
 		if (BitmapFactory.decodeFile(imgPath) == null) {
 			new Thread(new Runnable() {
 				public void run() {
@@ -112,13 +117,11 @@ public class MainActivity extends Activity {
 							getApplicationContext());
 				}
 			}).start();
-
 		} else {
 			imgMap.setImageBitmap(BitmapFactory.decodeFile(imgPath));
 		}
 
-		LinearLayout btnShowDetails = (LinearLayout) view
-				.findViewById(R.id.btnShowDetails);
+		LinearLayout btnShowDetails = (LinearLayout) view.findViewById(R.id.btnShowDetails);
 		btnShowDetails.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -128,8 +131,7 @@ public class MainActivity extends Activity {
 			}
 		});
 
-		LinearLayout btnStartTracking = (LinearLayout) view
-				.findViewById(R.id.btnStartActivity);
+		LinearLayout btnStartTracking = (LinearLayout) view.findViewById(R.id.btnStartActivity);
 		btnStartTracking.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -177,5 +179,11 @@ public class MainActivity extends Activity {
 			addressDAO.save(blrAddress);
 		
 		}
+	}
+	
+	private void setupFontFace() {
+		this.signikaSemibold = Typeface.createFromAsset(getAssets(),"fonts/Signika-Semibold.ttf");
+		TextView textView =  (TextView) findViewById(R.id.txtTitleMain);
+		textView.setTypeface(this.signikaSemibold);
 	}
 }
