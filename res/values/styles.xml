@@ -268,7 +268,7 @@
     
     <!-- TAB -->
 	<style name="tabWidget">
-	    <item name="android:background">@drawable/tab_selector</item>
+	    <item name="android:height">60dip</item>
 	</style>
 	<!--/TAB -->
 

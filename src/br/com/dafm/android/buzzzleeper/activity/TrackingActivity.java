@@ -58,27 +58,12 @@ public class TrackingActivity extends Activity {
 			addressDAO = new AddressDAO(getApplicationContext());
 			String value = extras.get("BLR_ADDRESS_ID").toString();
 			blrAddress = addressDAO.findById(Integer.parseInt(value));
-			
-			mediaPlayer = new MediaPlayer();
-			
-			setupCirclePctg(0f,0d);
-			alarm = new AlarmService();
-			
-			final IntentFilter intentFilter = new IntentFilter("trackingInfo");
-			alarm.setAlarm(getApplicationContext(),intentFilter);
-			BroadcastReceiver receiver = new BroadcastReceiver() {
-			  public void onReceive(Context context, Intent intent) {
-			    if(intent.getAction().equals(intentFilter)) {
-			    	Location location = (Location) intent.getExtras().get("location");
-			    	displayDistance(location);
-			    }
-			  }
-			};
-			registerReceiver(receiver, intentFilter);
-			
+			mediaPlayer = new MediaPlayer();			
 			displayData();
 			setupStopAlarm();
 			setupBtnBackHome();
+			setupCirclePctg(0f,0d);
+			startTracking();			
 		}
 	}
 
@@ -94,11 +79,31 @@ public class TrackingActivity extends Activity {
         if(mediaPlayer.isPlaying()){
         	mediaPlayer.stop();
         }
-        
         alarm.cancelAlarm(getApplicationContext());
-        
         this.finish();
     }
+	
+	private void startTracking(){
+		alarm = new AlarmService();
+		IntentFilter tracking = new IntentFilter("trackingInfo");
+		IntentFilter stopTracking = new IntentFilter("stopTrackingInfo");
+		alarm.setAlarm(getApplicationContext(),tracking);
+		BroadcastReceiver receiver = new BroadcastReceiver() {
+		  public void onReceive(Context context, Intent intent) {
+			  
+		    if(intent.getAction().equals("trackingInfo")) {
+		    	Location location = (Location) intent.getExtras().get("location");
+		    	displayDistance(location);
+		    }
+		    
+		    if(intent.getAction().equals("stopTrackingInfo")) {
+		    	stopTracking();
+		    }
+		  }
+		};
+		registerReceiver(receiver, tracking);
+		registerReceiver(receiver, stopTracking);
+	}
 	
 	private void setupBtnBackHome() {
 		RelativeLayout btnAddAddress = (RelativeLayout) findViewById(R.id.btnArrowBack);
@@ -172,7 +177,18 @@ public class TrackingActivity extends Activity {
 	}
 
 	public void stopTracking() {
-		mediaPlayer.stop();
+		if(mediaPlayer.isPlaying()){
+        	mediaPlayer.stop();
+        }
+        alarm.cancelAlarm(getApplicationContext());
+        this.finish();
+	}
+	
+	public void stopTracking(Boolean stopAll) {
+		stopTracking();
+		alarm.cancelAlarm(getApplicationContext());
+		Intent data = new Intent("stopTrackingMap");
+		sendBroadcast(data);
 	}
 
 	public Double getCurrentDistance(Location location) {
@@ -195,7 +211,7 @@ public class TrackingActivity extends Activity {
 	private void setupCirclePctg(Float percent, Double distance) {
 		LinearLayout circle = (LinearLayout) findViewById(R.id.canvasPctgDistance);
 		circle.removeAllViews();
-		pctgView = new PctgDistanceView(getApplicationContext(), percent,distance);
+		pctgView = new PctgDistanceView(getApplicationContext(), percent,distance,blrAddress);
 		circle.addView(pctgView);
 	}
 

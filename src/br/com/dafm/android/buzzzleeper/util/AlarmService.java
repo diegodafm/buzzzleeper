@@ -6,11 +6,11 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.location.Criteria;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.PowerManager;
-import android.widget.Toast;
 import br.com.dafm.android.buzzzleeper.listener.MyLocationListener;
 
 public class AlarmService extends BroadcastReceiver {
@@ -29,15 +29,15 @@ public class AlarmService extends BroadcastReceiver {
 		wl.release();
 	}
 
-	public void setAlarm(Context context) {
+	public void setAlarm(Context context, IntentFilter filter) {
 		AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-		Intent i = new Intent(context, AlarmService.class);
-		PendingIntent pi = PendingIntent.getBroadcast(context, 0, i, 0);
+		Intent intent = new Intent(context, AlarmService.class);
+		PendingIntent pi = PendingIntent.getBroadcast(context, 0, intent, 0);
 		am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),1000 * 10, pi);
 		
 		
 		locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-		locationListener = new MyLocationListener(context);  
+		locationListener = new MyLocationListener(context, filter);  
 		
 		Criteria criteria = new Criteria();
 		criteria.setAccuracy(Criteria.ACCURACY_FINE);

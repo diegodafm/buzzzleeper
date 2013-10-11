@@ -2,6 +2,7 @@ package br.com.dafm.android.buzzzleeper.listener;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
@@ -10,17 +11,17 @@ public class MyLocationListener implements LocationListener {
 	
 	private Context context;
 	
-	private Intent intentFilter;
+	private IntentFilter filter;
 	
-	public MyLocationListener(Context context, Intent intentFilter) {
+	public MyLocationListener(Context context, IntentFilter filter) {
 		super();
 		this.context = context;
-		this.intentFilter = intentFilter;
+		this.filter = filter;
 	}
 
 	@Override
 	public void onLocationChanged(Location loc) {
-		Intent data = new Intent(this.intentFilter);
+		Intent data = new Intent(this.filter.getAction(0));
 		data.putExtra("location", loc);
 		context.sendBroadcast(data);
 	}

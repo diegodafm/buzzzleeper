@@ -203,23 +203,31 @@ public class AddAddress extends FragmentActivity {
 	private void addMarker(LatLng point) {
 		if (point != null) {
 			Integer radius = buffer.getProgress();
+			if(blrAddress.getBuffer() != null){
+				radius = blrAddress.getBuffer();
+			}
 
 			googleMap.clear();
-			CircleOptions circleOptions = new CircleOptions().center(point)
-					.radius(radius).fillColor(0x40ff0000)
-					.strokeColor(Color.BLUE).strokeWidth(5);
+			CircleOptions circleOptions = new CircleOptions();
+			circleOptions.center(point);
+			circleOptions.radius(radius);
+			circleOptions.fillColor(0x4058c2cb);
+			circleOptions.strokeColor(Color.parseColor("#58c2cb"));
+			circleOptions.strokeWidth(5);
 			googleMap.addCircle(circleOptions);
 			googleMap.addMarker(new MarkerOptions().position(point));
 
-			RelativeLayout rlInfoMap = (RelativeLayout) this
-					.findViewById(R.id.rlInfoMap);
+			RelativeLayout rlInfoMap = (RelativeLayout) this.findViewById(R.id.rlInfoMap);
 			rlInfoMap.setVisibility(0);
 
-			TextView coordinates = (TextView) this
-					.findViewById(R.id.txtCoordinates);
-			coordinates.setText("Latitude: "
-					+ String.format("%.7f", point.latitude) + ", Longitude: "
-					+ String.format("%.7f", point.longitude));
+			TextView coordinates = (TextView) this.findViewById(R.id.txtCoordinates);
+			
+			StringBuilder coord = new StringBuilder();
+			coord.append(getString(R.string.latitude));
+			coord.append(" ").append(String.format("%.7f", point.latitude));
+			coord.append(", ").append(getString(R.string.longitude));
+			coord.append(" ").append(String.format("%.7f", point.longitude));
+			coordinates.setText(coord.toString());
 
 			TextView addressLocation = (TextView) this
 					.findViewById(R.id.txtAddressLocation);

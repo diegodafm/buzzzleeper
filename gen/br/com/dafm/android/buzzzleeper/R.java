@@ -158,6 +158,7 @@ containing a value of this type.
         public static final int grayText=0x7f040012;
         public static final int inputBackgroundColor=0x7f040015;
         public static final int inputTextColor=0x7f040016;
+        public static final int text_tab_selector=0x7f040019;
         public static final int white=0x7f040014;
     }
     public static final class dimen {
@@ -239,38 +240,40 @@ containing a value of this type.
         public static final int ic_send_white=0x7f020041;
         public static final int ic_tab_info=0x7f020042;
         public static final int ic_tab_info_deactivated=0x7f020043;
-        public static final int ic_tab_map=0x7f020044;
-        public static final int ic_tab_map_deactivated=0x7f020045;
-        public static final int ic_tags_silver=0x7f020046;
-        public static final int list_activated_holo=0x7f020047;
-        public static final int list_focused_holo=0x7f020048;
-        public static final int list_longpressed_holo=0x7f020049;
-        public static final int list_pressed_holo_light=0x7f02004a;
-        public static final int list_selector_background_transition_holo_light=0x7f02004b;
-        public static final int list_selector_disabled_holo_light=0x7f02004c;
-        public static final int list_selector_holo_light=0x7f02004d;
-        public static final int progress=0x7f02004e;
-        public static final int progress_thumb=0x7f02004f;
-        public static final int scrubber_control=0x7f020050;
-        public static final int scrubber_control_disabled_holo=0x7f020051;
-        public static final int scrubber_control_focused_holo=0x7f020052;
-        public static final int scrubber_control_normal_holo=0x7f020053;
-        public static final int scrubber_control_pressed_holo=0x7f020054;
-        public static final int scrubber_primary_holo=0x7f020055;
-        public static final int scrubber_progress=0x7f020056;
-        public static final int scrubber_secondary_holo=0x7f020057;
-        public static final int scrubber_track_holo_light=0x7f020058;
-        public static final int spinner_background_holo_light=0x7f020059;
-        public static final int spinner_default_holo_light=0x7f02005a;
-        public static final int spinner_disabled_holo_light=0x7f02005b;
-        public static final int spinner_focused_holo_light=0x7f02005c;
-        public static final int spinner_pressed_holo_light=0x7f02005d;
-        public static final int tab_focused=0x7f02005e;
-        public static final int tab_indicator=0x7f02005f;
-        public static final int tab_pressed=0x7f020060;
-        public static final int tab_selected=0x7f020061;
-        public static final int tab_selector=0x7f020062;
-        public static final int tab_unselected=0x7f020063;
+        public static final int ic_tab_info_selector=0x7f020044;
+        public static final int ic_tab_map=0x7f020045;
+        public static final int ic_tab_map_deactivated=0x7f020046;
+        public static final int ic_tab_map_selector=0x7f020047;
+        public static final int ic_tags_silver=0x7f020048;
+        public static final int list_activated_holo=0x7f020049;
+        public static final int list_focused_holo=0x7f02004a;
+        public static final int list_longpressed_holo=0x7f02004b;
+        public static final int list_pressed_holo_light=0x7f02004c;
+        public static final int list_selector_background_transition_holo_light=0x7f02004d;
+        public static final int list_selector_disabled_holo_light=0x7f02004e;
+        public static final int list_selector_holo_light=0x7f02004f;
+        public static final int progress=0x7f020050;
+        public static final int progress_thumb=0x7f020051;
+        public static final int scrubber_control=0x7f020052;
+        public static final int scrubber_control_disabled_holo=0x7f020053;
+        public static final int scrubber_control_focused_holo=0x7f020054;
+        public static final int scrubber_control_normal_holo=0x7f020055;
+        public static final int scrubber_control_pressed_holo=0x7f020056;
+        public static final int scrubber_primary_holo=0x7f020057;
+        public static final int scrubber_progress=0x7f020058;
+        public static final int scrubber_secondary_holo=0x7f020059;
+        public static final int scrubber_track_holo_light=0x7f02005a;
+        public static final int spinner_background_holo_light=0x7f02005b;
+        public static final int spinner_default_holo_light=0x7f02005c;
+        public static final int spinner_disabled_holo_light=0x7f02005d;
+        public static final int spinner_focused_holo_light=0x7f02005e;
+        public static final int spinner_pressed_holo_light=0x7f02005f;
+        public static final int tab_focused=0x7f020060;
+        public static final int tab_indicator=0x7f020061;
+        public static final int tab_pressed=0x7f020062;
+        public static final int tab_selected=0x7f020063;
+        public static final int tab_selector=0x7f020064;
+        public static final int tab_unselected=0x7f020065;
     }
     public static final class id {
         public static final int addAddressScrollView=0x7f050005;
@@ -481,6 +484,7 @@ containing a value of this type.
         public static final int ringtoneCannotBeIsEmpty=0x7f06002c;
         public static final int save=0x7f06001d;
         public static final int setRingtone=0x7f060027;
+        public static final int stop=0x7f06003b;
         /**  ADD ADDRESS MGS SUCCESS
          */
         public static final int success=0x7f06002e;

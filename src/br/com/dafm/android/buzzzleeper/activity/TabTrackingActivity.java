@@ -33,13 +33,13 @@ public class TabTrackingActivity extends TabActivity {
 		intent = new Intent().setClass(this, TrackingActivity.class);
 		intent.putExtra("BLR_ADDRESS_ID", idBlrAddress);
 
-		tabSpec = createTab(intent,getText(R.string.info),getText(R.string.info), R.drawable.ic_tab_info);
+		tabSpec = createTab(intent,getText(R.string.info),getText(R.string.info), R.drawable.ic_tab_info_selector);
 	    tabHost.addTab(tabSpec);
 
 		intent = new Intent().setClass(this, MapTrackingActivity.class);
 		intent.putExtra("BLR_ADDRESS_ID", idBlrAddress);
 		
-		tabSpec = createTab(intent,getText(R.string.map),getText(R.string.map), R.drawable.ic_tab_map);
+		tabSpec = createTab(intent,getText(R.string.map),getText(R.string.map), R.drawable.ic_tab_map_selector);
 		tabHost.addTab(tabSpec);
 
 		tabHost.setCurrentTab(0);

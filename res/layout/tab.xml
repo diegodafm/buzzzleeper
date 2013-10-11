@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tabsLayout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:gravity="center"
     android:background="@drawable/tab_indicator"
-    android:orientation="vertical"
-    android:padding="10dip" >
+    android:gravity="center"
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/tab_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleType="fitCenter" />
+        android:textColor="@color/text_tab_selector"
+        android:scaleType="fitCenter"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/tab_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Title"
-        android:textSize="15sp" />
+        android:layout_marginTop="5dip"
+        android:textSize="15sp"
+        tools:ignore="SelectableText" />
 
 </LinearLayout>

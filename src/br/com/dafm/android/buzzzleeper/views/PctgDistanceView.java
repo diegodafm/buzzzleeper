@@ -2,6 +2,7 @@ package br.com.dafm.android.buzzzleeper.views;
 import java.text.DecimalFormat;
 
 import br.com.dafm.android.buzzzleeper.R;
+import br.com.dafm.android.buzzzleeper.entity.BlrAddress;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -24,12 +25,15 @@ public class PctgDistanceView extends View {
     private Context context;
     
     private Double distance;
+    
+    private BlrAddress blrAddress;
 
-    public PctgDistanceView(Context context,Float percent, Double distance) {
+    public PctgDistanceView(Context context,Float percent, Double distance, BlrAddress blrAddress) {
         super(context);            
         this.context = context;
         this.percent = percent;
         this.distance = distance;
+        this.blrAddress = blrAddress;
     }
 
     @Override
@@ -49,7 +53,11 @@ public class PctgDistanceView extends View {
         circleCenter.setStyle(Paint.Style.FILL); 
 
         //Arc
-        mPaint.setColor(Color.parseColor("#58c2cb"));
+        if(this.distance > blrAddress.getBuffer()){
+        	mPaint.setColor(Color.parseColor("#58c2cb"));
+        }else{        	
+        	mPaint.setColor(Color.parseColor("#d64d4d"));
+        }
         mPaint.setStrokeWidth(convertDpToPixel(15, this.context));
         RectF box = new RectF(defaultPxArc,defaultPxArc,getWidth()-defaultPxArc,getWidth()-defaultPxArc);
         
@@ -71,8 +79,12 @@ public class PctgDistanceView extends View {
         canvas.drawArc(box, 270, sweep, false, mPaint);        
         
         DecimalFormat df = new DecimalFormat("#");
-        canvas.drawText(df.format(this.percent.floatValue()), getWidth()/2, getHeight()/2, txtPctg);
-        canvas.drawText("%", getWidth()/2+convertDpToPixel(30, this.context), getHeight()/2 - convertDpToPixel(15, this.context), txtDistance);
+        if(this.distance > blrAddress.getBuffer()){
+        	canvas.drawText(df.format(this.percent.floatValue()), getWidth()/2, getHeight()/2, txtPctg);
+        	canvas.drawText("%", getWidth()/2+convertDpToPixel((this.percent.floatValue()<10)?20:30, this.context), getHeight()/2 - convertDpToPixel(15, this.context), txtDistance);
+        }else{        	
+        	canvas.drawText(this.context.getString(R.string.stop), getWidth()/2, getHeight()/2, txtPctg);
+        }
         
         if(distance > 2000){
         	df = new DecimalFormat("#.##");
@@ -114,26 +126,4 @@ public class PctgDistanceView extends View {
         float dp = px / (metrics.densityDpi / 160f);
         return dp;
     }
-/*
-  @Override
-    public void onDraw(Canvas c) {
-        fullRect.right = getWidth();
-        fullRect.bottom = getHeight();
-
-        c.drawBitmap(bgBitmap, null, fullRect, null);
-
-        float angle = SystemClock.uptimeMillis() % 3600 / 10.0f;
-
-        clipPath.reset();
-        clipPath.setLastPoint(getWidth() / 2, getHeight() / 2);
-        clipPath.lineTo(getWidth() / 2, getHeight());
-        clipPath.arcTo(fullRect, -90, angle);
-        clipPath.lineTo(getWidth() / 2, getHeight() / 2);
-        c.clipPath(clipPath);
-
-        c.drawBitmap(fgBitmap, null, fullRect, null);
-
-        invalidate();
-    }   
- * */
 }

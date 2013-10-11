@@ -129,9 +129,12 @@ public class ShowAddress extends FragmentActivity {
 
 	private void addMarker(LatLng point) {
 		googleMap.clear();
-		CircleOptions circleOptions = new CircleOptions().center(point)
-				.radius(blrAddress.getBuffer()).fillColor(0x40ff0000)
-				.strokeColor(Color.BLUE).strokeWidth(5);
+		CircleOptions circleOptions = new CircleOptions();
+		circleOptions.center(point);
+		circleOptions.radius(blrAddress.getBuffer());
+		circleOptions.fillColor(0x4058c2cb);
+		circleOptions.strokeColor(Color.parseColor("#58c2cb"));
+		circleOptions.strokeWidth(5);
 		googleMap.addCircle(circleOptions);
 		googleMap.addMarker(new MarkerOptions().position(point));
 
