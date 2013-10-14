@@ -293,7 +293,6 @@ containing a value of this type.
         public static final int btnSearchGPS=0x7f05000a;
         public static final int btnShowDetails=0x7f050021;
         public static final int btnStartActivity=0x7f050022;
-        public static final int btnStopAlarm=0x7f05003c;
         public static final int buzzzleepList=0x7f050023;
         public static final int canvasPctgDistance=0x7f050037;
         public static final int flTitle=0x7f050024;
@@ -305,13 +304,12 @@ containing a value of this type.
         public static final int icPinMap=0x7f05000e;
         public static final int list=0x7f050025;
         public static final int llTracking=0x7f050035;
-        public static final int llTrackingMapView=0x7f05003d;
         public static final int logo=0x7f050026;
-        public static final int menuEditBusStop=0x7f050040;
-        public static final int menuItemAddressEdit=0x7f050041;
-        public static final int menuItemAddressRemove=0x7f050042;
-        public static final int menuRemoveBusStop=0x7f05003f;
-        public static final int menu_settings=0x7f05003e;
+        public static final int menuEditBusStop=0x7f05003e;
+        public static final int menuItemAddressEdit=0x7f05003f;
+        public static final int menuItemAddressRemove=0x7f050040;
+        public static final int menuRemoveBusStop=0x7f05003d;
+        public static final int menu_settings=0x7f05003c;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
         public static final int rlAddAddress=0x7f050007;

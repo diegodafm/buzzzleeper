@@ -50,33 +50,40 @@
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/app_name"
             android:theme="@style/Theme.BuzzzleeperTheme" />
+        
         <activity
             android:name="br.com.dafm.android.buzzzleeper.activity.TabTrackingActivity"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/app_name"
             android:theme="@style/Theme.BuzzzleeperTheme" />
+        
         <activity
             android:name="br.com.dafm.android.buzzzleeper.activity.ShowAddress"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         
-        <activity android:name="br.com.dafm.android.buzzzleeper.activity.TrackingActivity" />
-        <activity android:name="br.com.dafm.android.buzzzleeper.activity.MapTrackingActivity" />
+        <activity
+            android:name="br.com.dafm.android.buzzzleeper.activity.TrackingActivity"
+            android:configChanges="keyboardHidden|orientation" />
+        
+        <activity
+            android:name="br.com.dafm.android.buzzzleeper.activity.MapTrackingActivity"
+            android:configChanges="keyboardHidden|orientation" />
 
         <receiver
             android:name="br.com.dafm.android.buzzzleeper.util.AlarmService"
             android:process=":remote" />
 
         <!-- ac-dmendonca -->
-<!--         <meta-data -->
-<!--         	android:name="com.google.android.maps.v2.API_KEY" -->
-<!--         	android:value="AIzaSyCJz-BSavoNuQHr8KDsXw7huV1YyJf4oww" /> -->
+        <meta-data
+        	android:name="com.google.android.maps.v2.API_KEY"
+        	android:value="AIzaSyDNOMt3Pfl6A4a9jppyPfWhwdLLJ7OJdcM" />
         
-        <!-- note-dafm--> 
+        <!-- note-dafm
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyBY0jpMR55nnSphsUfzEoZVdk2JYMorz_8" />
+            android:value="AIzaSyBY0jpMR55nnSphsUfzEoZVdk2JYMorz_8" />--> 
     
     </application>
 

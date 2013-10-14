@@ -136,20 +136,6 @@
                         style="@style/contentBtnShowProperties" />
                 </RelativeLayout>
             </LinearLayout>
-
-            <Button
-                android:id="@+id/btnStopAlarm"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/cancel" />
         </LinearLayout>
     </ScrollView>
-
-    <LinearLayout
-        android:id="@+id/llTrackingMapView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:visibility="gone" >
-    </LinearLayout>
-
 </LinearLayout>

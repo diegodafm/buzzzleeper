@@ -34,11 +34,7 @@ public class TabTrackingActivity extends TabActivity {
 		
 		setupTabs();		
 	}
-	
-	@Override
-	public void onBackPressed() {
-		moveTaskToBack(true);
-	}
+
 	
 	private TabSpec createTab(final Intent intent, final CharSequence charSequence,final CharSequence charSequence2, final int drawable){
         final View tab = LayoutInflater.from(getTabHost().getContext()).inflate(R.layout.tab, null);
@@ -55,7 +51,6 @@ public class TabTrackingActivity extends TabActivity {
 		TabHost.TabSpec tabSpec; 
 		Intent intent;
 
-		// Create an Intent to launch an Activity for the tab (to be reused)
 		intent = new Intent().setClass(this, TrackingActivity.class);
 		intent.putExtra("BLR_ADDRESS_ID", idBlrAddress);
 

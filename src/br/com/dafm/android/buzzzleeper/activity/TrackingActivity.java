@@ -16,9 +16,9 @@ import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -40,7 +40,7 @@ public class TrackingActivity extends Activity {
 	
 	private View pctgView;
 	
-	private Double firstDistanceDetected;
+	private Double greaterDistance;
 	
 	private MediaPlayer mediaPlayer;
 
@@ -64,18 +64,43 @@ public class TrackingActivity extends Activity {
 			blrAddress = addressDAO.findById(Integer.parseInt(value));
 			mediaPlayer = new MediaPlayer();			
 			displayData();
-			setupStopAlarm();
 			setupBtnBackHome();
 			registerReceiver();
-			startTracking();			
+			
+			if(statusAlarm == Boolean.FALSE){
+				startTracking();
+			}
 		}
 	}
 
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_HOME) {
+			moveTaskToBack(true);
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+	
 	@Override
     public void onBackPressed() {
         super.onBackPressed();
         stopActivity();
     }
+	
+	@Override
+	public void onSaveInstanceState(Bundle savedInstanceState) {
+		savedInstanceState.putBoolean("statusAlarm", statusAlarm);  
+		if(greaterDistance != null){
+			savedInstanceState.putDouble("greaterDistance", greaterDistance);
+		}
+  		super.onSaveInstanceState(savedInstanceState);  
+	}  
+
+	@Override  
+	public void onRestoreInstanceState(Bundle savedInstanceState) {
+		  statusAlarm = savedInstanceState.getBoolean("statusAlarm");
+		  greaterDistance = savedInstanceState.getDouble("greaterDistance");
+	}
 	
 	private void startTracking(){
 		statusAlarm = Boolean.TRUE;
@@ -150,27 +175,17 @@ public class TrackingActivity extends Activity {
 		
 	}
 
-	private void setupStopAlarm() {
-		Button button = (Button) findViewById(R.id.btnStopAlarm);
-		button.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				stopTracking();
-			}
-		});
-	}
-	
 	private void displayDistance(Location location){
 		Double distance = getCurrentDistance(location);
-		if(firstDistanceDetected == null || firstDistanceDetected < distance){
-			firstDistanceDetected = distance;
+		if(greaterDistance == null || greaterDistance < distance){
+			greaterDistance = distance;
 		}
-		Double pctg = (100 - (100*distance/firstDistanceDetected));
+		Double pctg = (100 - (100*distance/greaterDistance));
 				
 		if(arrived){
 			setupCirclePctg(pctg.floatValue(),distance,getString(R.string.stop));
 		}else{
-			setupCirclePctg(pctg.floatValue(),distance);			
+			setupCirclePctg(pctg.floatValue(),distance, null);			
 		}
 				
 		if (distance < (blrAddress.getBuffer().doubleValue())) {
@@ -223,17 +238,31 @@ public class TrackingActivity extends Activity {
 		return distance;
 	}
 	
-	private void setupCirclePctg(Float percent, Double distance) {
-		LinearLayout circle = (LinearLayout) findViewById(R.id.canvasPctgDistance);
-		circle.removeAllViews();
-		pctgView = new PctgDistanceView(getApplicationContext(), percent,distance,statusAlarm,blrAddress);
-		circle.addView(pctgView);
-	}
+	
 	
 	private void setupCirclePctg(Float percent, Double distance, String textCirlce) {
 		LinearLayout circle = (LinearLayout) findViewById(R.id.canvasPctgDistance);
 		circle.removeAllViews();
-		pctgView = new PctgDistanceView(getApplicationContext(), percent,distance,statusAlarm,blrAddress,textCirlce);
+		pctgView = new PctgDistanceView(getApplicationContext(), percent,distance,blrAddress,textCirlce);
+		pctgView.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent data;
+				if(statusAlarm){
+					data = new Intent("stopTrackingInfo");
+					sendBroadcast(data);
+					
+					data = new Intent("stopTrackingMap");
+					sendBroadcast(data);
+				}else{
+					data = new Intent("startTrackingInfo");
+					sendBroadcast(data);
+					
+					data = new Intent("startTrackingMap");
+					sendBroadcast(data);
+				}				
+			}
+		});
 		circle.addView(pctgView);
 	}
 

@@ -3,7 +3,6 @@ import java.text.DecimalFormat;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -12,13 +11,11 @@ import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Toast;
 import br.com.dafm.android.buzzzleeper.R;
 import br.com.dafm.android.buzzzleeper.entity.BlrAddress;
 
 @SuppressLint({ "DrawAllocation", "ViewConstructor" })
-public class PctgDistanceView extends View implements View.OnClickListener{
+public class PctgDistanceView extends View{
 
 
     Paint mPaint = new Paint();
@@ -33,27 +30,23 @@ public class PctgDistanceView extends View implements View.OnClickListener{
     
     private String textCircle;
     
-    private Boolean statusAlarm; 
-
 	public PctgDistanceView(Context context, Float percent, Double distance,
-			Boolean status, BlrAddress blrAddress) {
+			BlrAddress blrAddress) {
 		
         super(context);            
         this.context = context;
         this.percent = percent;
         this.distance = distance;
-        this.statusAlarm = status;
         this.blrAddress = blrAddress;
     }
     
 	public PctgDistanceView(Context context, Float percent, Double distance,
-			Boolean status, BlrAddress blrAddress, String textCircle) {
+			BlrAddress blrAddress, String textCircle) {
 		
     	super(context);            
     	this.context = context;
     	this.percent = percent;
     	this.distance = distance;
-    	this.statusAlarm = status;
     	this.blrAddress = blrAddress;
     	this.textCircle = textCircle;
     }
@@ -163,25 +156,4 @@ public class PctgDistanceView extends View implements View.OnClickListener{
         float dp = px / (metrics.densityDpi / 160f);
         return dp;
     }
-
-	@Override
-	public void onClick(View v) {
-		 Toast.makeText(getContext(), "Mock", Toast.LENGTH_SHORT).show();
-		
-		Intent data;
-		
-		if(statusAlarm){
-			data = new Intent("stopTrackingInfo");
-			context.sendBroadcast(data);
-			
-			data = new Intent("stopTrackingMap");
-			context.sendBroadcast(data);
-		}else{
-			data = new Intent("startTrackingInfo");
-			context.sendBroadcast(data);
-			
-			data = new Intent("startTrackingMap");
-			context.sendBroadcast(data);
-		}				
-	}
 }
