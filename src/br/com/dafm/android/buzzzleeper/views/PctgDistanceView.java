@@ -54,7 +54,7 @@ public class PctgDistanceView extends View{
     @Override
     public void onDraw(Canvas canvas) {
     	
-    	canvas.setViewport(getMeasuredWidth(), getMeasuredHeight());
+    	//canvas.setViewport(getMeasuredWidth(), getMeasuredHeight());
     	
 
         Paint mPaint = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.DITHER_FLAG | Paint.ANTI_ALIAS_FLAG);

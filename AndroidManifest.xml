@@ -30,13 +30,14 @@
         android:required="true" />
 
     <application
+        android:name="br.com.dafm.android.buzzzleeper.BuzzzleeperApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
             android:name="br.com.dafm.android.buzzzleeper.activity.MainActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:theme="@style/Theme.BuzzzleeperTheme" >
             <intent-filter>
@@ -47,29 +48,29 @@
         </activity>
         <activity
             android:name="br.com.dafm.android.buzzzleeper.activity.AddAddress"
-            android:configChanges="keyboardHidden|orientation"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:theme="@style/Theme.BuzzzleeperTheme" />
         
         <activity
             android:name="br.com.dafm.android.buzzzleeper.activity.TabTrackingActivity"
-            android:configChanges="keyboardHidden|orientation"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:theme="@style/Theme.BuzzzleeperTheme" />
         
         <activity
             android:name="br.com.dafm.android.buzzzleeper.activity.ShowAddress"
-            android:configChanges="keyboardHidden|orientation"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         
         <activity
             android:name="br.com.dafm.android.buzzzleeper.activity.TrackingActivity"
-            android:configChanges="keyboardHidden|orientation" />
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
         
         <activity
             android:name="br.com.dafm.android.buzzzleeper.activity.MapTrackingActivity"
-            android:configChanges="keyboardHidden|orientation" />
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
 
         <receiver
             android:name="br.com.dafm.android.buzzzleeper.util.AlarmService"

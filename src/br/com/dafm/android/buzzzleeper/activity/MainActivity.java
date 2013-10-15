@@ -3,11 +3,14 @@ package br.com.dafm.android.buzzzleeper.activity;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,8 +24,11 @@ import android.widget.Toast;
 import br.com.dafm.android.buzzzleeper.R;
 import br.com.dafm.android.buzzzleeper.dao.AddressDAO;
 import br.com.dafm.android.buzzzleeper.entity.BlrAddress;
+import br.com.dafm.android.buzzzleeper.util.AndroidUtil;
 import br.com.dafm.android.buzzzleeper.util.GeocoderNetwork;
 import br.com.dafm.android.buzzzleeper.util.ImageService;
+
+import com.google.inject.Inject;
 
 public class MainActivity extends Activity {
 
@@ -31,6 +37,9 @@ public class MainActivity extends Activity {
 	private List<BlrAddress> addresses;
 	
 	private Typeface signikaSemibold;
+	
+	@Inject
+	private AndroidUtil util;
 
 	GeocoderNetwork geocoderNetwork;
 
@@ -41,25 +50,14 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
+		util = new AndroidUtil(getApplicationContext());
 		setupBtnAddAddress();
-
 		setupFontFace();
 		insertItemsTeste();
 		getBusStopList();
+		
 	}
 	
-	 @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
- 
-        // Checks the orientation of the screen for landscape and portrait
-        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
-        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
-            Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
-        }	
-    }
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main, menu);
@@ -70,7 +68,6 @@ public class MainActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		boolean ret;
 		if (item.getItemId() == R.id.menu_settings) {
-			// Handle Settings
 			ret = true;
 		} else {
 			ret = super.onOptionsItemSelected(item);
@@ -79,13 +76,10 @@ public class MainActivity extends Activity {
 	}
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
-		
 		LinearLayout list = (LinearLayout) findViewById(R.id.list);
 		list.removeAllViews();
 		getBusStopList();
-		
 	}
 
 	private void setupBtnAddAddress() {
@@ -126,8 +120,7 @@ public class MainActivity extends Activity {
 			new Thread(new Runnable() {
 				public void run() {
 					imageService = new ImageService();
-					imageService.createImageMap(blrAddress,
-							getApplicationContext());
+					imageService.createImageMap(blrAddress, getApplicationContext());
 				}
 			}).start();
 		} else {
@@ -146,8 +139,31 @@ public class MainActivity extends Activity {
 
 		LinearLayout btnStartTracking = (LinearLayout) view.findViewById(R.id.btnStartActivity);
 		btnStartTracking.setOnClickListener(new View.OnClickListener() {
+			
 			@Override
 			public void onClick(View v) {
+				
+				/*
+				AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+				builder.setTitle("Location Manager");
+				builder.setMessage("Would you like to enable GPS?");
+				builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						Intent i = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+						startActivity(i);
+					}
+				});
+				builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						//No location service, no Activity
+						finish();
+					}
+				});
+				builder.create().show();
+				*/
+				
 				Intent intent = new Intent(getApplicationContext(),TabTrackingActivity.class);
 				intent.putExtra("BLR_ADDRESS_ID", blrAddress.getId());
 				startActivity(intent);
