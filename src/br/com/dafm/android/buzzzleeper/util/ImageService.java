@@ -41,8 +41,7 @@ public class ImageService {
 	public void createImageMap(BlrAddress blrAddress, Context context) {
 		geocoderNetwork = new GeocoderNetwork();
 
-		String imgUrl = geocoderNetwork.getImageUrl(blrAddress.getLat()
-				.toString(), blrAddress.getLng().toString(), "13", "120", "80");
+		String imgUrl = geocoderNetwork.getImageUrl(blrAddress.getLat().toString(), blrAddress.getLng().toString(), "15", "120", "80");
 		String imgPath = context.getFilesDir() + "/" + "blrAddress_"
 				+ blrAddress.getId() + ".png";
 		downloadFile(imgUrl, imgPath);

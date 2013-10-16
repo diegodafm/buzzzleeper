@@ -29,6 +29,7 @@ import android.widget.Toast;
 import br.com.dafm.android.buzzzleeper.R;
 import br.com.dafm.android.buzzzleeper.dao.AddressDAO;
 import br.com.dafm.android.buzzzleeper.entity.BlrAddress;
+import br.com.dafm.android.buzzzleeper.enums.StatusEdit;
 import br.com.dafm.android.buzzzleeper.util.GPSTracker;
 import br.com.dafm.android.buzzzleeper.util.GeocoderNetwork;
 import br.com.dafm.android.buzzzleeper.util.ImageService;
@@ -45,7 +46,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
  * Created by Diego Alisson on 8/16/13.
  */
 public class AddAddress extends FragmentActivity {
-
+	
 	private Typeface signikaSemibold;
 
 	private GeocoderNetwork geocoderNetwork;
@@ -161,8 +162,7 @@ public class AddAddress extends FragmentActivity {
 				// check if GPS enabled
 				if (gps.canGetLocation()) {
 
-					LatLng point = new LatLng(gps.getLatitude(), gps
-							.getLongitude());
+					LatLng point = new LatLng(gps.getLatitude(), gps.getLongitude());
 					CameraUpdate center = CameraUpdateFactory.newLatLng(point);
 					CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
 					googleMap.moveCamera(center);
@@ -197,8 +197,7 @@ public class AddAddress extends FragmentActivity {
 			googleMap.animateCamera(zoom);
 			addMarker(latLng);
 		} else {
-			Toast toast = Toast.makeText(this, "ADDRESS NOT FOUND! ",
-					Toast.LENGTH_LONG);
+			Toast toast = Toast.makeText(this, "ADDRESS NOT FOUND! ", Toast.LENGTH_LONG);
 			toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER, 0, 0);
 			toast.show();
 			Log.v(getLocalClassName(), "ADDRESS NOT FOUND!");
@@ -207,23 +206,18 @@ public class AddAddress extends FragmentActivity {
 
 	private void setupMap() {
 
-		SupportMapFragment mapFragment = ((SupportMapFragment) getSupportFragmentManager()
-				.findFragmentById(R.id.googleMap));
+		SupportMapFragment mapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.googleMap));
 		googleMap = mapFragment.getMap();
 
 		if (googleMap != null) {
-
 			googleMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
 				@Override
 				public void onMapLongClick(LatLng point) {
 					addMarker(point);
-					CameraUpdate center = CameraUpdateFactory
-							.newLatLng(point);
+					CameraUpdate center = CameraUpdateFactory.newLatLng(point);
 					googleMap.moveCamera(center);
 				}
 			});
-			
-			
 		}
 	}
 
@@ -256,10 +250,8 @@ public class AddAddress extends FragmentActivity {
 			coord.append(" ").append(String.format("%.7f", point.longitude));
 			coordinates.setText(coord.toString());
 
-			TextView addressLocation = (TextView) this
-					.findViewById(R.id.txtAddressLocation);
-			addressLocation.setText(geocoderNetwork.getAddress(point.latitude,
-					point.longitude, 1, getApplicationContext()));
+			TextView addressLocation = (TextView) this.findViewById(R.id.txtAddressLocation);
+			addressLocation.setText(geocoderNetwork.getAddress(point.latitude,point.longitude, 1, getApplicationContext()));
 
 			latLng = point;
 		}
@@ -303,8 +295,7 @@ public class AddAddress extends FragmentActivity {
 		Cursor cursor = ringtoneManager.getCursor();
 
 		while (!cursor.isAfterLast() && cursor.moveToNext()) {
-			Ringtone ringtone = ringtoneManager.getRingtone(cursor
-					.getPosition());
+			Ringtone ringtone = ringtoneManager.getRingtone(cursor.getPosition());
 			list.add(ringtone.getTitle(context));
 		}
 		cursor.close();
@@ -317,9 +308,7 @@ public class AddAddress extends FragmentActivity {
 		buffer = (SeekBar) findViewById(R.id.seekBuffer);
 
 		TextView textView = (TextView) findViewById(R.id.txtBuffer);
-		textView.setText(getString(R.string.buffer) + ": "
-				+ Integer.toString(buffer.getProgress()) + " "
-				+ getString(R.string.meters));
+		textView.setText(getString(R.string.buffer) + ": " + Integer.toString(buffer.getProgress()) + " " + getString(R.string.meters));
 
 		buffer.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
@@ -337,9 +326,7 @@ public class AddAddress extends FragmentActivity {
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromUser) {
 				TextView textView = (TextView) findViewById(R.id.txtBuffer);
-				textView.setText(getString(R.string.bufferDistance) + ": "
-						+ Integer.toString(progress) + " "
-						+ getString(R.string.meters));
+				textView.setText(getString(R.string.buffer) + ": " + Integer.toString(progress) + " " + getString(R.string.meters));
 			}
 		});
 	}
@@ -513,9 +500,11 @@ public class AddAddress extends FragmentActivity {
 			name.setText(blrAddress.getName());
 		}
 		
-		if(blrAddress.getBuffer() != null){
-			buffer.setProgress(blrAddress.getBuffer());
+		if(blrAddress.getAddress() != null){
+			TextView address = (TextView) this.findViewById(R.id.txtAddressLocation);
+			address.setText(blrAddress.getAddress());
 		}
+		
 		if(blrAddress.getBuffer() != null){
 			buffer.setProgress(blrAddress.getBuffer());
 		}

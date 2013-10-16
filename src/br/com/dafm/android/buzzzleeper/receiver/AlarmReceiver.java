@@ -1,4 +1,4 @@
-package br.com.dafm.android.buzzzleeper.util;
+package br.com.dafm.android.buzzzleeper.receiver;
 
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
@@ -13,7 +13,7 @@ import android.location.LocationManager;
 import android.os.PowerManager;
 import br.com.dafm.android.buzzzleeper.listener.MyLocationListener;
 
-public class AlarmService extends BroadcastReceiver {
+public class AlarmReceiver extends BroadcastReceiver {
 	
 	LocationManager locationManager;
 	
@@ -31,7 +31,7 @@ public class AlarmService extends BroadcastReceiver {
 
 	public void setAlarm(Context context, IntentFilter filter) {
 		AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-		Intent intent = new Intent(context, AlarmService.class);
+		Intent intent = new Intent(context, AlarmReceiver.class);
 		PendingIntent pi = PendingIntent.getBroadcast(context, 0, intent, 0);
 		am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),1000 * 10, pi);
 		
@@ -47,7 +47,7 @@ public class AlarmService extends BroadcastReceiver {
 	}
 
 	public void cancelAlarm(Context context) {
-		Intent intent = new Intent(context, AlarmService.class);
+		Intent intent = new Intent(context, AlarmReceiver.class);
 		PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, 0);
 		AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 		alarmManager.cancel(sender);

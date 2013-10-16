@@ -25,7 +25,7 @@ import android.widget.TextView;
 import br.com.dafm.android.buzzzleeper.R;
 import br.com.dafm.android.buzzzleeper.dao.AddressDAO;
 import br.com.dafm.android.buzzzleeper.entity.BlrAddress;
-import br.com.dafm.android.buzzzleeper.util.AlarmService;
+import br.com.dafm.android.buzzzleeper.service.TrackingService;
 import br.com.dafm.android.buzzzleeper.views.PctgDistanceView;
 
 public class TrackingActivity extends Activity {
@@ -36,8 +36,6 @@ public class TrackingActivity extends Activity {
 
 	private BlrAddress blrAddress;
 
-	private AlarmService alarm;
-	
 	private View pctgView;
 	
 	private Double greaterDistance;
@@ -105,9 +103,11 @@ public class TrackingActivity extends Activity {
 	private void startTracking(){
 		statusAlarm = Boolean.TRUE;
 		setupCirclePctg(0f,0d, getString(R.string.starting));
-		IntentFilter tracking = new IntentFilter("trackingInfo");
-		alarm = new AlarmService();
-		alarm.setAlarm(getApplicationContext(),tracking);
+		
+		Intent intent=new Intent(this, TrackingService.class);
+		intent.putExtra("BLR_ADDRESS_ID", blrAddress.getId());
+		intent.putExtra("BLR_ADDRESS_NAME", blrAddress.getName());
+	    startService(intent);
 	}
 	
 	private void registerReceiver(){
@@ -204,23 +204,21 @@ public class TrackingActivity extends Activity {
 	
 	public void stopActivity(Boolean stopAll) {
 		stopTracking();
-		alarm.cancelAlarm(getApplicationContext());
 		Intent data = new Intent("stopTrackingMap");
 		sendBroadcast(data);
 	}
 
 	public void stopTracking() {
 		statusAlarm = Boolean.FALSE;
+		stopService(new Intent(this, TrackingService.class));
 		
-		if(mediaPlayer.isPlaying()){
+		if(mediaPlayer != null && mediaPlayer.isPlaying()){
 			mediaPlayer.stop();
 		}
-		alarm.cancelAlarm(getApplicationContext());
 		
 		setupCirclePctg(0f,0d, getString(R.string.start));
 	}
 	
-
 	public Double getCurrentDistance(Location location) {
 		Double distance;
 

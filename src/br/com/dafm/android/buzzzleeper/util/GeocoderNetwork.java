@@ -1,13 +1,24 @@
 package br.com.dafm.android.buzzzleeper.util;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 
 public class GeocoderNetwork {
+	
 	public String getAddress(Double lat, Double lng, Integer maxResults,
 			Context context) {
 		Geocoder geocoder = new Geocoder(context);
@@ -32,7 +43,54 @@ public class GeocoderNetwork {
 		}
 		return stringAddress.toString();
 	}
+	
+	/*
 
+	public String getAddress(Double lat, Double lng, Integer maxResults,
+			Context context) {
+		
+		final Double latitude = lat;
+		final Double longitude = lng;
+		final String address = null;
+		
+		new Thread(new Runnable() {
+			public void run() {
+		
+				HttpGet httpGet = new HttpGet("http://maps.google.com/maps/api/geocode/json?latlng="+latitude+","+longitude+"&sensor=true");
+		        HttpClient client = new DefaultHttpClient();
+		        HttpResponse response;
+		        StringBuilder stringBuilder = new StringBuilder();
+		        JSONObject jsonObject = new JSONObject();
+		
+		        try {
+		            response = client.execute(httpGet);
+		            HttpEntity entity = response.getEntity();
+		            InputStream stream = entity.getContent();
+		            int b;
+		            while ((b = stream.read()) != -1) {
+		                stringBuilder.append((char) b);
+		            }
+		            
+		            jsonObject = new JSONObject(stringBuilder.toString());
+		            String address2 = jsonObject.getJSONArray("results").getJSONObject(0).getString("formatted_address");
+					
+				} catch (ClientProtocolException e) {
+					new RuntimeException();
+					e.printStackTrace();
+				} catch (IOException e) {
+					new RuntimeException();
+					e.printStackTrace();			
+				} catch (JSONException e) {
+					new RuntimeException();
+					e.printStackTrace();
+				}
+			}
+		}).run();
+
+		return address;
+	}
+
+	*/
 	public String getImageUrl(String lat, String lon, String zoom, String width,String height) {
 		StringBuilder url = new StringBuilder(300);
 		url.append("http://maps.googleapis.com/maps/api/staticmap?");

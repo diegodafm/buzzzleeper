@@ -14,7 +14,8 @@ import android.widget.RelativeLayout;
 import br.com.dafm.android.buzzzleeper.R;
 import br.com.dafm.android.buzzzleeper.dao.AddressDAO;
 import br.com.dafm.android.buzzzleeper.entity.BlrAddress;
-import br.com.dafm.android.buzzzleeper.util.AlarmService;
+import br.com.dafm.android.buzzzleeper.receiver.AlarmReceiver;
+import br.com.dafm.android.buzzzleeper.service.TrackingService;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -32,7 +33,7 @@ public class MapTrackingActivity extends FragmentActivity {
 	
 	private BlrAddress blrAddress;
 	
-	private AlarmService alarm;
+	private AlarmReceiver alarm;
 	
 	private AddressDAO addressDAO;
 
@@ -52,7 +53,6 @@ public class MapTrackingActivity extends FragmentActivity {
 	  setupMap();
 	  setupBtnBackHome();
 	  registerReceiver();
-	  startTracking();	  
 	}
 	
 	private void setupMap() {
@@ -106,9 +106,10 @@ public class MapTrackingActivity extends FragmentActivity {
 	}
 	
 	private void startTracking(){
-		alarm = new AlarmService();
-		IntentFilter trackingMap = new IntentFilter("trackingMap");
-		alarm.setAlarm(getApplicationContext(),trackingMap);
+		Intent intent=new Intent(this, TrackingService.class);
+		intent.putExtra("BLR_ADDRESS_ID", blrAddress.getId());
+		intent.putExtra("BLR_ADDRESS_NAME", blrAddress.getName());
+	    startService(intent);
 	}	
 	
 	private void registerReceiver(){
@@ -152,11 +153,11 @@ public class MapTrackingActivity extends FragmentActivity {
 	}
 	
 	private void stopTracking(){
-		alarm.cancelAlarm(getApplicationContext());
+		stopService(new Intent(this, TrackingService.class));
 	}
 
 	private void stopActivity(Boolean stopAll){
-		alarm.cancelAlarm(getApplicationContext());
+		stopTracking();
 		Intent data = new Intent("stopTrackingInfo");
 		sendBroadcast(data);
 	}

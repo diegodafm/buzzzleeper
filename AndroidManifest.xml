@@ -73,8 +73,10 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
 
         <receiver
-            android:name="br.com.dafm.android.buzzzleeper.util.AlarmService"
+            android:name="br.com.dafm.android.buzzzleeper.receiver.AlarmService"
             android:process=":remote" />
+        
+        <service android:name="br.com.dafm.android.buzzzleeper.service.TrackingService"/>
 
         <!-- ac-dmendonca -->
         <meta-data
