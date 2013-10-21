@@ -1,5 +1,7 @@
 package br.com.dafm.android.buzzzleeper.receiver;
 
+import java.util.List;
+
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -29,7 +31,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 		wl.release();
 	}
 
-	public void setAlarm(Context context, IntentFilter filter) {
+	public void setAlarm(Context context, List<IntentFilter> filters) {
 		AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 		Intent intent = new Intent(context, AlarmReceiver.class);
 		PendingIntent pi = PendingIntent.getBroadcast(context, 0, intent, 0);
@@ -37,7 +39,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 		
 		
 		locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-		locationListener = new MyLocationListener(context, filter);  
+		locationListener = new MyLocationListener(context, filters);  
 		
 		Criteria criteria = new Criteria();
 		criteria.setAccuracy(Criteria.ACCURACY_FINE);

@@ -1,11 +1,15 @@
 package br.com.dafm.android.buzzzleeper.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
+import android.widget.ArrayAdapter;
 import br.com.dafm.android.buzzzleeper.R;
 import br.com.dafm.android.buzzzleeper.activity.TabTrackingActivity;
 import br.com.dafm.android.buzzzleeper.receiver.AlarmReceiver;
@@ -23,11 +27,12 @@ public class TrackingService extends Service {
 		
 		play(blrAddressName,blrAddressId);
 		
-		IntentFilter trackingInfo = new IntentFilter("trackingInfo");
-		IntentFilter trackingMap = new IntentFilter("trackingMap");
+		List<IntentFilter> filters = new ArrayList<IntentFilter>();
+		filters.add(new IntentFilter("trackingInfo"));
+		filters.add(new IntentFilter("trackingMap"));
+		
 		alarmReceiver = new AlarmReceiver();
-		alarmReceiver.setAlarm(getApplicationContext(),trackingInfo);
-		alarmReceiver.setAlarm(getApplicationContext(),trackingMap);
+		alarmReceiver.setAlarm(getApplicationContext(),filters);
 
 		return (START_NOT_STICKY);
 	}
