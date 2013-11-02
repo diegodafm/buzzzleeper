@@ -45,6 +45,8 @@
     <string name="remove">Remove</string>
     <string name="removeLocation">Remove Location</string>
     <string name="msgRemoveBusStop">Are you sure you want to remove this Bus Stop?</string>
+    <string name="msgAppStopedActivateGps">Your GPS provider was deactivated, please turn it on and restart your alarm</string>
+    <string name="gpsStopped">GPS Stopped</string>
     
     
     <!-- CONTEXT MAIN MENU  -->

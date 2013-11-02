@@ -5,16 +5,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import br.com.dafm.android.buzzzleeper.R;
 import br.com.dafm.android.buzzzleeper.dao.AddressDAO;
 import br.com.dafm.android.buzzzleeper.entity.BlrAddress;
-import br.com.dafm.android.buzzzleeper.receiver.AlarmReceiver;
 import br.com.dafm.android.buzzzleeper.service.TrackingService;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -33,11 +35,11 @@ public class MapTrackingActivity extends FragmentActivity {
 	
 	private BlrAddress blrAddress;
 	
-	private AlarmReceiver alarm;
-	
 	private AddressDAO addressDAO;
 
 	private BroadcastReceiver receiver;
+
+	private Typeface signikaSemibold;
 	
 	@Override
 	 public void onCreate(Bundle savedInstanceState) {
@@ -50,9 +52,19 @@ public class MapTrackingActivity extends FragmentActivity {
 		blrAddress = addressDAO.findById(Integer.parseInt(value));
 	  }
 	  blrPoint = new LatLng(blrAddress.getLat(), blrAddress.getLng());
+	  displayData();
 	  setupMap();
 	  setupBtnBackHome();
 	  registerReceiver();
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+	    if (keyCode == KeyEvent.KEYCODE_BACK) {
+	        moveTaskToBack(true);
+	        return true;
+	    }
+	    return super.onKeyDown(keyCode, event);
 	}
 	
 	private void setupMap() {
@@ -161,5 +173,15 @@ public class MapTrackingActivity extends FragmentActivity {
 		Intent data = new Intent("stopTrackingInfo");
 		sendBroadcast(data);
 	}
+	
+	private void displayData(){
+		signikaSemibold = Typeface.createFromAsset(getAssets(),"fonts/Signika-Semibold.ttf");
+		TextView name = (TextView) findViewById(R.id.txtTitle);
+		name.setText(blrAddress.getName());
+		name.setTypeface(signikaSemibold);
+	}
+	
+	
+
 
 }

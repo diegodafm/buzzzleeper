@@ -1,20 +1,22 @@
 package br.com.dafm.android.buzzzleeper.util;
 
-import android.app.Activity;
+import java.util.ResourceBundle.Control;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.Service;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.location.LocationManager;
+import android.media.RingtoneManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.BatteryManager;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.support.v4.app.NotificationCompat;
 import br.com.dafm.android.buzzzleeper.BuzzzleeperApplication;
 import br.com.dafm.android.buzzzleeper.R;
 
@@ -31,6 +33,7 @@ public class AndroidUtil {
 	
 	public AndroidUtil (Context context){
 		this.context = context;
+		buzzzleeperApplication = new BuzzzleeperApplication();
 	}
 
 	public boolean isGpsAvaliable() {
@@ -56,7 +59,37 @@ public class AndroidUtil {
 		return (int) batteryPct;
 	}
 	
-	public void sendNotification(int id, Class<?> cls, String title, String message) {
+	public void sendNotification(int id,final Class<?> activity, String title, String message) {
+		
+		NotificationCompat.Builder nb = new NotificationCompat.Builder(context);
+	    nb.setContentTitle(title);
+	    nb.setContentText(message);
+	    nb.setSmallIcon(R.drawable.ic_zzz_notification);
+	    nb.setWhen(System.currentTimeMillis());
+	    long[] pattern = {500,500,500,500,500,500,500,500,500};
+	    nb.setVibrate(pattern);
+	    nb.setAutoCancel(true);
+	    nb.setTicker("message");
+
+	    final Uri ringtone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+
+	    nb.setDefaults(Notification.DEFAULT_VIBRATE);
+	    nb.setSound(ringtone);      
+	    nb.setDefaults(Notification.DEFAULT_LIGHTS);
+
+	    NotificationManager nm = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+	    final Intent notificationIntent = new Intent(context, activity);
+	    notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+	    final PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
+	    nb.setContentIntent(contentIntent);
+
+	    Notification notification = nb.getNotification();
+
+	    nm.notify(0, notification);
+		
+		/*
 		Intent notificationIntent = new Intent(buzzzleeperApplication, cls);
 		notificationIntent.putExtra("ID",id);
 		notificationIntent.putExtra("TITLE", title);
@@ -77,8 +110,9 @@ public class AndroidUtil {
 
 		notification.setLatestEventInfo(buzzzleeperApplication, title, message, contentIntent);
 		notificationManager.notify(id, notification);
+		 */	
 	}
-	
+	/*
 	public void sendNotification(int id, String action, String title, String message) {
 		Intent notificationIntent = new Intent(action);
 		notificationIntent.putExtra("ID", id);
@@ -93,6 +127,7 @@ public class AndroidUtil {
 		notification.setLatestEventInfo(buzzzleeperApplication, title, message, contentIntent);
 		notificationManager.notify(id, notification);
 	}
+	*/
 
 	public boolean turnGPSOn() {
 	    String provider = Settings.Secure.getString(buzzzleeperApplication.getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);

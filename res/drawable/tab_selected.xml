@@ -5,13 +5,13 @@
         </shape>
    </item>
 
-   <item android:top="-6dp" android:bottom="0dp" android:left="-6dp" android:right="-6dp"> 
+   <item android:top="-10dp" android:bottom="0dp" android:left="-10dp" android:right="-10dp"> 
       <shape android:shape="rectangle">
           <padding android:left="5dp"
                    android:top="10dp"
                    android:right="5dp"
                    android:bottom="10dp" />
-            <stroke android:width="6dp" android:color="#FF58c2cb" />
+            <stroke android:width="10dp" android:color="#FF58c2cb" />
             <solid android:color="#00000000" />
         </shape>
    </item>

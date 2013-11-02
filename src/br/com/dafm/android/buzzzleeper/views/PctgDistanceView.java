@@ -61,8 +61,10 @@ public class PctgDistanceView extends View{
         mPaint.setDither(true);
         mPaint.setColor(Color.GRAY);
         mPaint.setStyle(Paint.Style.STROKE);
-        if(this.distance > blrAddress.getBuffer()){
+        if(this.distance > blrAddress.getBuffer() && this.percent >= 0){
         	mPaint.setColor(Color.parseColor("#58c2cb"));
+        }else if(this.percent < 0){
+        	mPaint.setColor(Color.parseColor("#ffd200"));
         }else{        	
         	mPaint.setColor(Color.parseColor("#d64d4d"));
         }
@@ -71,7 +73,10 @@ public class PctgDistanceView extends View{
         Float defaultPxArc = convertDpToPixel(8);
         RectF box = new RectF(defaultPxArc,defaultPxArc,getWidth()-defaultPxArc,getWidth()-defaultPxArc);
         Float sweep = 360 * this.percent * 0.01f;
-        canvas.drawArc(box, 270, sweep, false, mPaint);    
+        
+        
+        canvas.drawArc(box, 270, sweep, false, mPaint);
+        
     	
         Paint circleCenter = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.DITHER_FLAG | Paint.ANTI_ALIAS_FLAG);
         circleCenter.setColor(Color.parseColor("#323a45"));

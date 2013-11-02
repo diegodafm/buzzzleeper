@@ -461,16 +461,18 @@ containing a value of this type.
         /**  CONTEXT MENU ADDRESS 
          */
         public static final int editBusStop=0x7f060032;
+        public static final int gpsStopped=0x7f060039;
         public static final int hello_world=0x7f060017;
-        public static final int info=0x7f060039;
+        public static final int info=0x7f06003b;
         public static final int km=0x7f060025;
         public static final int latitude=0x7f060022;
         public static final int longitude=0x7f060023;
-        public static final int map=0x7f06003a;
+        public static final int map=0x7f06003c;
         /**  CONTEXT MAIN MENU  
          */
-        public static final int menu_settings=0x7f060038;
+        public static final int menu_settings=0x7f06003a;
         public static final int meters=0x7f060024;
+        public static final int msgAppStopedActivateGps=0x7f060038;
         public static final int msgRemoveBusStop=0x7f060037;
         public static final int name=0x7f06001a;
         /**  ADD ADDRESS MGS ERROS
@@ -485,9 +487,9 @@ containing a value of this type.
         public static final int ringtoneCannotBeIsEmpty=0x7f06002c;
         public static final int save=0x7f06001d;
         public static final int setRingtone=0x7f060027;
-        public static final int start=0x7f06003c;
-        public static final int starting=0x7f06003d;
-        public static final int stop=0x7f06003b;
+        public static final int start=0x7f06003e;
+        public static final int starting=0x7f06003f;
+        public static final int stop=0x7f06003d;
         /**  ADD ADDRESS MGS SUCCESS
          */
         public static final int success=0x7f06002e;

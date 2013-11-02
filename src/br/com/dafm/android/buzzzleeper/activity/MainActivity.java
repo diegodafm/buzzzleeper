@@ -6,11 +6,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -139,40 +139,39 @@ public class MainActivity extends Activity {
 
 		LinearLayout btnStartTracking = (LinearLayout) view.findViewById(R.id.btnStartActivity);
 		btnStartTracking.setOnClickListener(new View.OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
-				
-				/*
-				AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-				builder.setTitle("Location Manager");
-				builder.setMessage("Would you like to enable GPS?");
-				builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						Intent i = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-						startActivity(i);
-					}
-				});
-				builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						//No location service, no Activity
-						finish();
-					}
-				});
-				builder.create().show();
-				*/
-				
-				Intent intent = new Intent(getApplicationContext(),TabTrackingActivity.class);
-				intent.putExtra("BLR_ADDRESS_ID", blrAddress.getId());
-				startActivity(intent);
+				if(util.isGpsAvaliable()){
+					Intent intent = new Intent(getApplicationContext(),TabTrackingActivity.class);
+					intent.putExtra("BLR_ADDRESS_ID", blrAddress.getId());
+					startActivity(intent);
+				}else{
+					buildAlertMessageNoGps();
+				}
 			}
 		});
 
 		return view;
 	}
-
+	
+	private  void buildAlertMessageNoGps() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Would you like to enable GPS?")
+               .setCancelable(false)
+               .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                   public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                     startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                   }
+               })
+               .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                   public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        dialog.cancel();
+                   }
+               });
+        final AlertDialog alert = builder.create();
+        alert.show();
+    }
+	
 	private void insertItemsTeste() {
 		addressDAO = new AddressDAO(getApplicationContext());
 		List<BlrAddress> list = addressDAO.getAllAddress();
@@ -192,7 +191,7 @@ public class MainActivity extends Activity {
 			blrAddress.setName("Home Sweet Home");
 			blrAddress.setAddress("Rua Antonio da Silva, 71, Ingá, 32604-492, Betim, MG, Brasil");
 			blrAddress.setLat(-19.858617d);
-			blrAddress.setLng(-43.918408d);
+			blrAddress.setLng(-44.199308d);
 			blrAddress.setRingtone("Pump It");
 			blrAddress.setBuffer(300);
 			addressDAO.save(blrAddress);
@@ -200,7 +199,7 @@ public class MainActivity extends Activity {
 			blrAddress = new BlrAddress();
 			blrAddress.setName("Puc São Gabriel");
 			blrAddress.setAddress("R. Walter Ianni, 46-92 - Providência, Belo Horizonte - MG, 31980-110, Brazil");
-			blrAddress.setLat(-19.858617d);
+			blrAddress.setLat(-19.950717d);
 			blrAddress.setLng(-43.918408d);
 			blrAddress.setRingtone("Claro");
 			blrAddress.setBuffer(300);

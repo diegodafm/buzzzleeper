@@ -9,6 +9,10 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
 import android.util.Log;
+import br.com.dafm.android.buzzzleeper.R;
+import br.com.dafm.android.buzzzleeper.activity.MainActivity;
+import br.com.dafm.android.buzzzleeper.service.TrackingService;
+import br.com.dafm.android.buzzzleeper.util.AndroidUtil;
 
 public class MyLocationListener implements LocationListener {
 	
@@ -16,10 +20,13 @@ public class MyLocationListener implements LocationListener {
 	
 	private List<IntentFilter> filters;
 	
+	private AndroidUtil util;
+	
 	public MyLocationListener(Context context, List<IntentFilter> filters) {
 		super();
 		this.context = context;
 		this.filters = filters;
+		util = new AndroidUtil(this.context);
 	}
 
 	@Override
@@ -35,8 +42,8 @@ public class MyLocationListener implements LocationListener {
 
 	@Override
 	public void onProviderDisabled(String arg0) {
-		Log.v("MYLOCATION", "onProviderDisabled");
-		// TODO Auto-generated method stub
+		context.stopService(new Intent(context, TrackingService.class));
+		util.sendNotification(1, MainActivity.class,this.context.getString(R.string.gpsStopped), this.context.getString(R.string.msgAppStopedActivateGps));
 
 	}
 

@@ -3,6 +3,7 @@ package br.com.dafm.android.buzzzleeper.activity;
 import java.io.IOException;
 
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -70,13 +71,14 @@ public class TrackingActivity extends Activity {
 			}
 		}
 	}
-
+	
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_HOME) {
-			moveTaskToBack(true);
-		}
-		return super.onKeyDown(keyCode, event);
+	    if (keyCode == KeyEvent.KEYCODE_BACK) {
+	        moveTaskToBack(true);
+	        return true;
+	    }
+	    return super.onKeyDown(keyCode, event);
 	}
 	
 	@Override
@@ -130,6 +132,11 @@ public class TrackingActivity extends Activity {
 		    if(intent.getAction().equals("startTrackingInfo")) {
 		    	startTracking();
 		    }
+		    
+		    if(intent.getAction().equals("stopServiceBackToMainInfo")){
+		    	stopTracking(true);
+		    	onBackPressed();	    	
+		    }
 		  }
 		};
 
@@ -177,7 +184,7 @@ public class TrackingActivity extends Activity {
 
 	private void displayDistance(Location location){
 		Double distance = getCurrentDistance(location);
-		if(greaterDistance == null || greaterDistance < distance){
+		if(greaterDistance == null ){
 			greaterDistance = distance;
 		}
 		Double pctg = (100 - (100*distance/greaterDistance));
@@ -192,9 +199,18 @@ public class TrackingActivity extends Activity {
 			if (!arrived) {
 				arrived = true;
 				playSound();
+				
+				prepareIntent(getApplicationContext());
 			}
 		}
 	}
+	
+	private static PendingIntent prepareIntent(Context context) {
+	    Intent intent = new Intent(context, TabTrackingActivity.class);
+	    intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+	    return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+	}
+
 	
 	
 	public void stopActivity() {
@@ -202,7 +218,7 @@ public class TrackingActivity extends Activity {
 		this.finish();
 	}
 	
-	public void stopActivity(Boolean stopAll) {
+	public void stopTracking(Boolean stopAll) {
 		stopTracking();
 		Intent data = new Intent("stopTrackingMap");
 		sendBroadcast(data);
