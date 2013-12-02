@@ -8,6 +8,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Resources;
 import android.location.LocationManager;
 import android.media.RingtoneManager;
 import android.net.ConnectivityManager;
@@ -17,6 +18,7 @@ import android.os.BatteryManager;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
+import android.util.DisplayMetrics;
 import br.com.dafm.android.buzzzleeper.BuzzzleeperApplication;
 import br.com.dafm.android.buzzzleeper.R;
 
@@ -157,4 +159,33 @@ public class AndroidUtil {
 	    return false;
 	}
 */
+	
+	  /**
+     * This method converts dp unit to equivalent pixels, depending on device density. 
+     * 
+     * @param dp A value in dp (density independent pixels) unit. Which we need to convert into pixels
+     * @param context Context to get resources and device specific display metrics
+     * @return A float value to represent px equivalent to dp depending on device density
+     */
+    public Float convertDpToPixel(float dp){
+        Resources resources = context.getResources();
+        DisplayMetrics metrics = resources.getDisplayMetrics();
+        Float px = dp * (metrics.densityDpi / 160f);
+        
+        return px;
+    }
+
+    /**
+     * This method converts device specific pixels to density independent pixels.
+     * 
+     * @param px A value in px (pixels) unit. Which we need to convert into db
+     * @param context Context to get resources and device specific display metrics
+     * @return A float value to represent dp equivalent to px value
+     */
+    public Float convertPixelsToDp(float px){
+        Resources resources = context.getResources();
+        DisplayMetrics metrics = resources.getDisplayMetrics();
+        float dp = px / (metrics.densityDpi / 160f);
+        return dp;
+    }
 }

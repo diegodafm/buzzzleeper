@@ -11,8 +11,120 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical" >
+        
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		    style="@style/header" >
+		
+		    <RelativeLayout
+		        android:id="@+id/btnArrowBack"
+		        android:layout_width="40dip"
+		        android:layout_height="fill_parent"
+		        android:layout_alignParentLeft="true"
+		        android:layout_centerVertical="true"
+		        android:background="@drawable/btn_theme_default" >
+		
+		        <ImageView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_centerHorizontal="true"
+		            android:layout_centerVertical="true"
+		            android:src="@drawable/ic_arrow_back" />
+		    </RelativeLayout>
+				
+		    <LinearLayout
+	            android:id="@+id/rlAddAddress"
+	            android:layout_width="fill_parent"
+	            android:layout_height="53dp"
+	            android:orientation="horizontal" >
+	
+	            <EditText
+	                android:id="@+id/txtSearchAddress"
+	                style="@style/textEdit"
+	                android:background="@drawable/edittext_bg"
+	                android:layout_width="fill_parent"
+	                android:layout_marginRight="0dip"
+	                android:imeOptions="actionSearch"	                
+	                android:layout_weight="1"
+	                android:textColorHint="@color/white"
+	                android:textColor="@color/white"
+	                android:hint="@string/searchAddress" />
+	
+	            <RelativeLayout
+	                android:id="@+id/btnSearchAddress"
+	                style="@style/btnBackgroundThemeA"
+	                android:layout_marginRight="5dip"
+	                android:layout_marginTop="5dip" >
+	
+	                <ImageView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_centerHorizontal="true"
+	                    android:layout_centerVertical="true"
+	                    android:src="@drawable/ic_magnifier_white"
+	                    tools:ignore="ContentDescription" />
+	            </RelativeLayout>
+	
+	            <RelativeLayout
+	                android:id="@+id/btnSearchGPS"
+	                style="@style/btnBackgroundThemeA"
+	                android:layout_marginRight="5dip"
+	                android:layout_marginTop="5dip" >
+	
+	                <ImageView
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_centerHorizontal="true"
+	                    android:layout_centerVertical="true"
+	                    android:src="@drawable/ic_gps_white"
+	                    tools:ignore="ContentDescription" />
+	            </RelativeLayout>
+	        </LinearLayout>
+		
+		</LinearLayout>
 
-        <include layout="@layout/title" />
+        <LinearLayout
+            android:id="@+id/llContainerMap"
+            android:layout_width="fill_parent"
+            android:layout_height="150dip">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+
+                <fragment
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/googleMap"
+                    android:name="br.com.dafm.android.buzzzleeper.AddAddress"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    class="com.google.android.gms.maps.SupportMapFragment" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/rlInfoMap"
+            style="@style/infoMap" >
+
+            <ImageView
+                android:id="@+id/icPinMap"
+                style="@style/icPinMap"
+                android:src="@drawable/ic_pin_map" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                
+	            <TextView
+	                android:id="@+id/txtAddressLocation"
+	                style="@style/textAddress"
+	                android:text="" />
+	
+	            <TextView
+	                android:id="@+id/txtCoordinates"
+	                style="@style/textCoordinate"
+	                android:text="" />
+            </LinearLayout>
+
+        </LinearLayout>
 
         <ScrollView
             android:layout_width="fill_parent"
@@ -23,96 +135,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
-
-                <EditText
-                    android:id="@+id/txtAddName"
-                    style="@style/textEdit"
-                    android:layout_width="fill_parent"
-                    android:hint="@string/name" />
-
-                <LinearLayout
-                    android:id="@+id/rlAddAddress"
-                    android:layout_width="fill_parent"
-                    android:layout_height="53dp"
-                    android:orientation="horizontal" >
-
-                    <EditText
-                        android:id="@+id/txtSearchAddress"
-                        style="@style/textEdit"
-                        android:layout_width="fill_parent"
-                        android:layout_weight="1"
-                        android:layout_marginRight="0dip"
-                        android:hint="@string/address" />
-
-                    
-
-                    <RelativeLayout
-                        android:id="@+id/btnSearchAddress"
-                        style="@style/btnBackgroundThemeA"
-                        android:layout_marginRight="5dip"
-                        android:layout_marginTop="5dip">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:layout_centerVertical="true"
-                            android:src="@drawable/ic_magnifier_white"
-                            tools:ignore="ContentDescription" />
-                    </RelativeLayout>
-                    
-                    <RelativeLayout
-                        android:id="@+id/btnSearchGPS"
-                        style="@style/btnBackgroundThemeA"
-                        android:layout_marginRight="5dip"
-                        android:layout_marginTop="5dip" >
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:layout_centerVertical="true"
-                            android:src="@drawable/ic_gps_white"
-                            tools:ignore="ContentDescription" />
-                    </RelativeLayout>
-                </LinearLayout>
-
-                <RelativeLayout
-                    android:id="@+id/rlGoogleMap"
-                    style="@style/frameMap" >
-
-                    <fragment
-                        xmlns:android="http://schemas.android.com/apk/res/android"
-                        android:id="@+id/googleMap"
-                        android:name="br.com.dafm.android.buzzzleeper.AddAddress"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        class="com.google.android.gms.maps.SupportMapFragment" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/rlInfoMap"
-                    style="@style/infoMap" >
-
-                    <ImageView
-                        android:id="@+id/icPinMap"
-                        style="@style/icPinMap"
-                        android:src="@drawable/ic_pin_map" />
-
-                    <TextView
-                        android:id="@+id/txtAddressLocation"
-                        style="@style/textAddress"
-                        android:layout_toRightOf="@id/icPinMap"
-                        android:text="" />
-
-                    <TextView
-                        android:id="@+id/txtCoordinates"
-                        style="@style/textCoordinate"
-                        android:layout_below="@id/txtAddressLocation"
-                        android:layout_toRightOf="@id/icPinMap"
-                        android:text="" />
-                </RelativeLayout>
-
+	                            
                 <RelativeLayout
                     android:id="@+id/btnBuffer"
                     android:layout_width="fill_parent"
@@ -139,6 +162,12 @@
                         android:progressDrawable="@drawable/scrubber_progress"
                         android:thumb="@drawable/scrubber_control" />
                 </RelativeLayout>
+                
+                 <EditText
+                    android:id="@+id/txtAddName"
+                    style="@style/textEdit"
+                    android:layout_width="fill_parent"
+                    android:hint="@string/name" />
 
                 <LinearLayout
                     android:id="@+id/btnRingtone"

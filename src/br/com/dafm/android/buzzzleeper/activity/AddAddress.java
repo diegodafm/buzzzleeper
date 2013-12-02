@@ -6,6 +6,7 @@ import java.util.List;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -16,8 +17,10 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -29,7 +32,7 @@ import android.widget.Toast;
 import br.com.dafm.android.buzzzleeper.R;
 import br.com.dafm.android.buzzzleeper.dao.AddressDAO;
 import br.com.dafm.android.buzzzleeper.entity.BlrAddress;
-import br.com.dafm.android.buzzzleeper.enums.StatusEdit;
+import br.com.dafm.android.buzzzleeper.util.AndroidUtil;
 import br.com.dafm.android.buzzzleeper.util.GPSTracker;
 import br.com.dafm.android.buzzzleeper.util.GeocoderNetwork;
 import br.com.dafm.android.buzzzleeper.util.ImageService;
@@ -64,12 +67,14 @@ public class AddAddress extends FragmentActivity {
 	private ArrayList<String> listErros;
 
 	private BlrAddress blrAddress;
+	
+	private AndroidUtil util;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_address);
-
+		util = new AndroidUtil(this);
 		setupFontFace();
 		setupBtnBackHome();
 		setupMap();
@@ -96,6 +101,17 @@ public class AddAddress extends FragmentActivity {
 	public void onBackPressed() {
 		super.onBackPressed();
 		this.finish();
+	}
+	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+		LinearLayout containerMap = (LinearLayout) findViewById(R.id.llContainerMap);
+		if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+			containerMap.getLayoutParams().height = util.convertDpToPixel(100f).intValue();
+		} else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+			containerMap.getLayoutParams().height = util.convertDpToPixel(150f).intValue();
+		}
 	}
 
 	private void setupFontFace() {
@@ -139,6 +155,18 @@ public class AddAddress extends FragmentActivity {
 			public void onClick(View v) {
 				findAddress();
 			}
+		});
+		
+		EditText searchAddress = (EditText) this.findViewById(R.id.txtSearchAddress);
+		searchAddress.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+		    @Override
+		    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+		        if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+		        	findAddress();
+		            return true;
+		        }
+		        return false;
+		    }
 		});
 	}
 
@@ -238,7 +266,7 @@ public class AddAddress extends FragmentActivity {
 			googleMap.addCircle(circleOptions);
 			googleMap.addMarker(new MarkerOptions().position(point));
 
-			RelativeLayout rlInfoMap = (RelativeLayout) this.findViewById(R.id.rlInfoMap);
+			LinearLayout rlInfoMap = (LinearLayout) this.findViewById(R.id.rlInfoMap);
 			rlInfoMap.setVisibility(0);
 
 			TextView coordinates = (TextView) this.findViewById(R.id.txtCoordinates);

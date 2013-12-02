@@ -59,13 +59,10 @@ public class MapTrackingActivity extends FragmentActivity {
 	}
 	
 	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-	    if (keyCode == KeyEvent.KEYCODE_BACK) {
-	        moveTaskToBack(true);
-	        return true;
-	    }
-	    return super.onKeyDown(keyCode, event);
+	public void onBackPressed() {
+		
 	}
+	
 	
 	private void setupMap() {
 		SupportMapFragment mapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.googleMap));
@@ -131,7 +128,7 @@ public class MapTrackingActivity extends FragmentActivity {
 				if(intent.getAction().equals("trackingMap")) {
 					Location location = (Location) intent.getExtras().get("location");
 					Double distance = getCurrentDistance(location);	    	
-					
+					googleMap.animateCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude())));
 					if(distance <=  blrAddress.getBuffer()){
 						updateMarker();
 					}

@@ -13,6 +13,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import br.com.dafm.android.buzzzleeper.R;
 import br.com.dafm.android.buzzzleeper.entity.BlrAddress;
+import br.com.dafm.android.buzzzleeper.util.AndroidUtil;
 
 @SuppressLint({ "DrawAllocation", "ViewConstructor" })
 public class PctgDistanceView extends View{
@@ -30,6 +31,8 @@ public class PctgDistanceView extends View{
     
     private String textCircle;
     
+    private AndroidUtil util;
+    
 	public PctgDistanceView(Context context, Float percent, Double distance,
 			BlrAddress blrAddress) {
 		
@@ -38,6 +41,7 @@ public class PctgDistanceView extends View{
         this.percent = percent;
         this.distance = distance;
         this.blrAddress = blrAddress;
+        util = new AndroidUtil(context);
     }
     
 	public PctgDistanceView(Context context, Float percent, Double distance,
@@ -49,10 +53,13 @@ public class PctgDistanceView extends View{
     	this.distance = distance;
     	this.blrAddress = blrAddress;
     	this.textCircle = textCircle;
+    	util = new AndroidUtil(context);
     }
 
     @Override
     public void onDraw(Canvas canvas) {
+    	
+    	
     	
     	//canvas.setViewport(getMeasuredWidth(), getMeasuredHeight());
     	
@@ -68,9 +75,9 @@ public class PctgDistanceView extends View{
         }else{        	
         	mPaint.setColor(Color.parseColor("#d64d4d"));
         }
-        mPaint.setStrokeWidth(convertDpToPixel(16));    
+        mPaint.setStrokeWidth(util.convertDpToPixel(16));    
         
-        Float defaultPxArc = convertDpToPixel(8);
+        Float defaultPxArc = util.convertDpToPixel(8);
         RectF box = new RectF(defaultPxArc,defaultPxArc,getWidth()-defaultPxArc,getWidth()-defaultPxArc);
         Float sweep = 360 * this.percent * 0.01f;
         
@@ -81,7 +88,7 @@ public class PctgDistanceView extends View{
         Paint circleCenter = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.DITHER_FLAG | Paint.ANTI_ALIAS_FLAG);
         circleCenter.setColor(Color.parseColor("#323a45"));
         circleCenter.setStyle(Paint.Style.FILL);
-        canvas.drawCircle(getWidth()/2, getWidth()/2, getWidth() / 2  - convertDpToPixel(15) , circleCenter);
+        canvas.drawCircle(getWidth()/2, getWidth()/2, getWidth() / 2  - util.convertDpToPixel(15) , circleCenter);
         
         if(textCircle == null){
         	drawPctgDistance(canvas);        	
@@ -92,7 +99,7 @@ public class PctgDistanceView extends View{
     
     private void drawTextCircle(Canvas canvas) {
     	
-    	canvas.drawText(textCircle, getWidth() / 2, (getHeight() / 2 + convertDpToPixel(10)), textPaint(30));
+    	canvas.drawText(textCircle, getWidth() / 2, (getHeight() / 2 + util.convertDpToPixel(10)), textPaint(30));
     	
 	}
 
@@ -104,22 +111,22 @@ public class PctgDistanceView extends View{
     	
     	Float leftPos = null;
     	if(this.percent.floatValue()<10){
-    		leftPos = getWidth()/2+convertDpToPixel(25);
+    		leftPos = getWidth()/2+util.convertDpToPixel(25);
     	}else if(this.percent.floatValue() <= 99){
-    		leftPos = getWidth()/2+convertDpToPixel(30);
+    		leftPos = getWidth()/2+util.convertDpToPixel(30);
     	}else{
-    		leftPos = getWidth()/2+convertDpToPixel(40);
+    		leftPos = getWidth()/2+util.convertDpToPixel(40);
     	}
-    	canvas.drawText("%", leftPos , getHeight()/2 - convertDpToPixel(15), textPaint(15));
+    	canvas.drawText("%", leftPos , getHeight()/2 - util.convertDpToPixel(15), textPaint(15));
     	
     	df = new DecimalFormat("#.##");
     	if(distance > 2000){
-    		canvas.drawText(df.format(this.distance/1000), getWidth()/2, getHeight()/2+convertDpToPixel(25), textPaint(15));
-    		canvas.drawText(this.context.getString(R.string.km), getWidth()/2, getHeight()/2+convertDpToPixel(40), textPaint(15));
+    		canvas.drawText(df.format(this.distance/1000), getWidth()/2, getHeight()/2+util.convertDpToPixel(25), textPaint(15));
+    		canvas.drawText(this.context.getString(R.string.km), getWidth()/2, getHeight()/2+util.convertDpToPixel(40), textPaint(15));
     	}else{
     		df = new DecimalFormat("#");
-    		canvas.drawText(df.format(this.distance), getWidth()/2, getHeight()/2+convertDpToPixel(25), textPaint(15));
-    		canvas.drawText(this.context.getString(R.string.meters), getWidth()/2, getHeight()/2+convertDpToPixel(40), textPaint(15));
+    		canvas.drawText(df.format(this.distance), getWidth()/2, getHeight()/2+util.convertDpToPixel(25), textPaint(15));
+    		canvas.drawText(this.context.getString(R.string.meters), getWidth()/2, getHeight()/2+util.convertDpToPixel(40), textPaint(15));
     	}
     	
     }
@@ -127,38 +134,11 @@ public class PctgDistanceView extends View{
 	private Paint textPaint(Integer fontSize) {
 		Paint text = new Paint();
 		text.setColor(Color.WHITE);
-		text.setTextSize(convertDpToPixel(fontSize));
+		text.setTextSize(util.convertDpToPixel(fontSize));
 		text.setTextAlign(Paint.Align.CENTER);
 		text.setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/Signika-Semibold.ttf"));
 		return text;
 	}
     
-    /**
-     * This method converts dp unit to equivalent pixels, depending on device density. 
-     * 
-     * @param dp A value in dp (density independent pixels) unit. Which we need to convert into pixels
-     * @param context Context to get resources and device specific display metrics
-     * @return A float value to represent px equivalent to dp depending on device density
-     */
-    public Float convertDpToPixel(float dp){
-        Resources resources = context.getResources();
-        DisplayMetrics metrics = resources.getDisplayMetrics();
-        Float px = dp * (metrics.densityDpi / 160f);
-        
-        return px;
-    }
-
-    /**
-     * This method converts device specific pixels to density independent pixels.
-     * 
-     * @param px A value in px (pixels) unit. Which we need to convert into db
-     * @param context Context to get resources and device specific display metrics
-     * @return A float value to represent dp equivalent to px value
-     */
-    public Float convertPixelsToDp(float px){
-        Resources resources = context.getResources();
-        DisplayMetrics metrics = resources.getDisplayMetrics();
-        float dp = px / (metrics.densityDpi / 160f);
-        return dp;
-    }
+  
 }
