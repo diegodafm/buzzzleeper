@@ -64,6 +64,8 @@ public class MapTrackingActivity extends FragmentActivity {
 	}
 	
 	
+	
+	
 	private void setupMap() {
 		SupportMapFragment mapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.googleMap));
 		googleMap = mapFragment.getMap();
