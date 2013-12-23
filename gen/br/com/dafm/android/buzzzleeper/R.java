@@ -8,9 +8,6 @@
 package br.com.dafm.android.buzzzleeper;
 
 public final class R {
-    public static final class array {
-        public static final int buffer_arrays=0x7f070000;
-    }
     public static final class attr {
         /** <p>Must be a floating point value, such as "<code>1.2</code>".
 <p>This may also be a reference to a resource (in the form
@@ -168,8 +165,8 @@ containing a value of this type.
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f080000;
-        public static final int activity_vertical_margin=0x7f080001;
+        public static final int activity_horizontal_margin=0x7f070000;
+        public static final int activity_vertical_margin=0x7f070001;
     }
     public static final class drawable {
         public static final int back=0x7f020000;
@@ -359,9 +356,9 @@ containing a value of this type.
         public static final int tracking_tab=0x7f03000a;
     }
     public static final class menu {
-        public static final int main=0x7f0a0000;
-        public static final int menu_bus_stop=0x7f0a0001;
-        public static final int menu_item_address=0x7f0a0002;
+        public static final int main=0x7f090000;
+        public static final int menu_bus_stop=0x7f090001;
+        public static final int menu_item_address=0x7f090002;
     }
     public static final class string {
         public static final int action_settings=0x7f060016;
@@ -369,9 +366,9 @@ containing a value of this type.
          */
         public static final int add=0x7f060018;
         public static final int addNewLocation=0x7f060019;
-        public static final int address=0x7f06001b;
-        public static final int addressCannotBeIsEmpty=0x7f06002a;
-        public static final int alarm=0x7f06001d;
+        public static final int address=0x7f06001c;
+        public static final int addressCannotBeIsEmpty=0x7f06002b;
+        public static final int alarm=0x7f06001e;
         public static final int app_name=0x7f060015;
         /**   Title for notification shown when GooglePlayServices needs to be
         enabled for a application to work. [CHAR LIMIT=70] 
@@ -396,12 +393,12 @@ containing a value of this type.
         [CHAR LIMIT=70] 
          */
         public static final int auth_client_using_bad_version_title=0x7f06000f;
-        public static final int buffer=0x7f060020;
-        public static final int bufferCannotBeIsEmpty=0x7f06002c;
-        public static final int bufferDistance=0x7f060027;
-        public static final int busStopAdded=0x7f060030;
-        public static final int busStopUpdated=0x7f060031;
-        public static final int cancel=0x7f06001f;
+        public static final int buffer=0x7f060021;
+        public static final int bufferCannotBeIsEmpty=0x7f06002d;
+        public static final int bufferDistance=0x7f060028;
+        public static final int busStopAdded=0x7f060031;
+        public static final int busStopUpdated=0x7f060032;
+        public static final int cancel=0x7f060020;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -457,45 +454,46 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f06000e;
-        public static final int confirm=0x7f060022;
-        public static final int coordinate=0x7f060021;
-        public static final int edit=0x7f060035;
+        public static final int confirm=0x7f060023;
+        public static final int coordinate=0x7f060022;
+        public static final int edit=0x7f060036;
         /**  CONTEXT MENU ADDRESS 
          */
-        public static final int editBusStop=0x7f060033;
-        public static final int gpsStopped=0x7f06003a;
+        public static final int editBusStop=0x7f060034;
+        public static final int gpsStopped=0x7f06003b;
         public static final int hello_world=0x7f060017;
-        public static final int info=0x7f06003c;
-        public static final int km=0x7f060026;
-        public static final int latitude=0x7f060023;
-        public static final int longitude=0x7f060024;
-        public static final int map=0x7f06003d;
+        public static final int info=0x7f06003d;
+        public static final int km=0x7f060027;
+        public static final int latitude=0x7f060024;
+        public static final int longitude=0x7f060025;
+        public static final int map=0x7f06003e;
         /**  CONTEXT MAIN MENU  
          */
-        public static final int menu_settings=0x7f06003b;
-        public static final int meters=0x7f060025;
-        public static final int msgAppStopedActivateGps=0x7f060039;
-        public static final int msgRemoveBusStop=0x7f060038;
+        public static final int menu_settings=0x7f06003c;
+        public static final int meters=0x7f060026;
+        public static final int msgAppStopedActivateGps=0x7f06003a;
+        public static final int msgRemoveBusStop=0x7f060039;
         public static final int name=0x7f06001a;
         /**  ADD ADDRESS MGS ERROS
          */
-        public static final int nameCannotBeIsEmpty=0x7f060029;
-        public static final int ok=0x7f060032;
-        public static final int pleaseFixItFirst=0x7f06002e;
-        public static final int positionCannotBeIsEmpty=0x7f06002b;
-        public static final int remove=0x7f060036;
-        public static final int removeBusStop=0x7f060034;
-        public static final int removeLocation=0x7f060037;
-        public static final int ringtoneCannotBeIsEmpty=0x7f06002d;
-        public static final int save=0x7f06001e;
-        public static final int searchAddress=0x7f06001c;
-        public static final int setRingtone=0x7f060028;
-        public static final int start=0x7f06003f;
-        public static final int starting=0x7f060040;
-        public static final int stop=0x7f06003e;
+        public static final int nameCannotBeIsEmpty=0x7f06002a;
+        public static final int ok=0x7f060033;
+        public static final int pleaseFixItFirst=0x7f06002f;
+        public static final int positionCannotBeIsEmpty=0x7f06002c;
+        public static final int remove=0x7f060037;
+        public static final int removeBusStop=0x7f060035;
+        public static final int removeLocation=0x7f060038;
+        public static final int ringtoneCannotBeIsEmpty=0x7f06002e;
+        public static final int save=0x7f06001f;
+        public static final int searchAddress=0x7f06001d;
+        public static final int setName=0x7f06001b;
+        public static final int setRingtone=0x7f060029;
+        public static final int start=0x7f060040;
+        public static final int starting=0x7f060041;
+        public static final int stop=0x7f06003f;
         /**  ADD ADDRESS MGS SUCCESS
          */
-        public static final int success=0x7f06002f;
+        public static final int success=0x7f060030;
     }
     public static final class style {
         /** 
@@ -510,71 +508,71 @@ containing a value of this type.
 
         
          */
-        public static final int AppBaseTheme=0x7f090000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f090001;
-        public static final int ListViewAppTheme=0x7f09001e;
-        public static final int ListViewAppTheme_White=0x7f09001f;
+        public static final int AppTheme=0x7f080001;
+        public static final int ListViewAppTheme=0x7f08001e;
+        public static final int ListViewAppTheme_White=0x7f08001f;
         /**  /BTN 
  SPINNER 
          */
-        public static final int SpinnerAppTheme=0x7f09001b;
-        public static final int SpinnerDropDownItemAppTheme=0x7f09001d;
-        public static final int SpinnerItem=0x7f09001c;
-        public static final int Theme_BuzzzleeperTheme=0x7f090026;
-        public static final int blrAddress=0x7f090022;
-        public static final int blrName=0x7f090021;
+        public static final int SpinnerAppTheme=0x7f08001b;
+        public static final int SpinnerDropDownItemAppTheme=0x7f08001d;
+        public static final int SpinnerItem=0x7f08001c;
+        public static final int Theme_BuzzzleeperTheme=0x7f080026;
+        public static final int blrAddress=0x7f080022;
+        public static final int blrName=0x7f080021;
         /** /TAB 
          */
-        public static final int borderInfo=0x7f090025;
-        public static final int btn=0x7f090017;
-        public static final int btnAdd=0x7f090019;
-        public static final int btnBackgroundThemeA=0x7f09000e;
-        public static final int btnBackgroundThemeEditA=0x7f090010;
-        public static final int btnBackgroundThemeErrorA=0x7f09000f;
-        public static final int btnContent=0x7f090011;
-        public static final int btnContentCancel=0x7f090013;
-        public static final int btnContentConfirm=0x7f090012;
-        public static final int btnEdit=0x7f09001a;
-        public static final int btnRemove=0x7f090018;
-        public static final int btnShowProperties=0x7f090015;
-        public static final int btnSpinner=0x7f090014;
+        public static final int borderInfo=0x7f080025;
+        public static final int btn=0x7f080017;
+        public static final int btnAdd=0x7f080019;
+        public static final int btnBackgroundThemeA=0x7f08000e;
+        public static final int btnBackgroundThemeEditA=0x7f080010;
+        public static final int btnBackgroundThemeErrorA=0x7f08000f;
+        public static final int btnContent=0x7f080011;
+        public static final int btnContentCancel=0x7f080013;
+        public static final int btnContentConfirm=0x7f080012;
+        public static final int btnEdit=0x7f08001a;
+        public static final int btnRemove=0x7f080018;
+        public static final int btnShowProperties=0x7f080015;
+        public static final int btnSpinner=0x7f080014;
         /**  /SPINNER 
  BUSSTOPITEM 
          */
-        public static final int busStopItem=0x7f090020;
-        public static final int contentBtnShowProperties=0x7f090016;
+        public static final int busStopItem=0x7f080020;
+        public static final int contentBtnShowProperties=0x7f080016;
         /**  /INPUT 
  MAP 
          */
-        public static final int frameMap=0x7f090007;
+        public static final int frameMap=0x7f080007;
         /**  HEADER 
          */
-        public static final int header=0x7f090002;
-        public static final int icPinMap=0x7f090009;
+        public static final int header=0x7f080002;
+        public static final int icPinMap=0x7f080009;
         /**  /MAP 
  BTN 
          */
-        public static final int imgContainer=0x7f09000d;
-        public static final int imgMap=0x7f090023;
-        public static final int infoMap=0x7f090008;
+        public static final int imgContainer=0x7f08000d;
+        public static final int imgMap=0x7f080023;
+        public static final int infoMap=0x7f080008;
         /**  INPUT 
          */
-        public static final int input=0x7f090005;
+        public static final int input=0x7f080005;
         /**  /HEADER 
          */
-        public static final int scrollViewStyle=0x7f090004;
+        public static final int scrollViewStyle=0x7f080004;
         /**  /BUSSTOPITEM 
  TAB 
          */
-        public static final int tabWidget=0x7f090024;
-        public static final int textAddress=0x7f09000b;
-        public static final int textCoordinate=0x7f09000c;
-        public static final int textEdit=0x7f090006;
-        public static final int textHeader=0x7f090003;
-        public static final int textInfo=0x7f09000a;
+        public static final int tabWidget=0x7f080024;
+        public static final int textAddress=0x7f08000b;
+        public static final int textCoordinate=0x7f08000c;
+        public static final int textEdit=0x7f080006;
+        public static final int textHeader=0x7f080003;
+        public static final int textInfo=0x7f08000a;
     }
     public static final class styleable {
         /** Attributes that can be used with a MapAttrs.

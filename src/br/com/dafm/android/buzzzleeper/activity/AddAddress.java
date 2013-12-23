@@ -264,7 +264,19 @@ public class AddAddress extends FragmentActivity {
 			circleOptions.strokeColor(Color.parseColor("#58c2cb"));
 			circleOptions.strokeWidth(5);
 			googleMap.addCircle(circleOptions);
-			googleMap.addMarker(new MarkerOptions().position(point));
+			
+			/*
+			EditText name = (EditText) this.findViewById(R.id.txtAddName);
+			SeekBar buffer = (SeekBar) this.findViewById(R.id.seekBuffer);
+			String titleMarker = (String) (name.getText() != null ? name.getText() : getString(R.string.setName)); 
+			googleMap.addMarker(new MarkerOptions()
+				.title(titleMarker)
+				.snippet( Integer.toString(buffer.getProgress()))
+				.position(point));
+			*/
+			
+			googleMap.addMarker(new MarkerOptions()
+				.position(point));
 
 			LinearLayout rlInfoMap = (LinearLayout) this.findViewById(R.id.rlInfoMap);
 			rlInfoMap.setVisibility(0);

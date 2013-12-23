@@ -189,7 +189,7 @@ public class MainActivity extends Activity {
 			
 			blrAddress = new BlrAddress();
 			blrAddress.setName("Home Sweet Home");
-			blrAddress.setAddress("Rua Antonio da Silva, 71, Ingá, 32604-492, Betim, MG, Brasil");
+			blrAddress.setAddress("Rua Antonio da Silva, 71, Ingá¡, 32604-492, Betim, MG, Brasil");
 			blrAddress.setLat(-19.858617d);
 			blrAddress.setLng(-44.199308d);
 			blrAddress.setRingtone("Pump It");
