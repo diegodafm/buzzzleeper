@@ -50,15 +50,12 @@ public class MyLocationListener implements LocationListener {
 	@Override
 	public void onProviderEnabled(String arg0) {
 		Log.v("MYLOCATION", "onProviderEnabled");
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
 		Log.v("MYLOCATION", "onStatusChanged");
-		// TODO Auto-generated method stub
-
 	}
 
 }

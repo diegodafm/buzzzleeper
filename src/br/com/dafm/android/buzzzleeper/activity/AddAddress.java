@@ -23,6 +23,7 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
@@ -69,6 +70,8 @@ public class AddAddress extends FragmentActivity {
 	private BlrAddress blrAddress;
 	
 	private AndroidUtil util;
+	
+	private Boolean expandedMap;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -106,11 +109,35 @@ public class AddAddress extends FragmentActivity {
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
-		LinearLayout containerMap = (LinearLayout) findViewById(R.id.llContainerMap);
-		if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-			containerMap.getLayoutParams().height = util.convertDpToPixel(100f).intValue();
-		} else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
-			containerMap.getLayoutParams().height = util.convertDpToPixel(150f).intValue();
+
+		if(expandedMap){
+			
+			Float newHeight = util.convertPixelsToDp(getApplicationContext().getResources().getDisplayMetrics().heightPixels);
+			//header
+			newHeight -= util.convertPixelsToDp(50); 
+			//infoMAP
+			LinearLayout rlInfoMap = (LinearLayout) this.findViewById(R.id.rlInfoMap);
+			rlInfoMap.setVisibility(0);
+			newHeight -= util.convertPixelsToDp(rlInfoMap.getHeight());
+			
+			//header
+			newHeight -= 100;
+			
+			LinearLayout containerMap = (LinearLayout) findViewById(R.id.llContainerMap);
+			containerMap.setLayoutParams(new LinearLayout.LayoutParams(
+					getApplicationContext().getResources().getDisplayMetrics().widthPixels,
+					util.convertDpToPixel(newHeight).intValue()));
+		}else{
+			LinearLayout containerMap = (LinearLayout) findViewById(R.id.llContainerMap);
+			if (getApplicationContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+				containerMap.setLayoutParams(new LinearLayout.LayoutParams(
+						getApplicationContext().getResources().getDisplayMetrics().widthPixels,
+						util.convertDpToPixel(100f).intValue()));			
+			} else if (getApplicationContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {				
+				containerMap.setLayoutParams(new LinearLayout.LayoutParams(
+						getApplicationContext().getResources().getDisplayMetrics().widthPixels,
+						util.convertDpToPixel(150f).intValue()));
+			}	
 		}
 	}
 
@@ -208,8 +235,7 @@ public class AddAddress extends FragmentActivity {
 	private void findAddress() {
 
 		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-		EditText searchAddress = (EditText) this
-				.findViewById(R.id.txtSearchAddress);
+		EditText searchAddress = (EditText) this.findViewById(R.id.txtSearchAddress);
 		imm.hideSoftInputFromWindow(searchAddress.getWindowToken(), 0);
 
 		Address address = geocoderNetwork.findAddress(searchAddress.getText()
@@ -244,6 +270,20 @@ public class AddAddress extends FragmentActivity {
 					addMarker(point);
 					CameraUpdate center = CameraUpdateFactory.newLatLng(point);
 					googleMap.moveCamera(center);
+				}
+			});
+			
+			expandedMap = false;
+			final ImageView btnMapExpand = (ImageView) findViewById(R.id.btnMapExpand);			
+			btnMapExpand.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					if(expandedMap){
+						btnMapExpand.setImageResource(R.drawable.ic_map_expand);
+					}else{
+						btnMapExpand.setImageResource(R.drawable.ic_map_collapse);
+					}
+					expandedMapSettings();
 				}
 			});
 		}
@@ -563,6 +603,40 @@ public class AddAddress extends FragmentActivity {
 		if(blrAddress.getRingtone() != null){
 			TextView ringtone = (TextView) this.findViewById(R.id.txtRingtone);
 			ringtone.setText(blrAddress.getRingtone());
+		}
+	}
+	
+	private void expandedMapSettings(){
+		if(!expandedMap){
+			
+			Float newHeight = util.convertPixelsToDp(getApplicationContext().getResources().getDisplayMetrics().heightPixels);
+			//header
+			newHeight -= util.convertPixelsToDp(50); 
+			//infoMAP
+			LinearLayout rlInfoMap = (LinearLayout) this.findViewById(R.id.rlInfoMap);
+			rlInfoMap.setVisibility(0);
+			newHeight -= util.convertPixelsToDp(rlInfoMap.getHeight());
+			
+			//header
+			newHeight -= 100;
+			
+			LinearLayout containerMap = (LinearLayout) findViewById(R.id.llContainerMap);
+			containerMap.setLayoutParams(new LinearLayout.LayoutParams(
+					getApplicationContext().getResources().getDisplayMetrics().widthPixels,
+					util.convertDpToPixel(newHeight).intValue()));
+			expandedMap = true;
+		}else{
+			LinearLayout containerMap = (LinearLayout) findViewById(R.id.llContainerMap);
+			if (getApplicationContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+				containerMap.setLayoutParams(new LinearLayout.LayoutParams(
+						getApplicationContext().getResources().getDisplayMetrics().widthPixels,
+						util.convertDpToPixel(100f).intValue()));			
+			} else if (getApplicationContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {				
+				containerMap.setLayoutParams(new LinearLayout.LayoutParams(
+						getApplicationContext().getResources().getDisplayMetrics().widthPixels,
+						util.convertDpToPixel(150f).intValue()));
+			}	
+			expandedMap= false;
 		}
 	}
 

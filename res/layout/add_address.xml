@@ -13,6 +13,7 @@
         android:orientation="vertical" >
         
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/headerAddAddress"
 		    style="@style/header" >
 		
 		    <RelativeLayout
@@ -85,20 +86,36 @@
         <LinearLayout
             android:id="@+id/llContainerMap"
             android:layout_width="fill_parent"
+            android:background="@color/backgroundThemeErrorB"
             android:layout_height="150dip">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent" >
-
+	            
                 <fragment
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     android:id="@+id/googleMap"
                     android:name="br.com.dafm.android.buzzzleeper.AddAddress"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
+                    android:layout_alignParentRight="true"
+            		android:layout_alignParentTop="true"
                     class="com.google.android.gms.maps.SupportMapFragment" />
-            </LinearLayout>
+	            
+                <ImageView
+                    android:id="@+id/btnMapExpand"
+                    android:src="@drawable/ic_map_expand"
+                    android:background="@drawable/ic_map_button_selector"
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:padding="2dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="10dip"
+                    android:layout_alignParentLeft="true"
+            		android:layout_alignParentTop="true"/>
+
+            </RelativeLayout>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/rlInfoMap"

@@ -79,12 +79,12 @@
         
         <service android:name="br.com.dafm.android.buzzzleeper.service.TrackingService"/>
 
-        <!-- ac-dmendonca
+        <!-- ac-dmendonca 
         <meta-data
         	android:name="com.google.android.maps.v2.API_KEY"
-        	android:value="AIzaSyDNOMt3Pfl6A4a9jppyPfWhwdLLJ7OJdcM" />--> 
+        	android:value="AIzaSyAQhopHpbMx4UfPABarYNBxs3fHE1cS0uE" /> -->
         
-        <!-- note-dafm -->
+        <!-- note-dafm  -->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyDN29jm_Ut5LtZxyrb8VlM0yOrPDmScj00" />
